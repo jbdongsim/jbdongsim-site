@@ -54,7 +54,7 @@ if (cards) {
     cards.innerHTML = list.map(p => `
       <article class="pcard">
         <div class="hd"><img src="${icon(p.area)}" alt=""><div><span class="chip">${p.area}</span><h3>${esc(p.name)}</h3></div></div>
-        <div class="meta"><span class="chip age">${esc(p.target)}</span>${p.vendor ? `<span class="chip ven">${esc(p.vendor)}</span>` : ''}</div>
+        <div class="meta"><span class="chip age">${esc(p.target)}</span>${p.vendor ? `<span class="chip ven">${esc(p.vendor)}</span>` : ''}${p.name === '셀업키즈 (SEL UP)' ? '<a class="guide-link" href="#selup-guide" aria-haspopup="dialog">자세히보기</a>' : ''}</div>
         ${p.intro ? `<p class="pintro">${esc(p.intro)}</p>` : ''}
         <ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
         ${p.detail ? `<details class="pdetail"><summary>수업·구성 자세히</summary>${p.detail.map(t => `<p>${esc(t)}</p>`).join('')}</details>` : ''}
@@ -66,6 +66,21 @@ if (cards) {
   $('#ageSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { age = b.dataset.age; render(); } });
   areaBtns.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { area = area === b.dataset.area ? 'all' : b.dataset.area; render(); } });
   document.addEventListener('click', e => { if (e.target.id === 'clr') { e.preventDefault(); area = 'all'; render(); } });
+  const guide = document.createElement('dialog');
+  guide.className = 'program-guide';
+  guide.id = 'selup-guide';
+  guide.setAttribute('aria-labelledby', 'selup-guide-title');
+  guide.innerHTML = `<div class="guide-head"><span>2027 프로그램 안내</span><button type="button" class="guide-close" aria-label="닫기">×</button></div>
+    <div class="guide-body"><span class="chip">사회정서 · 만 3~5세</span><h2 id="selup-guide-title">셀업키즈 (SEL UP)</h2><p class="guide-sub">신한에듀의 유아 사회정서학습 프로그램을 핵심만 정리했습니다.</p>
+    <h3>아이의 마음에서 관계로</h3><p>감정을 알아차리고 표현하는 일에서 시작해 친구의 생각을 살피고, 함께 해결하며 스스로 선택하는 연습으로 이어집니다.</p>
+    <div class="guide-steps"><div><b>1 · 나</b><span>내 감정과 행동 이해하기</span></div><div><b>2 · 우리</b><span>공감·소통·협력하기</span></div><div><b>3 · 성장</b><span>긍정적으로 생각하고 조절하기</span></div></div>
+    <h3>교실에서의 활용</h3><ul><li>SEL 그림책과 놀이·게임으로 마음과 관계를 이야기합니다.</li><li>마음 일기장과 아침 클래스 타임 카드로 일상에 연결합니다.</li><li>활동 범위와 교구 구성은 2027학년도 최신 공급사 자료로 확인합니다.</li></ul>
+    <p class="guide-note">이 안내는 중부산동심이 자체 작성한 요약입니다. 공급사의 원본 카탈로그·영상은 공개 배포 권한 확인 후 연결할 수 있습니다.</p>
+    <a class="guide-contact" href="contact.html?area=%EC%82%AC%ED%9A%8C%EC%A0%95%EC%84%9C&program=%EC%85%80%EC%97%85%ED%82%A4%EC%A6%88%20(SEL%20UP)">원본 자료 요청하기</a></div>`;
+  document.body.append(guide);
+  cards.addEventListener('click', e => { if (e.target.closest('.guide-link')) { e.preventDefault(); guide.showModal(); } });
+  guide.querySelector('.guide-close').addEventListener('click', () => guide.close());
+  guide.addEventListener('click', e => { if (e.target === guide) guide.close(); });
   render();
 }
 
