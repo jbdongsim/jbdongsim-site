@@ -443,3 +443,11 @@ footer{padding:56px 0 150px}
 .area-guide-list{display:grid;gap:12px}.area-guide-list article{border:1px solid #DEE6EF;background:#F9FBFE;border-radius:16px;padding:19px 21px}.area-guide-list h3{color:#12294A;font-size:19px;margin:5px 0 7px}.area-guide-list p{margin:0 0 8px}.area-guide-list ul{margin:8px 0 12px;padding-left:21px}.area-guide-list li{margin:3px 0}.area-guide-meta{display:flex;gap:6px;flex-wrap:wrap}.area-guide-meta span{font-size:12px;font-weight:700;color:#27516B;background:#E9F2F9;border-radius:999px;padding:3px 9px}.area-guide-list a{font-size:13px;font-weight:800;color:#125E85;text-decoration:underline}
 .area-guide-note{background:#FFF2F2;border:1px solid #F4D0D0;border-radius:12px;padding:12px 14px;margin:18px 0;color:#6D4E4E;font-size:13px}.area-guide-all{display:inline-block;background:#12294A;color:#fff!important;font-size:14px;font-weight:800;border-radius:999px;padding:10px 17px}
 @media(max-width:600px){.area-guide-head{padding:14px 18px}.area-guide-body{padding:20px 18px 24px}.area-guide-title img{width:68px;height:68px}.area-guide-title h2{font-size:22px}.area-guide-list article{padding:16px}}
+
+/* 셀업 카탈로그 미리보기 */
+.guide-file{padding:0; margin:22px 0 0}
+.guide-file h3{margin:0 0 10px}
+.guide-file iframe{display:block; width:100%; height:min(60vh,520px); border:1px solid #D8E2EC; border-radius:12px; background:#F5F7FA}
+.guide-file p{font-size:13px; color:#586476; margin-top:8px}
+.guide-file a{color:#1C5F9C; text-decoration:underline; font-weight:800}
+@media(max-width:600px){.guide-file iframe{height:52vh}}
