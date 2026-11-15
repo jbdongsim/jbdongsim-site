@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://jbdongsim.netlify.app/sitemap.xml
+Sitemap: https://jbdongsim.co.kr/sitemap.xml
