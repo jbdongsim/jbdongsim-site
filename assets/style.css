@@ -154,6 +154,12 @@ nav.main a:hover{background:var(--soft)}
 .pcard .ft{margin-top:16px; display:flex; justify-content:flex-end}
 .pcard .ft a{font-weight:800; font-size:14px; color:var(--navy); border:1.5px solid var(--navy); border-radius:999px; padding:8px 16px}
 .pcard .ft a:hover{background:var(--navy); color:#fff}
+.pcard .pintro{margin:15px 0 0; padding:12px 14px; border-radius:12px; background:#F5F8FC; color:#233A5B; font-size:14px; line-height:1.55; font-weight:600}
+.pcard .pdetail{margin-top:14px; border-top:1px solid var(--line); padding-top:12px; color:#45536A; font-size:13.5px; line-height:1.6}
+.pcard .pdetail summary{cursor:pointer; color:var(--navy); font-weight:800; list-style:none}
+.pcard .pdetail summary::after{content:" +"; color:var(--teal)}
+.pcard .pdetail[open] summary::after{content:" −"}
+.pcard .pdetail p{margin:9px 0 0}
 .help{margin-top:26px; background:#fff; border:1px solid var(--line); border-radius:var(--r-md); padding:26px 30px; display:flex; gap:24px; align-items:center; justify-content:space-between; flex-wrap:wrap}
 .help h3{font-size:20px; font-weight:800} .help p{margin:6px 0 0; color:var(--muted); font-size:15px; max-width:640px}
 
@@ -405,4 +411,4 @@ footer{padding:56px 0 150px}
   .g3,.g4{grid-template-columns:1fr} .atile img{width:66px; height:66px} .atile b{font-size:15px}
   .tabs a{padding:8px 14px 8px 9px; font-size:13.5px} .card{padding:22px}
   .ticks li{font-size:15px}
-}
+  }
