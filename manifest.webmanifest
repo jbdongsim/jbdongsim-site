@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "중부산동심",
+  "short_name": "중부산동심",
+  "description": "부산 어린이집·유치원을 위한 유아교육 프로그램과 원 운영 지원",
+  "lang": "ko",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#12294A",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
