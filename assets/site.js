@@ -7,9 +7,9 @@ const PROGRAMS = [
   {area:'사회정서', name:'셀업키즈 (SEL UP)', vendor:'신한에듀', target:'만 3~5세', ages:['유아'], points:['K-SEL 5대 역량 중심 사회정서학습','SEL 그림책, 게임, 마음 일기장','매일 아침 클래스 타임 카드']},
   {area:'사회정서', name:'아이마이미', vendor:'신한에듀', target:'1~4세', ages:['영아','유아'], points:['감정과 관계를 다루는 그림책','명화, 뮤지컬 명작','이음 놀이 교구와 안전교육']},
   {area:'영어', name:'윙스 (WINGS)', vendor:'비상교육', target:'유아 · Level 1~3', ages:['유아'], points:['참여형 하이브리드 영어','스토리 중심 커리큘럼','가정 연계']},
-  {area:'독서', name:'책보플러스', target:'유아', ages:['유아'], points:['매월 그림책 2권과 문해 놀이책','말잼 키트','교실용 빅북 패키지']},
-  {area:'독서', name:'이야기모자', vendor:'키즈엠', target:'만 2~5세', ages:['영아','유아'], points:['수상작 그림책 큐레이션','감각, 상상, 생각, 표현으로 이어지는 독서 놀이','안전, 전래, 역사, 직업 주제']},
-  {area:'독서', name:'세힘', vendor:'비상교육', target:'영아 ~ 유아', ages:['영아','유아'], points:['책놀이로 기르는 몰입, 상상, 표현']},
+  {area:'독서', name:'책보플러스', vendor:'키즈엠', target:'만 2~5세', ages:['영아','유아'], intro:'그림책 한 권을 읽고, 말하고, 만들며 문해 놀이로 깊이 만납니다.', points:['매월 그림책 2권·문해 놀이책·말잼 키트 구성','표지·그림·어휘를 살피는 단계별 읽기','말잼 챈트·카드로 어휘를 말하고 연결','흥미 → 이해 → 표현 → 확장으로 이어지는 수업','연령별 연간 구성과 교실용 놀이 자료'], detail:['수업 예시: 빅북의 표지와 장면을 관찰하고 이야기 나누기 → 주요 어휘를 챈트·카드로 표현 → 키트로 이야기를 다시 만들어 보기.','브로슈어에는 독서 기록장·포스터와 교실용 지원 자료가 소개됩니다. 빅북 등 선택 구성과 2027 제공 범위는 상담 시 확인합니다.']},
+  {area:'독서', name:'이야기모자', vendor:'키즈엠', target:'만 2~5세', ages:['영아','유아'], intro:'아이가 책 속 주인공이 되어 이야기를 몸과 말로 경험하는 독서 프로그램입니다.', points:['만 2세 감각 → 3세 상상 → 4세 생각 → 5세 표현 독서','주 1회 표지 예측·마음 읽기·문해·몸·퀴즈 놀이','월 수업 그림책 3권, 만 2세는 2권 안내','매일 독서 E-Book 17권과 가정 연계','안전·전래·사회정서·역사·직업 등 연령별 주제'], detail:['만 2세는 보고 듣고 따라 하기, 만 3세는 역할 흉내, 만 4세는 다음 장면과 마음 예상, 만 5세는 이유와 다른 관점을 말하는 방식으로 확장합니다.','2027 소개자료에는 월별 스토리 퍼포밍 클래스와 독서 행사도 안내됩니다. 실제 제공 범위는 계약·일정에 따라 확인합니다.']},
+  {area:'독서', name:'세힘', vendor:'비상교육', target:'영아 ~ 유아', ages:['영아','유아'], intro:'그림책을 읽은 뒤 손과 몸으로 이야기의 장면을 다시 만나는 책놀이입니다.', points:['그림책 장면을 관찰하고 이야기 나누기','스티커 붙이기·그리기 등 참여형 책놀이','인물과 상황을 상상하고 자기 말로 표현','책 읽기를 놀이·체험 활동으로 연결'], detail:['보유 중인 세힘 소개자료는 2025년판입니다. 위 활동 예시는 해당 자료를 바탕으로 요약했으며, 2027 연령별 구성·교구·제공 방식은 최신 자료 확인 후 안내합니다.']},
   {area:'과학', name:'도대체과학연구소', vendor:'키즈엠', target:'유아 · STEP 1~3', ages:['유아'], points:['재료를 바꿔 보는 변인 실험','디지털 실험실 병행','매월 사이언스 데이 행사']},
   {area:'미술', name:'꼬모아르떼', vendor:'비상교육', target:'유아', ages:['유아'], points:['유아 미술 프로그램']},
   {area:'영아반', name:'오플레이', vendor:'신한에듀', target:'만 1~2세', ages:['영아'], points:['오감 놀이 교구','말놀이 그림책과 자연친구책','안전화보']},
@@ -55,7 +55,9 @@ if (cards) {
       <article class="pcard">
         <div class="hd"><img src="${icon(p.area)}" alt=""><div><span class="chip">${p.area}</span><h3>${esc(p.name)}</h3></div></div>
         <div class="meta"><span class="chip age">${esc(p.target)}</span>${p.vendor ? `<span class="chip ven">${esc(p.vendor)}</span>` : ''}</div>
+        ${p.intro ? `<p class="pintro">${esc(p.intro)}</p>` : ''}
         <ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+        ${p.detail ? `<details class="pdetail"><summary>수업·구성 자세히</summary>${p.detail.map(t => `<p>${esc(t)}</p>`).join('')}</details>` : ''}
         <div class="ft"><a href="contact.html?area=${encodeURIComponent(p.area)}&program=${encodeURIComponent(p.name)}">자료 요청</a></div>
       </article>`).join('') || '<p style="color:var(--muted)">해당하는 프로그램이 없습니다.</p>';
     $$('#ageSeg button').forEach(b => b.classList.toggle('on', b.dataset.age === age));
