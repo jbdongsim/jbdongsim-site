@@ -432,3 +432,14 @@ footer{padding:56px 0 150px}
 .guide-note{background:#F6F7F9; padding:13px 15px; border-radius:10px; color:#586476; font-size:13px; margin-top:26px!important}
 .guide-contact{display:inline-block; margin-top:20px; border-radius:999px; padding:10px 18px; background:#12294A; color:#fff!important; font-size:14px; font-weight:800}
 @media(max-width:600px){.guide-body{padding:22px 20px 28px}.guide-steps{grid-template-columns:1fr}.guide-steps div{flex-direction:row; gap:12px}.guide-steps b{min-width:64px}}
+
+/* 첫 화면 과목별 자체 요약 자료 팝업 */
+.area-guide{width:min(780px,calc(100% - 24px));max-height:min(88vh,950px);padding:0;border:0;border-radius:22px;box-shadow:0 28px 80px #0B1C3480;color:#22344F;overflow:auto}
+.area-guide::backdrop{background:#091A32B8}
+.area-guide-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;background:#12294A;color:#fff;padding:16px 24px;font-size:13px;font-weight:800}
+.area-guide-close{border:0;background:transparent;color:#fff;cursor:pointer;font-size:28px;line-height:1;padding:0 4px}
+.area-guide-body{padding:26px 30px 30px;line-height:1.6}
+.area-guide-title{display:flex;align-items:center;gap:17px;margin-bottom:20px}.area-guide-title img{width:88px;height:88px;object-fit:contain}.area-guide-title small{color:#157C69;font-weight:800}.area-guide-title h2{color:#12294A;font-size:27px;margin:2px 0}.area-guide-title p{color:#637184;margin:0}
+.area-guide-list{display:grid;gap:12px}.area-guide-list article{border:1px solid #DEE6EF;background:#F9FBFE;border-radius:16px;padding:19px 21px}.area-guide-list h3{color:#12294A;font-size:19px;margin:5px 0 7px}.area-guide-list p{margin:0 0 8px}.area-guide-list ul{margin:8px 0 12px;padding-left:21px}.area-guide-list li{margin:3px 0}.area-guide-meta{display:flex;gap:6px;flex-wrap:wrap}.area-guide-meta span{font-size:12px;font-weight:700;color:#27516B;background:#E9F2F9;border-radius:999px;padding:3px 9px}.area-guide-list a{font-size:13px;font-weight:800;color:#125E85;text-decoration:underline}
+.area-guide-note{background:#FFF2F2;border:1px solid #F4D0D0;border-radius:12px;padding:12px 14px;margin:18px 0;color:#6D4E4E;font-size:13px}.area-guide-all{display:inline-block;background:#12294A;color:#fff!important;font-size:14px;font-weight:800;border-radius:999px;padding:10px 17px}
+@media(max-width:600px){.area-guide-head{padding:14px 18px}.area-guide-body{padding:20px 18px 24px}.area-guide-title img{width:68px;height:68px}.area-guide-title h2{font-size:22px}.area-guide-list article{padding:16px}}

@@ -38,7 +38,26 @@ $$('[data-n="programs"]').forEach(e => e.textContent = PROGRAMS.length);
 
 // 메인: 영역 타일, 프로그램 이름 띠
 const tiles = $('#areaTiles');
-if (tiles) tiles.innerHTML = AREAS.map(([n, img]) => `<a class="atile" href="programs.html?area=${encodeURIComponent(n)}"><img src="${img}" alt="" loading="lazy"><b>${n}</b><span>${PROGRAMS.filter(p => p.area === n).length}개 프로그램</span></a>`).join('');
+if (tiles) {
+  tiles.innerHTML = AREAS.map(([n, img]) => `<a class="atile" href="programs.html?area=${encodeURIComponent(n)}" data-area="${n}" aria-haspopup="dialog" aria-label="${n} 프로그램 자료 미리보기"><img src="${img}" alt="" loading="lazy"><b>${n}</b><span>${PROGRAMS.filter(p => p.area === n).length}개 프로그램 · 자료 보기</span></a>`).join('');
+  const areaGuide = document.createElement('dialog');
+  areaGuide.className = 'area-guide';
+  areaGuide.setAttribute('aria-labelledby', 'area-guide-title');
+  areaGuide.innerHTML = '<div class="area-guide-head"><span>2027 교육 프로그램 자료 미리보기</span><button type="button" class="area-guide-close" aria-label="팝업 닫기">×</button></div><div class="area-guide-body"></div>';
+  document.body.append(areaGuide);
+  const openAreaGuide = n => {
+    const list = PROGRAMS.filter(p => p.area === n);
+    areaGuide.querySelector('.area-guide-body').innerHTML = `
+      <div class="area-guide-title"><img src="${icon(n)}" alt=""><div><small>중부산동심 자체 요약 자료</small><h2 id="area-guide-title">${esc(n)} 프로그램</h2><p>${list.length}개 프로그램을 한눈에 비교해 보세요.</p></div></div>
+      <div class="area-guide-list">${list.map(p => `<article><div class="area-guide-meta"><span>${esc(p.target)}</span>${p.vendor ? `<span>${esc(p.vendor)}</span>` : ''}</div><h3>${esc(p.name)}</h3>${p.intro ? `<p>${esc(p.intro)}</p>` : ''}<ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul><a href="contact.html?area=${encodeURIComponent(n)}&program=${encodeURIComponent(p.name)}">영상·원본 카탈로그 문의 →</a></article>`).join('')}</div>
+      <p class="area-guide-note">이 화면은 보유 자료를 바탕으로 중부산동심이 자체 작성한 요약입니다. 공급사 원본 영상·카탈로그는 공개 권한이 확인되지 않아 이 팝업에 게시하지 않았습니다. 원본 열람은 상담으로 문의해 주세요.</p>
+      <a class="area-guide-all" href="programs.html?area=${encodeURIComponent(n)}">${esc(n)} 프로그램 페이지 전체 보기 →</a>`;
+    areaGuide.showModal();
+  };
+  tiles.addEventListener('click', e => { const tile = e.target.closest('.atile'); if (!tile) return; e.preventDefault(); openAreaGuide(tile.dataset.area); });
+  areaGuide.querySelector('.area-guide-close').addEventListener('click', () => areaGuide.close());
+  areaGuide.addEventListener('click', e => { if (e.target === areaGuide) areaGuide.close(); });
+}
 const tk = $('#ticker');
 if (tk) { const h = PROGRAMS.map(p => `<span><img src="${icon(p.area)}" alt="">${esc(p.name)}</span>`).join(''); tk.innerHTML = h + h; }
 
