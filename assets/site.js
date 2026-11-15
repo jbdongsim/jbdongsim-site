@@ -90,12 +90,13 @@ if (cards) {
   guide.id = 'selup-guide';
   guide.setAttribute('aria-labelledby', 'selup-guide-title');
   guide.innerHTML = `<div class="guide-head"><span>2027 프로그램 안내</span><button type="button" class="guide-close" aria-label="닫기">×</button></div>
-    <div class="guide-body"><span class="chip">사회정서 · 만 3~5세</span><h2 id="selup-guide-title">셀업키즈 (SEL UP)</h2><p class="guide-sub">신한에듀의 유아 사회정서학습 프로그램을 핵심만 정리했습니다.</p>
+    <div class="guide-body"><span class="chip">사회정서 · 만 3~5세</span><h2 id="selup-guide-title">셀업키즈 (SEL UP)</h2><p class="guide-sub">2027 신한에듀 카탈로그와 프로그램 요약을 확인해 보세요.</p>
+    <section class="guide-file" aria-label="2027 셀업 카탈로그"><h3>2027 셀업 카탈로그</h3><iframe title="2027 셀업 카탈로그 PDF" src="https://drive.google.com/file/d/1hXRvcCWgInTzqo6lfmiLSWs2e5r8w2u2/preview" loading="lazy" allow="fullscreen"></iframe><p>미리보기가 보이지 않으면 <a href="https://drive.google.com/file/d/1hXRvcCWgInTzqo6lfmiLSWs2e5r8w2u2/view" target="_blank" rel="noopener noreferrer">새 창에서 카탈로그 열기</a></p></section>
     <h3>아이의 마음에서 관계로</h3><p>감정을 알아차리고 표현하는 일에서 시작해 친구의 생각을 살피고, 함께 해결하며 스스로 선택하는 연습으로 이어집니다.</p>
     <div class="guide-steps"><div><b>1 · 나</b><span>내 감정과 행동 이해하기</span></div><div><b>2 · 우리</b><span>공감·소통·협력하기</span></div><div><b>3 · 성장</b><span>긍정적으로 생각하고 조절하기</span></div></div>
     <h3>교실에서의 활용</h3><ul><li>SEL 그림책과 놀이·게임으로 마음과 관계를 이야기합니다.</li><li>마음 일기장과 아침 클래스 타임 카드로 일상에 연결합니다.</li><li>활동 범위와 교구 구성은 2027학년도 최신 공급사 자료로 확인합니다.</li></ul>
-    <p class="guide-note">이 안내는 중부산동심이 자체 작성한 요약입니다. 공급사의 원본 카탈로그·영상은 공개 배포 권한 확인 후 연결할 수 있습니다.</p>
-    <a class="guide-contact" href="contact.html?area=%EC%82%AC%ED%9A%8C%EC%A0%95%EC%84%9C&program=%EC%85%80%EC%97%85%ED%82%A4%EC%A6%88%20(SEL%20UP)">원본 자료 요청하기</a></div>`;
+    <p class="guide-note">위 프로그램 요약은 중부산동심이 작성했습니다. 카탈로그의 내용과 실제 공급 범위는 최신 안내를 확인해 주세요.</p>
+    <a class="guide-contact" href="contact.html?area=%EC%82%AC%ED%9A%8C%EC%A0%95%EC%84%9C&program=%EC%85%80%EC%97%85%ED%82%A4%EC%A6%88%20(SEL%20UP)">상담·샘플 요청하기</a></div>`;
   document.body.append(guide);
   cards.addEventListener('click', e => { if (e.target.closest('.guide-link')) { e.preventDefault(); guide.showModal(); } });
   guide.querySelector('.guide-close').addEventListener('click', () => guide.close());
