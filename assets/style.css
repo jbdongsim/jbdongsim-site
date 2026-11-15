@@ -451,3 +451,8 @@ footer{padding:56px 0 150px}
 .guide-file p{font-size:13px; color:#586476; margin-top:8px}
 .guide-file a{color:#1C5F9C; text-decoration:underline; font-weight:800}
 @media(max-width:600px){.guide-file iframe{height:52vh}}
+
+/* 첫 화면 인포그래픽 속 그림 영역을 자료 팝업으로 연결 */
+.hero-art .hero-hotspot{position:absolute;z-index:1;display:block;border-radius:35%;cursor:pointer}
+.hero-art .hero-hotspot:focus-visible{outline:3px solid #F5B841;outline-offset:-4px;background:rgba(245,184,65,.18)}
+.hero-art .pin-link{z-index:2}
