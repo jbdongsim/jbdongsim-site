@@ -412,3 +412,23 @@ footer{padding:56px 0 150px}
   .tabs a{padding:8px 14px 8px 9px; font-size:13.5px} .card{padding:22px}
   .ticks li{font-size:15px}
   }
+
+/* 프로그램 카드의 자세히보기와 안내 팝업 */
+.pcard .guide-link{align-self:center; margin-left:auto; font-size:12.5px; font-weight:800; color:#173D6A; border:1px solid #9CB5CE; border-radius:8px; padding:5px 10px; text-decoration:none; white-space:nowrap}
+.pcard .guide-link:hover,.pcard .guide-link:focus-visible{background:#E6F0FB; outline-color:#173D6A}
+.program-guide{width:min(640px,calc(100% - 28px)); max-height:min(88vh,850px); padding:0; border:0; border-radius:22px; box-shadow:0 28px 80px #0B1C3480; color:#22344F; overflow:auto}
+.program-guide::backdrop{background:#091A32B8}
+.guide-head{position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; background:#12294A; color:#fff; padding:16px 24px; font-size:13px; font-weight:700}
+.guide-close{border:0; background:transparent; color:#fff; cursor:pointer; font-size:28px; line-height:1; padding:0 4px}
+.guide-body{padding:28px 32px 34px; line-height:1.65}
+.guide-body h2{font-size:28px; margin:12px 0 0; color:#12294A}
+.guide-body h3{font-size:18px; margin:28px 0 8px; color:#12294A}
+.guide-body p{margin:0}
+.guide-sub{color:#57677D; margin-top:5px!important}
+.guide-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:18px}
+.guide-steps div{background:#F0F6FA; border-radius:12px; padding:14px 12px; display:flex; flex-direction:column; gap:4px; font-size:13px}
+.guide-steps b{color:#137965}
+.guide-body ul{padding-left:21px; margin:8px 0; display:grid; gap:6px}
+.guide-note{background:#F6F7F9; padding:13px 15px; border-radius:10px; color:#586476; font-size:13px; margin-top:26px!important}
+.guide-contact{display:inline-block; margin-top:20px; border-radius:999px; padding:10px 18px; background:#12294A; color:#fff!important; font-size:14px; font-weight:800}
+@media(max-width:600px){.guide-body{padding:22px 20px 28px}.guide-steps{grid-template-columns:1fr}.guide-steps div{flex-direction:row; gap:12px}.guide-steps b{min-width:64px}}
