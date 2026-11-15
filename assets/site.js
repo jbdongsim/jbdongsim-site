@@ -24,6 +24,7 @@ const PROGRAMS = [
   {area:'한글·수', name:'한글어드벤처', vendor:'키즈엠', target:'만 3~5세', ages:['유아'], points:['자모 캐릭터 스토리','매일 10분 콘텐츠','소리 중심 커리큘럼']},
   {area:'한글·수', name:'수학어드벤쳐', vendor:'키즈엠', target:'유아', ages:['유아'], points:['AI 교구','실생활, 코딩, 경제를 얹은 토핑 수학','초등 교육과정 연계']}
 ];
+const MEDIA = {"셀업키즈 (SEL UP)":[["2027 카탈로그","1hXRvcCWgInTzqo6lfmiLSWs2e5r8w2u2"],["노래 영상","1W70y34-LYfWkhrrmWknHCSMPvwdKLkAk"]],"아이마이미":[["2027 연간자료 (3세)","1xeRFpemiG29XikuvgO0UuaZSUuHDwe8E"],["2027 연간자료 (4세)","1wWd57UqiOJ92HWl4qovXPG9RAxVVUROT"],["2027 OT 영상","1yKrbuB5ahIYyR70cfhwKnwcOkFiEjGkW"]],"윙스 (WINGS)":[["프로그램 소개 PPT","1iIsbwEZQkTBdsjzhFj37SAABiQzvcfZM"]],"책보플러스":[["홍보 영상","14CKdMKeZrxcObhxNR1yXD6NchxzwEWtP"],["브로슈어","142iXQBRMzmh-7owcrnBnmCcujZHl4giI"]],"이야기모자":[["소개 영상","1nFhKPhQ_0LZJoRHkcmu8uzU2meaFyNS5"],["2027 브로슈어","1y4uzbKqeWPaGcmExLTJfnorpTe9IMq1K"]],"세힘":[["소개 영상 (2024)","1kvmkDCcIF0t2RpRHG6UT27o6_thSwRGl"]],"도대체과학연구소":[["홍보 영상","1D4G4n0JJqwGjjQfSEJFJ9DNBNH4mHSS_"],["2027 브로슈어","1vkwMwXlSdoD9yaG4nj61YX3eQ1RColBq"]],"꼬모아르떼":[["소개 영상 (2024)","1_u92yQ04GiS7KqNec_lQcIVUb4tYzldW"],["소개 PPT (2026)","1m6p223rKuYlKX92wlwmarqPnTRWTA9dW"]],"오플레이":[["OT 영상","1JDRnYPeQwQ4WDl_2CVYr-2bZksgkUpAn"],["2027 연간자료","1uxqsb6_97F9AR59uiyBJSvpAQwDM90wu"]],"플레이콩":[["홍보 영상","1tIAM_QNOOy0RDfaj9Rm8XCTENwMBrI1E"],["2027 브로슈어","19VSdanfZvHMm6_WX3nBqx73jiNAK_9sr"]],"하임슐레":[["소개 영상 (2024)","1VTLdNsm4U2ADLxZ9I9KrP1utC0BA4UzM"]],"챗키드로":[["코딩 소개 이미지 (2026)","1XypZujwrFrRw-tObb1Pf1b0kYi1n1khB"]],"누리과정 플러스":[["프로그램 소개 PPT","1zq3Vy-IJxe_rX3XBLLRz93rLRoFO9rYw"]],"초록별 도보미":[["소개 영상","1mv3PEy4WVbygCo4X65fKna-wup6x43so"],["2027 브로슈어","1Y4DSsnFDRJL0GS5srMmy4eVecJ2DHEtF"]],"테비박스":[["OT 자료 PDF (2026)","1dEEv7F7CmZj4fhAXonlsLtEbpt3Ixg4J"]],"젤리아이":[["홍보 영상","1b63sidHp5GnuR0Tq-HiPSqMLg-3WNNCz"]],"나은PBL":[["연간교육계획안 (2026)","1uRL6BWOq9VlD7RiGYfe0rqLlKEylKxxq"]],"한글어드벤처":[["홍보 영상","1N4j6H6-DCcsXg42_Cy3xqw4EBDCpq4Cq"],["2027 브로슈어","1_0PZsO7MlDk9ztIQiJJpASM5NhaYDF8_"]],"수학어드벤쳐":[["2027 브로슈어","1u06P5pqwK0QqE9sjlhvPhAgyaBwUTvMB"]]};
 const TEL = '01037522699', KAKAO = 'https://pf.kakao.com/_wYFNX';
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const page = document.body.dataset.page || 'home';
@@ -49,12 +50,22 @@ if (tiles) {
     const list = PROGRAMS.filter(p => p.area === n);
     areaGuide.querySelector('.area-guide-body').innerHTML = `
       <div class="area-guide-title"><img src="${icon(n)}" alt=""><div><small>중부산동심 자체 요약 자료</small><h2 id="area-guide-title">${esc(n)} 프로그램</h2><p>${list.length}개 프로그램을 한눈에 비교해 보세요.</p></div></div>
-      <div class="area-guide-list">${list.map(p => `<article><div class="area-guide-meta"><span>${esc(p.target)}</span>${p.vendor ? `<span>${esc(p.vendor)}</span>` : ''}</div><h3>${esc(p.name)}</h3>${p.intro ? `<p>${esc(p.intro)}</p>` : ''}<ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul><a href="contact.html?area=${encodeURIComponent(n)}&program=${encodeURIComponent(p.name)}">영상·원본 카탈로그 문의 →</a></article>`).join('')}</div>
-      <p class="area-guide-note">이 화면은 보유 자료를 바탕으로 중부산동심이 자체 작성한 요약입니다. 공급사 원본 영상·카탈로그는 공개 권한이 확인되지 않아 이 팝업에 게시하지 않았습니다. 원본 열람은 상담으로 문의해 주세요.</p>
+      <div class="area-guide-list">${list.map(p => `<article><div class="area-guide-meta"><span>${esc(p.target)}</span>${p.vendor ? `<span>${esc(p.vendor)}</span>` : ''}</div><h3>${esc(p.name)}</h3>${p.intro ? `<p>${esc(p.intro)}</p>` : ''}<ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul><div class="area-guide-media">${(MEDIA[p.name] || []).map(([label, id]) => `<button type="button" class="area-media-open" data-file-id="${id}" data-label="${esc(label)}">${esc(label)} 보기</button>`).join('')}</div><a href="contact.html?area=${encodeURIComponent(n)}&program=${encodeURIComponent(p.name)}">자료 접근 문의 →</a></article>`).join('')}</div>
+      <section class="area-media-viewer" hidden aria-label="원본 자료 미리보기"></section>
+      <p class="area-guide-note">프로그램 요약은 중부산동심이 작성했습니다. 원본 영상·자료는 Google Drive의 기존 접근 권한이 있는 계정에서만 보입니다. 보이지 않으면 접근 권한을 요청해 주세요. 연도가 표시된 구자료는 최신 구성과 다를 수 있습니다.</p>
       <a class="area-guide-all" href="programs.html?area=${encodeURIComponent(n)}">${esc(n)} 프로그램 페이지 전체 보기 →</a>`;
     areaGuide.showModal();
   };
   tiles.addEventListener('click', e => { const tile = e.target.closest('.atile'); if (!tile) return; e.preventDefault(); openAreaGuide(tile.dataset.area); });
+  areaGuide.addEventListener('click', e => {
+    const button = e.target.closest('.area-media-open'); if (!button) return;
+    const id = button.dataset.fileId, label = button.dataset.label;
+    const viewer = areaGuide.querySelector('.area-media-viewer');
+    viewer.hidden = false;
+    viewer.innerHTML = `<div class="area-media-head"><h3>${esc(label)}</h3><button type="button" class="area-media-hide" aria-label="자료 미리보기 닫기">×</button></div><iframe title="${esc(label)} 미리보기" src="https://drive.google.com/file/d/${id}/preview" loading="lazy" allow="autoplay; fullscreen"></iframe><p>접근 권한이 있는 Google 계정에서 보입니다. <a href="https://drive.google.com/file/d/${id}/view" target="_blank" rel="noopener noreferrer">새 창에서 열기</a></p>`;
+    viewer.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  areaGuide.addEventListener('click', e => { if (e.target.closest('.area-media-hide')) { const viewer = areaGuide.querySelector('.area-media-viewer'); viewer.hidden = true; viewer.innerHTML = ''; } });
   areaGuide.querySelector('.area-guide-close').addEventListener('click', () => areaGuide.close());
   areaGuide.addEventListener('click', e => { if (e.target === areaGuide) areaGuide.close(); });
   // 첫 화면 인포그래픽의 그림 7곳과 영역 배지도 동일한 자료 팝업을 연다.
