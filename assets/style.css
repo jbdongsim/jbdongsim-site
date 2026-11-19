@@ -467,3 +467,15 @@ footer{padding:56px 0 150px}
 .area-media-viewer iframe{display:block;width:100%;height:min(56vh,520px);border:1px solid #D8E2EC;border-radius:10px;background:#F5F7FA}
 .area-media-viewer p{font-size:13px;color:#586476;margin:8px 0 0}.area-media-viewer a{color:#1C5F9C;text-decoration:underline;font-weight:800}
 @media(max-width:600px){.area-media-viewer iframe{height:48vh}.area-media-viewer{padding:9px}}
+
+/* 2026-12-09 seminar notice and poster */
+.seminar-actions,.seminar-panel-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.seminar-actions .btn{white-space:nowrap;cursor:pointer;font:inherit;font-weight:700}
+.seminar-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(9,22,43,.78);padding:18px;align-items:center;justify-content:center}
+.seminar-overlay:target{display:flex}
+.seminar-panel{position:relative;width:min(100%,680px);max-height:calc(100vh - 36px);overflow:auto;background:#fff;border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
+.seminar-panel h2{font-size:22px;margin:4px 44px 16px 4px}
+.seminar-panel img{display:block;width:100%;height:auto;border-radius:8px}
+.seminar-panel-actions{justify-content:center;margin-top:16px}
+.seminar-close{position:absolute;right:18px;top:12px;font-size:32px;font-weight:700;line-height:1;color:#12294A}
+@media(max-width:700px){.seminar-panel{padding:12px}.seminar-panel h2{font-size:17px;margin:8px 38px 12px 0}.seminar-panel-actions .btn{font-size:13px}.seminar-actions{justify-content:flex-start}}
