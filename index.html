@@ -63,7 +63,7 @@
 </div></section>
 
 <div class="notice" id="notice-seminar"><div class="wrap"><div class="box">
-  <div class="row seminar-row"><span class="tag o">📢 12월 9일 세미나 일정</span><div><h3>AI가 도와줄지니(나답게 오리엔테이션)</h3><p>12월 9일(수) 오전 10시 30분 · 오후 2시 · 원장님 대상</p></div><div class="seminar-actions"><a class="btn btn-navy btn-sm" href="#seminar-20261209">일정 보기</a><button class="btn btn-line btn-sm" type="button" id="share-seminar">링크 공유</button></div></div>
+  <div class="row seminar-row"><span class="tag o">📢 12월 9일 세미나 일정</span><div><h3>AI가 도와줄지니(나답게 오리엔테이션)</h3><p>12월 9일(수) 오전 10시 30분 · 오후 2시 · 원장님 대상</p></div><div class="seminar-actions"><a class="btn btn-navy btn-sm" href="#seminar-20261209">일정 보기</a><a class="btn btn-line btn-sm" href="https://empower-ot-2027.sera1213.chatgpt.site/" target="_blank" rel="noopener noreferrer">세미나 자세히보기</a></div></div>
   <div class="row"><span class="tag o">2027학년도 상담</span><div><h3>2027학년도 프로그램 선정 상담 접수 중</h3><p>원 방문 상담 · 샘플 교재와 연간계획안을 가지고 찾아갑니다</p></div><a class="btn btn-navy btn-sm" href="contact.html">상담 신청</a></div>
   <div class="row"><span class="tag b">교육설명회 지원</span><div><h3>원아모집 교육설명회 자료 지원</h3><p>유치원용 · 어린이집용 · 발표 자료, 책자, 리플렛, 음원</p></div><a class="btn btn-line btn-sm" href="benefit.html">자세히 보기</a></div>
 </div></div></div>
@@ -208,17 +208,6 @@
   <a href="parents.html" data-p="parents"><i><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.500-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.500-7 10-7 10z"/></svg></i>학부모</a>
   <a href="contact.html" data-p="contact"><i><svg viewBox="0 0 24 24"><path d="M4 5h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M18 9h2a2 2 0 0 1 2 2v8l-3-2h-6"/></svg></i>상담</a>
 </nav>
-<script>
-(function(){
-  const button=document.getElementById('share-seminar');
-  if(!button)return;
-  button.addEventListener('click',async function(){
-    const url='https://jbdongsim.co.kr/#seminar-20261209';
-    if(navigator.share){try{await navigator.share({title:'중부산동심 12월 9일 AI가 도와줄지니 세미나',url});return;}catch(e){if(e.name==='AbortError')return;}}
-    try{await navigator.clipboard.writeText(url);button.textContent='링크 복사됨';setTimeout(()=>button.textContent='링크 공유',2500);}catch(e){window.prompt('세미나 링크를 복사해 주세요',url);}
-  });
-})();
-</script>
 <script src="assets/site.js"></script>
 </body>
 </html>
