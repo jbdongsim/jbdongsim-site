@@ -68,14 +68,19 @@ if (tiles) {
   areaGuide.addEventListener('click', e => { if (e.target.closest('.area-media-hide')) { const viewer = areaGuide.querySelector('.area-media-viewer'); viewer.hidden = true; viewer.innerHTML = ''; } });
   areaGuide.querySelector('.area-guide-close').addEventListener('click', () => areaGuide.close());
   areaGuide.addEventListener('click', e => { if (e.target === areaGuide) areaGuide.close(); });
-  // 첫 화면 인포그래픽의 그림 7곳과 영역 배지도 동일한 자료 팝업을 연다.
+  // 첫 화면 인포그래픽의 그림 9곳과 영역 배지도 동일한 자료 팝업을 연다.
   const heroArt = $('.hero-art');
   if (heroArt) {
     const hotspots = [
-      ['독서', '11%', '7%', '24%', '26%'], ['영어', '38%', '2%', '24%', '25%'],
-      ['과학', '65%', '9%', '24%', '25%'], ['미술', '76%', '35%', '23%', '27%'],
-      ['생태', '62%', '66%', '25%', '26%'], ['코딩', '14%', '65%', '25%', '26%'],
-      ['사회정서', '1%', '34%', '24%', '27%']
+      ['독서', '14.6%', '7%', '17.6%', '23%'],
+      ['영어', '40.4%', '1.5%', '18%', '22%'],
+      ['과학', '65.8%', '5.4%', '16%', '24%'],
+      ['미술', '77%', '30%', '16.6%', '22%'],
+      ['생태', '73.2%', '54.7%', '16%', '22.5%'],
+      ['한글·수', '53.4%', '70%', '18.6%', '24.4%'],
+      ['PBL', '31.8%', '68%', '17%', '26.4%'],
+      ['코딩', '10.4%', '54.2%', '16.4%', '24.4%'],
+      ['사회정서', '5.7%', '30%', '15.8%', '21.7%']
     ];
     heroArt.insertAdjacentHTML('beforeend', hotspots.map(([n, left, top, width, height]) => `<a class="hero-hotspot" href="programs.html?area=${encodeURIComponent(n)}" data-area="${n}" aria-label="${n} 프로그램 자료 팝업 열기" aria-haspopup="dialog" style="left:${left};top:${top};width:${width};height:${height}"></a>`).join(''));
     $$('.pin-link', heroArt).forEach(a => { a.dataset.area = a.textContent.trim() === '코딩·AI' ? '코딩' : a.textContent.trim(); a.setAttribute('aria-haspopup', 'dialog'); a.setAttribute('aria-label', a.dataset.area + ' 프로그램 자료 팝업 열기'); });
