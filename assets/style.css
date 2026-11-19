@@ -646,3 +646,9 @@ nav.main a.nav-book span::after{right:-12px;top:50%;margin-top:-5px;animation-de
 .dock a.on[data-p] i{background:var(--navy)}.dock a.on[data-p] svg{stroke:#fff}
 @media (max-width:680px){.dock{gap:0}.dock a{font-size:9.5px;letter-spacing:-.07em;padding-left:1px;padding-right:1px}.dock i{width:30px;height:30px}.dock svg{width:19px;height:19px}}
 @media (prefers-reduced-motion:reduce){nav.main a.nav-book::after,nav.main a.nav-book span::before,nav.main a.nav-book span::after,nav.main a.nav-book::before,.dock a.dock-book i::after{animation:none;opacity:1}}
+
+/* ===== 방문자 수 (오른쪽 위 작은 글씨) ===== */
+header.top .wrap{position:relative}
+.visit-stat{position:absolute;top:3px;right:0;font-size:11px;line-height:1;color:#8A98AD;font-weight:500;letter-spacing:-.01em;white-space:nowrap;pointer-events:none}
+.visit-stat b{color:#5B6B82;font-weight:700}
+@media (max-width:680px){.visit-stat{top:2px;font-size:10px}}
