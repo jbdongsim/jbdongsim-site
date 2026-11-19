@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://jbdongsim.co.kr/sitemap.xml
+#DaumWebMasterTool:d751ff2287e2f6c343935e9259b42c63896ad15f55f7985bbaf466f296874656:HIcNwRrP5YqFZ/r1eI1o/A==
