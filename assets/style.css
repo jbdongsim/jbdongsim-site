@@ -624,8 +624,13 @@ nav.main a{white-space:nowrap}
 header.top .brand div,header.top .brand span,header.top .brand b{white-space:nowrap}
 header.top .btn,header.top a.btn{white-space:nowrap}
 nav.main a.nav-book{position:relative}
-nav.main a.nav-book::before{content:'✦';position:absolute;top:-2px;left:50%;transform:translateX(-50%);font-size:11px;line-height:1;color:#F5B841;text-shadow:0 0 4px rgba(245,184,65,.8);pointer-events:none;animation:starTwinkle 1.6s ease-in-out infinite}
-nav.main a.nav-book.on::before,nav.main a.nav-book:hover::before{color:#F5B841}
+nav.main a.nav-book span{position:relative;display:inline-block}
+nav.main a.nav-book::before,nav.main a.nav-book::after,nav.main a.nav-book span::before,nav.main a.nav-book span::after{content:'✦';position:absolute;font-size:10px;line-height:1;color:#F5B841;text-shadow:0 0 4px rgba(245,184,65,.8);pointer-events:none;animation:star4 1.6s ease-in-out infinite}
+nav.main a.nav-book::before{top:-3px;left:50%;margin-left:-5px}
+nav.main a.nav-book::after{bottom:-3px;left:50%;margin-left:-5px;animation-delay:.8s}
+nav.main a.nav-book span::before{left:-12px;top:50%;margin-top:-5px;animation-delay:.4s}
+nav.main a.nav-book span::after{right:-12px;top:50%;margin-top:-5px;animation-delay:1.2s}
+@keyframes star4{0%,100%{opacity:.2;transform:scale(.55) rotate(0deg)}50%{opacity:1;transform:scale(1.15) rotate(25deg)}}
 @keyframes starTwinkle{0%,100%{opacity:.25;transform:translateX(-50%) scale(.6) rotate(0deg)}50%{opacity:1;transform:translateX(-50%) scale(1.15) rotate(25deg)}}
 .dock a[data-p='home'] i{background:#E8EEF6}.dock a[data-p='home'] svg{stroke:var(--navy)}
 .dock a[data-p='benefit'] i{background:#FFF3D6}.dock a[data-p='benefit'] svg{stroke:#B67A00}
@@ -640,4 +645,4 @@ nav.main a.nav-book.on::before,nav.main a.nav-book:hover::before{color:#F5B841}
 @keyframes dockStar{0%,100%{opacity:.25;transform:scale(.6) rotate(0deg)}50%{opacity:1;transform:scale(1.15) rotate(25deg)}}
 .dock a.on[data-p] i{background:var(--navy)}.dock a.on[data-p] svg{stroke:#fff}
 @media (max-width:680px){.dock{gap:0}.dock a{font-size:9.5px;letter-spacing:-.07em;padding-left:1px;padding-right:1px}.dock i{width:30px;height:30px}.dock svg{width:19px;height:19px}}
-@media (prefers-reduced-motion:reduce){nav.main a.nav-book::before,.dock a.dock-book i::after{animation:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){nav.main a.nav-book::after,nav.main a.nav-book span::before,nav.main a.nav-book span::after,nav.main a.nav-book::before,.dock a.dock-book i::after{animation:none;opacity:1}}
