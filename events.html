@@ -55,6 +55,9 @@
 
 /* 휴대폰에서도 5~6편 테마를 두 줄로 펼치기 */
 @media(max-width:600px){.event-theme-panel[data-count="5"] .event-card-rail,.event-theme-panel[data-count="6"] .event-card-rail{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.event-theme-panel[data-count="5"] .theme-video-body,.event-theme-panel[data-count="6"] .theme-video-body{padding:4px;gap:3px}.event-theme-panel[data-count="5"] .theme-video-body h4,.event-theme-panel[data-count="6"] .theme-video-body h4{font-size:10px;line-height:1.2;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.4em}.event-theme-panel[data-count="5"] .theme-video-actions,.event-theme-panel[data-count="6"] .theme-video-actions{flex-wrap:nowrap;gap:2px}.event-theme-panel[data-count="5"] .theme-video-actions a,.event-theme-panel[data-count="6"] .theme-video-actions a{font-size:8px;padding:3px 2px;white-space:nowrap}.event-theme-panel[data-count="5"] .hanyang-title{font-size:10px}}
+
+/* 좁은 화면에서는 반복되는 행사 수 안내를 생략해 카드 공간 확보 */
+@media(max-width:600px){.event-theme-head{display:none}}
 </style>
 </head>
 <body data-page="events">
