@@ -534,12 +534,11 @@ footer{padding:56px 0 150px}
 
 /* 전역 클릭 항목의 가벼운 떠오름 효과 */
 @media (hover:hover) and (pointer:fine){
-  :where(a[href],button:not(:disabled),summary):not(.sr):not(.hero-hotspot):not(.pin){transition:translate .2s ease,filter .2s ease,transform .2s ease,box-shadow .2s ease,background-color .2s ease,border-color .2s ease,color .2s ease}
-  :where(a[href],button:not(:disabled),summary):not(.sr):not(.hero-hotspot):not(.pin):hover{translate:0 -3px;filter:drop-shadow(0 5px 7px rgba(18,41,74,.15))}
-  :is(.btn,.who a,.menu a,.areas button,.atile,.tabs a):hover{translate:none}
+  :where(a[href],button:not(:disabled),summary):not(.sr):not(.hero-hotspot):not(.pin){transition:transform .2s ease,filter .2s ease,box-shadow .2s ease,background-color .2s ease,border-color .2s ease,color .2s ease}
+  :where(a[href]:not(.sr,.hero-hotspot,.pin),button:not(:disabled),summary):hover{transform:translateY(-3px);filter:drop-shadow(0 5px 7px rgba(18,41,74,.15))}
 }
-:where(a[href],button:not(:disabled),summary):not(.sr):not(.hero-hotspot):not(.pin):focus-visible{translate:0 -2px;filter:drop-shadow(0 4px 6px rgba(18,41,74,.12))}
+:where(a[href]:not(.sr,.hero-hotspot,.pin),button:not(:disabled),summary):focus-visible{transform:translateY(-2px);filter:drop-shadow(0 4px 6px rgba(18,41,74,.12))}
 @media (prefers-reduced-motion:reduce){
-  :where(a[href],button,summary){transition-duration:.01ms!important;translate:none!important;filter:none!important}
-  :is(.btn,.who a,.menu a,.areas button,.atile,.tabs a):hover{transform:none}
+  :where(a[href],button,summary){transition-duration:.01ms!important;filter:none!important}
+  :where(a[href]:not(.sr,.hero-hotspot,.pin),button,summary):is(:hover,:focus-visible){transform:none!important}
 }
