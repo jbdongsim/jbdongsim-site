@@ -4,8 +4,8 @@ const AREAS = [
   ['코딩','images/area-07.png'],['누리과정','images/area-08.png'],['생태','images/area-09.png'],['디지털·AI','images/area-10.png'],['PBL','images/area-11.png'],['한글·수','images/area-12.png']
 ];
 const PROGRAMS = [
-  {area:'사회정서', name:'셀업키즈 (SEL UP)', vendor:'신한에듀', target:'만 3~5세', ages:['유아'], points:['K-SEL 5대 역량 중심 사회정서학습','SEL 그림책, 게임, 마음 일기장','매일 아침 클래스 타임 카드']},
-  {area:'사회정서', name:'아이마이미', vendor:'신한에듀', target:'1~4세', ages:['영아','유아'], points:['감정과 관계를 다루는 그림책','명화, 뮤지컬 명작','이음 놀이 교구와 안전교육']},
+  {area:'사회정서', name:'셀업키즈 (SEL UP)', vendor:'신한에듀', target:'유아반전용', ages:['유아'], points:['K-SEL 5대 역량 중심 사회정서학습','SEL 그림책, 게임, 마음 일기장','매일 아침 클래스 타임 카드']},
+  {area:'사회정서', name:'아이마이미', vendor:'신한에듀', target:'영아반전용', ages:['영아','유아'], points:['감정과 관계를 다루는 그림책','명화, 뮤지컬 명작','이음 놀이 교구와 안전교육']},
   {area:'영어', name:'윙스 (WINGS)', vendor:'비상교육', target:'유아 · Level 1~3', ages:['유아'], points:['참여형 하이브리드 영어','스토리 중심 커리큘럼','가정 연계']},
   {area:'독서', name:'책보플러스', vendor:'키즈엠', target:'만 2~5세', ages:['영아','유아'], intro:'그림책 한 권을 읽고, 말하고, 만들며 문해 놀이로 깊이 만납니다.', points:['매월 그림책 2권·문해 놀이책·말잼 키트 구성','표지·그림·어휘를 살피는 단계별 읽기','말잼 챈트·카드로 어휘를 말하고 연결','흥미 → 이해 → 표현 → 확장으로 이어지는 수업','연령별 연간 구성과 교실용 놀이 자료'], detail:['수업 예시: 빅북의 표지와 장면을 관찰하고 이야기 나누기 → 주요 어휘를 챈트·카드로 표현 → 키트로 이야기를 다시 만들어 보기.','브로슈어에는 독서 기록장·포스터와 교실용 지원 자료가 소개됩니다. 빅북 등 선택 구성과 2027 제공 범위는 상담 시 확인합니다.']},
   {area:'독서', name:'이야기모자', vendor:'키즈엠', target:'만 2~5세', ages:['영아','유아'], intro:'아이가 책 속 주인공이 되어 이야기를 몸과 말로 경험하는 독서 프로그램입니다.', points:['만 2세 감각 → 3세 상상 → 4세 생각 → 5세 표현 독서','주 1회 표지 예측·마음 읽기·문해·몸·퀴즈 놀이','월 수업 그림책 3권, 만 2세는 2권 안내','매일 독서 E-Book 17권과 가정 연계','안전·전래·사회정서·역사·직업 등 연령별 주제'], detail:['만 2세는 보고 듣고 따라 하기, 만 3세는 역할 흉내, 만 4세는 다음 장면과 마음 예상, 만 5세는 이유와 다른 관점을 말하는 방식으로 확장합니다.','2027 소개자료에는 월별 스토리 퍼포밍 클래스와 독서 행사도 안내됩니다. 실제 제공 범위는 계약·일정에 따라 확인합니다.']},
@@ -113,7 +113,7 @@ if (cards) {
   guide.id = 'selup-guide';
   guide.setAttribute('aria-labelledby', 'selup-guide-title');
   guide.innerHTML = `<div class="guide-head"><span>2027 프로그램 안내</span><button type="button" class="guide-close" aria-label="닫기">×</button></div>
-    <div class="guide-body"><span class="chip">사회정서 · 만 3~5세</span><h2 id="selup-guide-title">셀업키즈 (SEL UP)</h2><p class="guide-sub">2027 신한에듀 카탈로그와 프로그램 요약을 확인해 보세요.</p>
+    <div class="guide-body"><span class="chip">사회정서 · 유아반전용</span><h2 id="selup-guide-title">셀업키즈 (SEL UP)</h2><p class="guide-sub">2027 신한에듀 카탈로그와 프로그램 요약을 확인해 보세요.</p>
     <section class="guide-file" aria-label="2027 셀업 카탈로그"><h3>2027 셀업 카탈로그</h3><iframe title="2027 셀업 카탈로그 PDF" src="https://drive.google.com/file/d/1hXRvcCWgInTzqo6lfmiLSWs2e5r8w2u2/preview" loading="lazy" allow="fullscreen"></iframe><p>미리보기가 보이지 않으면 <a href="https://drive.google.com/file/d/1hXRvcCWgInTzqo6lfmiLSWs2e5r8w2u2/view" target="_blank" rel="noopener noreferrer">새 창에서 카탈로그 열기</a></p></section>
     <h3>아이의 마음에서 관계로</h3><p>감정을 알아차리고 표현하는 일에서 시작해 친구의 생각을 살피고, 함께 해결하며 스스로 선택하는 연습으로 이어집니다.</p>
     <div class="guide-steps"><div><b>1 · 나</b><span>내 감정과 행동 이해하기</span></div><div><b>2 · 우리</b><span>공감·소통·협력하기</span></div><div><b>3 · 성장</b><span>긍정적으로 생각하고 조절하기</span></div></div>
