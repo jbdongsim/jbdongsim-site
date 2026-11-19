@@ -479,3 +479,12 @@ footer{padding:56px 0 150px}
 .seminar-panel-actions{justify-content:center;margin-top:16px}
 .seminar-close{position:absolute;right:18px;top:12px;font-size:32px;font-weight:700;line-height:1;color:#12294A}
 @media(max-width:700px){.seminar-panel{padding:12px}.seminar-panel h2{font-size:17px;margin:8px 38px 12px 0}.seminar-panel-actions .btn{font-size:13px}.seminar-actions{justify-content:flex-start}}
+
+/* Homepage announcement first, audience cards second */
+.home-hero{padding-bottom:84px}
+.home-hero .notice{grid-column:1/-1;margin-top:0;color:var(--ink);z-index:1}
+.home-hero .who{margin-top:0}
+.home-hero .seminar-row{background:linear-gradient(105deg,#FFF3DF,#FFF8F3);border-left:4px solid var(--coral);border-radius:16px;margin:6px -12px 4px;padding:20px 16px}
+.home-hero .seminar-row .tag{background:#D64D2E;color:#fff}
+.home-hero .seminar-row h3{color:#12345E}
+@media(max-width:600px){.home-hero{padding-bottom:70px}.home-hero .seminar-row{margin:6px -10px 4px;padding:18px 14px}}
