@@ -41,6 +41,10 @@
 
 /* 큰 화면에서 테마 전체가 한 화면에 들어오도록 카드 높이 조정 */
 @media(min-width:601px){.event-theme-shell{padding:18px}.event-theme-head{margin-bottom:10px}.event-theme-tabs{padding-bottom:9px}.event-theme-panel{padding:15px}.event-theme-summary h3{font-size:25px;margin:3px 0}.event-theme-summary p{font-size:13px;margin-bottom:12px}.event-theme-panel:not([data-count="10"]) .theme-video-image{height:130px;aspect-ratio:auto}.event-theme-panel[data-count="2"] .theme-video-image{height:155px}.event-theme-panel[data-count="3"] .theme-video-image{height:140px}.event-theme-panel[data-count="6"] .theme-video-image{height:95px}.event-theme-panel:not([data-count="10"]) .theme-video-tag{display:none}.event-theme-panel:not([data-count="10"]) .theme-video-body{padding:9px;gap:5px}.event-theme-panel:not([data-count="10"]) .theme-video-body h4{font-size:15px;line-height:1.25;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.5em}.event-theme-panel:not([data-count="10"]) .theme-video-actions{gap:5px;padding-top:0}.event-theme-panel:not([data-count="10"]) .theme-video-actions a{font-size:11px;padding:5px 7px}}
+
+/* 영상이 많은 테마도 가로 스크롤 없이 화면 안에 표시 */
+@media(min-width:901px){.event-theme-panel[data-count="6"] .event-card-rail{grid-template-columns:repeat(6,minmax(0,1fr))}.event-theme-panel[data-count="6"] .theme-video-image{height:90px}.event-theme-panel[data-count="6"] .theme-video-body h4{font-size:12px}.event-theme-panel[data-count="6"] .theme-video-actions a{font-size:10px;padding:5px 6px}}
+@media(min-width:601px){.event-theme-panel[data-count="10"] .theme-video-image{height:60px;aspect-ratio:auto}.event-theme-panel[data-count="10"] .theme-video-body{padding:6px;gap:4px}.event-theme-panel[data-count="10"] .theme-video-body h4{font-size:12px}.event-theme-panel[data-count="10"] .theme-video-actions a{font-size:10px;padding:4px 6px}}
 </style>
 </head>
 <body data-page="events">
