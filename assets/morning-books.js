@@ -8,9 +8,11 @@
   var fmt = function (dt) { return dt.toISOString().slice(0, 10); };
   var label = function (d) { var dt = parse(d); return (dt.getUTCMonth() + 1) + '월 ' + dt.getUTCDate() + '일 ' + DOW[dt.getUTCDay()] + '요일'; };
   var today = kstToday();
+  var nowKst = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 16);
+  var isOpen = function (b) { return (b.date + 'T' + (b.time || '07:00')) <= nowKst; };
   var all = (window.MORNING_BOOKS || []).filter(function (b) { return b && b.date && b.title; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
   all.forEach(function (b, i) { b.no = i + 1; });
-  var books = all.filter(function (b) { return b.date <= today; });
+  var books = all.filter(isOpen);
   var latest = books[books.length - 1];
   var nextWeekday = function (d) { var dt = parse(d); do { dt = new Date(dt.getTime() + 864e5); } while (dt.getUTCDay() === 0 || dt.getUTCDay() === 6); return fmt(dt); };
   var palette = ['#F5B841,#F26B4E', '#7BB6E8,#3B82C4', '#9ED2B8,#1F8A70', '#C7B3EE,#7A5AC8', '#F7A7A0,#E0567A'];
@@ -38,7 +40,7 @@
     var first = nextWeekday(today);
     todayHtml = '<article class="mb-today mb-empty"><div class="mb-cover mb-fake" style="background:linear-gradient(160deg,#F5B841,#F26B4E)"><b>첫 번째 책을<br>준비하고 있어요</b><span>원장님이 읽는 아침책방</span></div>' +
       '<div class="mb-body"><span class="mb-badge"><i>No.1</i>' + label(first) + ' 아침 공개</span><h3>첫 책이 곧 찾아옵니다</h3>' +
-      '<p class="mb-meta">평일 아침마다 책 한 권을 3분 요약으로 전해 드립니다.</p>' +
+      '<p class="mb-meta">평일 아침 7시, 책 한 권을 3분 요약과 1분 영상으로 전해 드립니다.</p>' +
       '<blockquote class="mb-quote">“하루 3분, 원장님의 아침을 여는 한 권”</blockquote>' +
       '<div class="mb-points"><div><b>핵심 요약</b>책의 요점을 세 줄로</div><div><b>원에서는</b>교실에서 바로 써 볼 활동 1가지</div><div><b>가정에서는</b>아이와 나눌 질문 1가지</div></div></div></article>';
   }
@@ -53,11 +55,11 @@
     var d = fmt(new Date(monday.getTime() + i * 864e5));
     var bk = all.filter(function (x) { return x.date === d; })[0];
     var name = DOW[i + 1];
-    if (bk && d <= today) {
+    if (bk && isOpen(bk)) {
       shelf += '<button type="button" class="mb-day' + (d === today ? ' on' : '') + '" data-book="' + d + '">' + cover(bk, 'mb-mini') + '<span>' + name + ' · ' + (d === today ? '<b>오늘</b>' : esc(bk.title)) + '</span></button>';
-    } else if (d > today) {
-      var hint = (latest && latest.hint && d === nextWeekday(today)) ? '힌트: “' + esc(latest.hint) + '”' : '아침에 공개';
-      shelf += '<div class="mb-day lock"><div class="mb-mini mb-lock">' + (d === nextWeekday(today) ? '내일 공개' : '곧 공개') + '</div><span>' + name + ' · ' + hint + '</span></div>';
+    } else if (d >= today) {
+      var hint = (latest && latest.hint && d === nextWeekday(today)) ? '힌트: “' + esc(latest.hint) + '”' : '아침 7시 공개';
+      shelf += '<div class="mb-day lock"><div class="mb-mini mb-lock">' + (d === today ? '오전 7시 공개' : d === nextWeekday(today) ? '내일 공개' : '곧 공개') + '</div><span>' + name + ' · ' + hint + '</span></div>';
     } else {
       shelf += '<div class="mb-day rest"><div class="mb-mini mb-lock">' + (all.length && d < all[0].date ? '책방 오픈 전' : '쉬어가는 날') + '</div><span>' + name + '</span></div>';
     }
@@ -75,7 +77,7 @@
       '<div class="mb-arch">' + past.map(function (x) { return '<button type="button" class="mb-item" data-book="' + x.date + '" data-m="' + x.date.slice(0, 7) + '" data-t="' + esc((x.tags || []).join('|')) + '">' + cover(x, 'mb-mini') + '<small>No.' + x.no + ' · ' + label(x.date).replace('요일', '') + '</small><b>' + esc(x.title) + '</b></button>'; }).join('') + '</div>'
     : '';
 
-  root.innerHTML = '<div class="wrap"><div class="mb-head"><div><div class="eyebrow">MORNING BOOK · 평일 아침</div><h2>원장님이 읽는 아침책방</h2><p>평일 아침마다 책 한 권을 3분 요약으로 전해 드립니다. 원에서 바로 써 볼 활동과 가정에서 나눌 질문도 함께 담았어요.</p></div></div>' +
+  root.innerHTML = '<div class="wrap"><div class="mb-head"><div><div class="eyebrow">MORNING BOOK · 평일 아침</div><h2>원장님이 읽는 아침책방</h2><p>평일 아침 7시, 책 한 권을 3분 요약과 1분 영상으로 전해 드립니다. 원에서 바로 써 볼 활동과 가정에서 나눌 질문도 함께 담았어요.</p></div></div>' +
     todayHtml +
     '<div class="mb-week"><h4>이번 주 책장</h4><span>' + countLine + '</span></div><div class="mb-shelf">' + shelf + '</div>' + archive + '</div>';
 
@@ -84,7 +86,7 @@
   dlg.className = 'mb-dialog';
   document.body.appendChild(dlg);
   var open = function (date) {
-    var x = all.filter(function (y) { return y.date === date && y.date <= today; })[0];
+    var x = all.filter(function (y) { return y.date === date && isOpen(y); })[0];
     if (!x) return;
     dlg.innerHTML = '<div class="mb-dlg-head"><span>원장님이 읽는 아침책방 · No.' + x.no + '</span><button type="button" class="mb-close" aria-label="닫기">×</button></div>' +
       '<div class="mb-dlg-body"><div class="mb-dlg-top">' + cover(x, 'mb-cover sm') + '<div><span class="mb-badge"><i>No.' + x.no + '</i>' + label(x.date) + ' · 읽는 시간 ' + (x.readMin || 3) + '분</span><h3>' + esc(x.title) + '</h3><p class="mb-meta">' + meta(x) + '</p>' + tagsHtml(x) + '</div></div>' +
@@ -98,7 +100,7 @@
     if (history.replaceState) history.replaceState(null, '', '#book-' + x.date);
   };
   var openVideo = function (date) {
-    var x = all.filter(function (y) { return y.date === date && y.date <= today; })[0];
+    var x = all.filter(function (y) { return y.date === date && isOpen(y); })[0];
     if (!x || !x.video) return;
     dlg.innerHTML = '<div class="mb-dlg-head"><span>1분 영상 · ' + esc(x.title) + '</span><button type="button" class="mb-close" aria-label="닫기">×</button></div><div class="mb-dlg-body"><div class="mb-vwrap"><video controls autoplay playsinline' + (x.poster ? ' poster="' + esc(x.poster) + '"' : '') + '><source src="' + esc(x.video) + '" type="video/mp4"></video></div><div class="mb-btns" style="justify-content:center"><button type="button" class="btn btn-yellow" data-book="' + x.date + '">전체 요약 읽기 →</button><button type="button" class="btn btn-line mb-share" data-book="' + x.date + '">공유하기</button></div></div>';
     dlg.showModal();
