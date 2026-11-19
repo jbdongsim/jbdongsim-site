@@ -113,7 +113,7 @@ nav.main a:hover{background:var(--soft)}
 .benefit .eyebrow{display:inline-block; background:var(--mustard); color:#2A1B00; border-radius:999px; padding:7px 16px; letter-spacing:.1em}
 .benefit h2{margin-top:18px} .benefit h2 em{font-style:normal; color:var(--mustard)}
 .benefit .lead{color:#CBD7E8}
-.bgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:36px}
+.bgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:36px}
 .bcard{background:#fff; color:var(--ink); border-radius:var(--r-md); padding:26px 24px; border-top:6px solid var(--mustard)}
 .bcard:nth-child(2){border-top-color:var(--teal)} .bcard:nth-child(3){border-top-color:var(--coral)}
 .bcard img{width:72px; height:72px}
@@ -266,7 +266,7 @@ footer .copy{margin-top:22px; font-size:13.5px; color:#9FB0C8}
 .dock a:nth-child(6) i{background:#E6F0FB} .dock a:nth-child(6) svg{stroke:var(--sky)}
 .dock a.on{background:#EEF2F8} .dock a.on i{background:var(--navy)} .dock a.on svg{stroke:#fff}
 
-@media (max-width:1080px){ nav.main{display:none} .cards{grid-template-columns:repeat(2,1fr)} .bgrid{grid-template-columns:1fr} }
+@media (max-width:1080px){ nav.main{display:none} .cards{grid-template-columns:repeat(2,1fr)} .bgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:900px){
   section{padding:64px 0}
   .hero{padding:56px 0 130px} .hero .wrap{grid-template-columns:1fr; gap:36px}
@@ -528,6 +528,6 @@ footer{padding:56px 0 150px}
 
 @media(max-width:680px){.dock{transform:none}.fgrid{grid-template-columns:minmax(0,1fr)}.fgrid>div{min-width:0}.fgrid dd{overflow-wrap:anywhere}}
 
-/* 파트너원 연결고리메이커 혜택 */
-.maker-benefit{background:#173a64;color:#fff;padding:56px 0 52px}.maker-panel{border:1px solid #d7b252;border-radius:22px;padding:25px 26px}.maker-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}.maker-head h2{font-size:clamp(21px,2.2vw,28px);line-height:1.45;margin:0;color:#fff}.maker-head h2 span{display:inline-block;margin-left:5px;padding:2px 11px;border-radius:999px;background:#f4cd6b;color:#172e4e;font-size:.65em;vertical-align:middle;white-space:nowrap}.maker-go,.maker-bottom a{display:inline-block;background:#f8cc66;color:#16345a;padding:13px 20px;border-radius:999px;font-weight:900;white-space:nowrap;box-shadow:0 7px 16px rgba(4,16,40,.24)}.maker-go:hover,.maker-bottom a:hover{background:#ffe09b}.maker-card{border-top:6px solid #b4d51c;border-radius:18px;background:linear-gradient(105deg,#f7fdda,#fff 42%);padding:25px;color:#293c4d}.maker-card h3{font-size:23px;margin:0 0 8px;color:#253f56}.maker-card h3 em{font-style:normal;color:#388658}.maker-card p{font-size:15px;line-height:1.7;color:#5b6873;margin:0 0 16px}.maker-card ul{display:flex;gap:8px;flex-wrap:wrap;list-style:none;margin:0;padding:0}.maker-card li{border:1px solid #e1e4ca;border-radius:999px;background:#fff;padding:7px 12px;font-size:13px;font-weight:700;color:#46596a}.maker-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}.maker-bottom p{margin:0;color:#c7d5e7;font-size:13px;line-height:1.6}.maker-bottom a{padding:10px 16px;background:#efb83f;font-size:14px}
-@media(max-width:720px){.maker-benefit{padding:40px 0}.maker-panel{padding:18px}.maker-head{display:block}.maker-head h2{margin-bottom:16px}.maker-go{white-space:normal}.maker-card{padding:18px}.maker-card h3{font-size:20px}.maker-bottom{align-items:flex-start;flex-direction:column}}
+/* 네 번째 원운영 지원 카드 */
+.bcard-maker{border-top-color:var(--teal)}.bcard-maker .no{color:var(--teal)}.bcard-maker .bcard-icon{display:block;width:72px;height:72px}.bcard-maker .maker-note{font-size:12.5px;line-height:1.6;margin:14px 0 12px}.bcard-maker .maker-card-link{display:inline-block;margin-top:3px;padding:10px 15px;background:var(--teal);color:#fff;border-radius:999px;font-size:14px;font-weight:800;text-decoration:none}.bcard-maker .maker-card-link:hover{background:var(--navy)}
+@media(max-width:700px){.bgrid{grid-template-columns:1fr}}
