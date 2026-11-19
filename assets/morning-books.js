@@ -59,7 +59,7 @@
       var hint = (latest && latest.hint && d === nextWeekday(today)) ? '힌트: “' + esc(latest.hint) + '”' : '아침에 공개';
       shelf += '<div class="mb-day lock"><div class="mb-mini mb-lock">' + (d === nextWeekday(today) ? '내일 공개' : '곧 공개') + '</div><span>' + name + ' · ' + hint + '</span></div>';
     } else {
-      shelf += '<div class="mb-day rest"><div class="mb-mini mb-lock">쉬어가는 날</div><span>' + name + '</span></div>';
+      shelf += '<div class="mb-day rest"><div class="mb-mini mb-lock">' + (all.length && d < all[0].date ? '책방 오픈 전' : '쉬어가는 날') + '</div><span>' + name + '</span></div>';
     }
   }
   var monthNow = today.slice(0, 7);
