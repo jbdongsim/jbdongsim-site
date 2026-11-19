@@ -542,3 +542,6 @@ footer{padding:56px 0 150px}
   :where(a[href],button,summary){transition-duration:.01ms!important;filter:none!important}
   :where(a[href]:not(.sr,.hero-hotspot,.pin),button,summary):is(:hover,:focus-visible){transform:none!important}
 }
+.pcard .card-links{margin-left:auto; display:flex; flex-wrap:wrap; gap:6px; align-self:center}
+.pcard .card-link{font-size:12.5px; font-weight:800; color:#173D6A; border:1px solid #9CB5CE; border-radius:8px; padding:5px 10px; text-decoration:none; white-space:nowrap; background:#fff}
+.pcard .card-link:hover,.pcard .card-link:focus-visible{background:#E6F0FB; outline-color:#173D6A}

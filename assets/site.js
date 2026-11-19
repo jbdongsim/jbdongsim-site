@@ -86,6 +86,8 @@ const tk = $('#ticker');
 if (tk) { const h = PROGRAMS.map(p => `<span><img src="${icon(p.area)}" alt="">${esc(p.name)}</span>`).join(''); tk.innerHTML = h + h; }
 
 // 프로그램 페이지
+// 프로그램 카드 자료 버튼 (Google Drive 원본 링크)
+const CARD_LINKS = {'셀업키즈 (SEL UP)':[['카탈로그 보기','1hXRvcCWgInTzqo6lfmiLSWs2e5r8w2u2']],'아이마이미':[['카탈로그 보기','1fMsLGsw9QpVTlD4GhS7E7y2iaF42Na3w'],['홍보영상 보기','14jgHUO4UqF5-_2C5w2FUCDsSyAq7xNzn']]};
 const cards = $('#cards');
 if (cards) {
   let age = 'all', area = AREAS.some(a => a[0] === q.get('area')) ? q.get('area') : 'all';
@@ -97,7 +99,7 @@ if (cards) {
     cards.innerHTML = list.map(p => `
       <article class="pcard">
         <div class="hd"><img src="${icon(p.area)}" alt=""><div><span class="chip">${p.area}</span><h3>${esc(p.name)}</h3></div></div>
-        <div class="meta"><span class="chip age">${esc(p.target)}</span>${p.vendor ? `<span class="chip ven">${esc(p.vendor)}</span>` : ''}${p.name === '셀업키즈 (SEL UP)' ? '<a class="guide-link" href="#selup-guide" aria-haspopup="dialog">자세히보기</a>' : ''}</div>
+        <div class="meta"><span class="chip age">${esc(p.target)}</span>${p.vendor ? `<span class="chip ven">${esc(p.vendor)}</span>` : ''}${CARD_LINKS[p.name] ? `<span class="card-links">${CARD_LINKS[p.name].map(([t, id]) => `<a class="card-link" href="https://drive.google.com/file/d/${id}/view" target="_blank" rel="noopener noreferrer">${t}</a>`).join('')}</span>` : ''}</div>
         ${p.intro ? `<p class="pintro">${esc(p.intro)}</p>` : ''}
         <ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
         ${p.detail ? `<details class="pdetail"><summary>수업·구성 자세히</summary>${p.detail.map(t => `<p>${esc(t)}</p>`).join('')}</details>` : ''}
