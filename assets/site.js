@@ -131,7 +131,7 @@ if (cards) {
 // 상담 신청서
 const form = $('#form');
 if (form) {
-  const extra = ['교육행사', '원 운영 지원', '부모교육'];
+  const extra = ['원내행사', '부모교육행사', '원 운영 지원'];
   $('#checks').innerHTML = AREAS.map(a => a[0]).concat(extra).map(n => `<label><input type="checkbox" name="area" value="${n}">${n}</label>`).join('');
   const pre = q.get('area'); if (pre) { const c = $$('#checks input').find(i => i.value === pre); if (c) c.checked = true; }
   if (q.get('program')) form.msg.value = q.get('program') + ' 자료를 받아 보고 싶습니다.';
