@@ -488,3 +488,15 @@ footer{padding:56px 0 150px}
 .home-hero .seminar-row .tag{background:#D64D2E;color:#fff}
 .home-hero .seminar-row h3{color:#12345E}
 @media(max-width:600px){.home-hero{padding-bottom:70px}.home-hero .seminar-row{margin:6px -10px 4px;padding:18px 14px}}
+
+/* Separate seasonal gifts and their detail views */
+.home-hero .notice-stack{grid-column:1/-1;display:grid;gap:16px}
+.home-hero .gift-notice .box{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(90deg,#E35A53,#F3A85A,#4C8DD0) border-box}
+.gift-notice .gift-tag-red,.gift-panel .gift-tag-red{background:#FCEAE8;color:#B63F37}
+.gift-notice .gift-btn-red{background:#BD4A42;color:#fff}
+.gift-panel-wide{width:min(100%,940px)}
+.gift-panel-hat{width:min(100%,640px)}
+.gift-panel-text{width:min(100%,520px);padding:42px 28px}
+.gift-panel-text h2{margin:18px 25px 10px}
+.gift-panel-text p{color:var(--muted);margin:8px 0}
+.gift-panel-text .gift-price{font-weight:800;font-size:22px;color:var(--navy)}
