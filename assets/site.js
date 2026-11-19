@@ -101,7 +101,6 @@ if (cards) {
         ${p.intro ? `<p class="pintro">${esc(p.intro)}</p>` : ''}
         <ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
         ${p.detail ? `<details class="pdetail"><summary>수업·구성 자세히</summary>${p.detail.map(t => `<p>${esc(t)}</p>`).join('')}</details>` : ''}
-        <div class="ft"><a href="contact.html?area=${encodeURIComponent(p.area)}&program=${encodeURIComponent(p.name)}">자료 요청</a></div>
       </article>`).join('') || '<p style="color:var(--muted)">해당하는 프로그램이 없습니다.</p>';
     $$('#ageSeg button').forEach(b => b.classList.toggle('on', b.dataset.age === age));
     $$('button', areaBtns).forEach(b => b.classList.toggle('on', b.dataset.area === area));
