@@ -503,5 +503,6 @@ footer{padding:56px 0 150px}
 .gift-detail-copy .gift-detail-note{font-size:13px;color:var(--muted)}
 
 /* 상단 원운영상품 메뉴의 두 줄 안내 */
-.top nav.main a.support-nav-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:46px;padding:5px 12px;line-height:1.15;white-space:nowrap}
-.top nav.main a.support-nav-link small{display:block;font-size:10px;font-weight:600;letter-spacing:-.02em;color:inherit;opacity:.82}
+.top nav.main a.support-nav-link{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;box-sizing:border-box;height:46px;min-height:46px;padding:10px 12px 0;line-height:1.65;white-space:nowrap}
+.top nav.main a.support-nav-link span{line-height:24.75px}
+.top nav.main a.support-nav-link small{display:block;font-size:10px;font-weight:600;line-height:11px;letter-spacing:-.02em;color:inherit;opacity:.82;transform:translateY(-3px)}
