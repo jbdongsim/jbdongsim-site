@@ -129,6 +129,7 @@
     }
   });
   dlg.addEventListener('close', function () { dlg.querySelectorAll('video').forEach(function (v) { v.pause(); }); if (location.hash.indexOf('#book-') === 0 && history.replaceState) history.replaceState(null, '', location.pathname + location.search); });
+  if (location.hash === '#morning-books') { setTimeout(function () { root.scrollIntoView(); }, 60); }
   var m = location.hash.match(/^#book-(\d{4}-\d{2}-\d{2})$/);
   if (m) { setTimeout(function () { root.scrollIntoView(); open(m[1]); }, 300); }
 })();
