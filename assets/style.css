@@ -506,3 +506,10 @@ footer{padding:56px 0 150px}
 .top nav.main a.support-nav-link{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;box-sizing:border-box;height:46px;min-height:46px;padding:10px 12px 0;line-height:1.65;white-space:nowrap}
 .top nav.main a.support-nav-link span{line-height:24.75px}
 .top nav.main a.support-nav-link small{display:block;font-size:10px;font-weight:600;line-height:11px;letter-spacing:-.02em;color:inherit;opacity:.82;transform:translateY(-3px)}
+
+/* 빅북세트 원본 이미지 상세보기 */
+.bigbook-panel{width:min(100%,800px)}
+.bigbook-gallery{display:grid;gap:22px}
+.bigbook-gallery figure{margin:0}
+.bigbook-gallery a{display:block}
+.bigbook-gallery figcaption{margin-top:7px;color:var(--muted);font-size:13px;line-height:1.5}
