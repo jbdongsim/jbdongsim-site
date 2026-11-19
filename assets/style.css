@@ -623,7 +623,7 @@ img.mb-cover.sm{height:auto}
 nav.main a{white-space:nowrap}
 header.top .brand div,header.top .brand span,header.top .brand b{white-space:nowrap}
 header.top .btn,header.top a.btn{white-space:nowrap}
-nav.main a.nav-book{position:relative}
+nav.main a.nav-book{position:relative;margin:0 10px}
 nav.main a.nav-book span{position:relative;display:inline-block}
 nav.main a.nav-book::before,nav.main a.nav-book::after,nav.main a.nav-book span::before,nav.main a.nav-book span::after{content:'✦';position:absolute;font-size:10px;line-height:1;color:#F5B841;text-shadow:0 0 4px rgba(245,184,65,.8);pointer-events:none;animation:star4 1.6s ease-in-out infinite}
 nav.main a.nav-book::before{top:-3px;left:50%;margin-left:-5px}
