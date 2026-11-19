@@ -652,3 +652,10 @@ header.top .wrap{position:relative}
 .visit-stat{position:absolute;top:3px;right:0;font-size:11px;line-height:1;color:#8A98AD;font-weight:500;letter-spacing:-.01em;white-space:nowrap;pointer-events:none}
 .visit-stat b{color:#5B6B82;font-weight:700}
 @media (max-width:680px){.visit-stat{top:2px;font-size:10px}}
+
+/* ===== 하단 영역: 메뉴 열 제거 후 좌우 2단 정렬 ===== */
+.fgrid{grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:48px}
+.fgrid > div:last-child{justify-self:end;min-width:0}
+.fgrid > div:first-child p{max-width:420px}
+.fgrid dl{grid-template-columns:72px auto}
+@media (max-width:1080px){.fgrid{grid-template-columns:minmax(0,1fr);gap:28px}.fgrid > div:last-child{justify-self:stretch}}
