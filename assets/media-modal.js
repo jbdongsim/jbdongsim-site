@@ -75,7 +75,7 @@
     var t = e.target.closest('.mm-tabs button'); if (t) return show(t.dataset.v);
     if (e.target.closest('.mm-x') || e.target === box) return close();
     if (e.target.closest('.mm-share')) {
-      var url = location.href.split('#')[0], title = $('.mm-head h3').textContent;
+      var url = location.href.split('#')[0], title = (current && current.title) || document.title;
       if (navigator.share) navigator.share({ title: title, url: url }).catch(function () {});
       else if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { e.target.textContent = '링크를 복사했어요'; setTimeout(function () { e.target.textContent = '링크 공유'; }, 1800); });
     }
@@ -83,6 +83,8 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && box.classList.contains('on')) close(); });
   var ytId = function (u) { var m = String(u).match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/); return m && m[1]; };
   window.JBMedia = { open: open, lib: LIB };
+  var unTarget = function () { document.querySelectorAll('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').forEach(function (a) { if (!a.closest('footer')) { a.removeAttribute('target'); a.setAttribute('aria-label', (a.getAttribute('aria-label') || '').replace(' (새 창)', '')); } }); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', unTarget); else unTarget();
   document.addEventListener('click', function (e) {
     if (box.contains(e.target)) return;
     // 1) 프로그램 카드/영역 팝업 버튼
