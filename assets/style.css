@@ -682,3 +682,5 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .pcard .hd .pthumb img{width:100%;height:100%;border-radius:14px;object-fit:cover;object-position:center top;display:block}
 .pcard .hd .pthumb:hover,.pcard .hd .pthumb:focus-visible{opacity:.85}
 @media(min-width:700px){.pcard .hd .pthumb{width:150px;height:112px}}
+.pcard .hd span.pthumb{cursor:default}.pcard .hd span.pthumb:hover{opacity:.42}
+.pcard .hd .pthumb-artvillage img{object-position:center}.pcard .hd .pthumb-native img{object-position:right center}
