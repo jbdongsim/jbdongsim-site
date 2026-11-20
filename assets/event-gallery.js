@@ -10,6 +10,10 @@
       ['images/event-support-banner-8.jpg', '역할놀이 현수막 · 8호 레스토랑'],
       ['images/event-support-banner-7.jpg', '역할놀이 현수막 · 10호 병원']
     ],
+    air: [
+      ['images/event-support-air-1.jpg', '에어아치 · 원에 설치한 모습'],
+      ['images/event-support-air-2.jpg', '에어아치 · 도넛 아치']
+    ],
     pororo: [
       ['images/event-support-pororo-crong.jpg', '뽀로로·크롱 대형 탈 행사 지원']
     ]
