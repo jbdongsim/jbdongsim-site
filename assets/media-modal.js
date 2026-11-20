@@ -49,7 +49,7 @@
     var it = current; if (!it) return;
     [].forEach.call($('.mm-tabs').children, function (b) { b.classList.toggle('on', b.dataset.v === view); });
     var body = $('.mm-body');
-    if (view === 'video') body.innerHTML = '<div class="mm-label">' + (it.videoLabel || '소개 영상') + '</div>' + videoHtml(it);
+    if (view === 'video') body.innerHTML = '<div class="mm-label">' + (it.videoLabel || '제품 영상') + '</div>' + videoHtml(it);
     else if (view === 'cat') body.innerHTML = catHtml(it);
     else if (view === 'frame') body.innerHTML = '<iframe class="mm-frame" src="' + it.frame + '" title="' + esc(it.title) + '" allowfullscreen></iframe>';
     else if (view === 'html') body.innerHTML = it.html;
@@ -60,7 +60,7 @@
     $('.mm-head h3').innerHTML = (it.kicker ? '<small>' + esc(it.kicker) + '</small>' : '') + esc(it.title || '');
     var tabs = $('.mm-tabs'), opts = [];
     if (it.cat) opts.push(['cat', '카탈로그']);
-    if (it.yt || it.mp4) opts.push(['video', '홍보영상']);
+    if (it.yt || it.mp4) opts.push(['video', '제품영상']);
     tabs.innerHTML = opts.map(function (o) { return '<button type="button" data-v="' + o[0] + '">' + o[1] + '</button>'; }).join('');
     tabs.hidden = opts.length < 2 || !!it.html || !!it.frame;
     var cta = $('.mm-cta');
