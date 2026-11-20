@@ -669,3 +669,9 @@ header.top .wrap{position:relative}
 .bcard-event li a,.bcard-event li button{display:flex;width:100%;justify-content:space-between;align-items:center;gap:10px;color:inherit;text-decoration:none;background:none;border:0;padding:0;margin:0;font:inherit;text-align:left;cursor:pointer}
 .bcard-event li a span,.bcard-event li button span{flex:none;font-size:12.5px;font-weight:800;color:#fff;background:#6B4FD8;border-radius:999px;padding:4px 10px}
 .bcard-event li a:hover span,.bcard-event li button:hover span{background:var(--navy)}
+
+/* 공통 자료 팝업 버튼 */
+button.card-link{font-family:inherit;cursor:pointer;line-height:inherit}
+.area-guide-media .card-link{font-size:13px;font-weight:800;color:#173D6A;border:1px solid #9CB5CE;border-radius:999px;padding:7px 12px;background:#fff;cursor:pointer;font-family:inherit}
+.area-guide-media .card-link:hover{background:#E6F0FB}
+button.btn{font-family:inherit;cursor:pointer;border:0}
