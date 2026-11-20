@@ -666,6 +666,6 @@ header.top .wrap{position:relative}
 .bcard .bsub .no{color:#6B4FD8;margin-top:0}
 .bcard .bsub h3{font-size:20px}
 .bcard .bsub ul{margin-top:12px}
-.bcard .bsub li a{display:flex;justify-content:space-between;align-items:center;gap:10px;color:inherit;text-decoration:none}
-.bcard .bsub li a span{flex:none;font-size:12.5px;font-weight:800;color:#fff;background:#6B4FD8;border-radius:999px;padding:4px 10px}
-.bcard .bsub li a:hover span{background:var(--navy)}
+.bcard .bsub li a,.bcard .bsub li button{display:flex;width:100%;justify-content:space-between;align-items:center;gap:10px;color:inherit;text-decoration:none;background:none;border:0;padding:0;margin:0;font:inherit;text-align:left;cursor:pointer}
+.bcard .bsub li a span,.bcard .bsub li button span{flex:none;font-size:12.5px;font-weight:800;color:#fff;background:#6B4FD8;border-radius:999px;padding:4px 10px}
+.bcard .bsub li a:hover span,.bcard .bsub li button:hover span{background:var(--navy)}
