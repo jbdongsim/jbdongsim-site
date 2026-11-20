@@ -682,6 +682,6 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .pcard .hd .pthumb img{width:100%;height:100%;border-radius:0;object-fit:cover;object-position:center top;display:block}
 .pcard .hd button.pthumb:hover,.pcard .hd button.pthumb:focus-visible{transform:translateY(-2px);box-shadow:0 10px 22px rgba(18,41,74,.16)}
 .pcard .hd span.pthumb{cursor:default}
-.pcard .hd .pthumb-artvillage img,.pcard .hd .pthumb-preartvillage img{object-position:center}
+.pcard .hd .pthumb-artvillage,.pcard .hd .pthumb-preartvillage{background:#00d5d3}.pcard .hd .pthumb-artvillage img,.pcard .hd .pthumb-preartvillage img{object-fit:contain;object-position:center}
 .pcard .hd .pthumb-native{flex-basis:140px;width:140px;height:88px}.pcard .hd .pthumb-native img{object-fit:contain;object-position:center}
 @media(min-width:700px){.pcard .hd .pthumb{width:130px;height:108px;flex-basis:130px}.pcard .hd .pthumb-native{width:160px;height:100px;flex-basis:160px}}
