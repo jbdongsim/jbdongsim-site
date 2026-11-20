@@ -60,7 +60,7 @@ if (tiles) {
       <div class="area-guide-title"><img src="${icon(n)}" alt=""><div><small>중부산동심 자체 요약 자료</small><h2 id="area-guide-title">${esc(n)} 프로그램</h2><p>${list.length}개 프로그램을 한눈에 비교해 보세요.</p></div></div>
       <div class="area-guide-list">${list.map(p => `<article><div class="area-guide-meta"><span>${esc(p.target)}</span>${p.vendor ? `<span>${esc(p.vendor)}</span>` : ''}</div><h3>${esc(p.name)}</h3>${p.intro ? `<p>${esc(p.intro)}</p>` : ''}<ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul><div class="area-guide-media">${(CARD_LINKS[p.name] || []).map(([t, id]) => cardLinkHtml(p.name, t, id, n)).join('')}</div><a href="contact.html?area=${encodeURIComponent(n)}&program=${encodeURIComponent(p.name)}">이 프로그램 상담하기 →</a></article>`).join('')}</div>
       <section class="area-media-viewer" hidden aria-label="원본 자료 미리보기"></section>
-      <p class="area-guide-note">프로그램 요약은 중부산동심이 작성했습니다. 카탈로그와 홍보영상은 누구나 바로 볼 수 있어요. 연도가 표시된 구자료는 최신 구성과 다를 수 있습니다.</p>
+      <p class="area-guide-note">프로그램 요약은 중부산동심이 작성했습니다. 카탈로그와 제품영상은 누구나 바로 볼 수 있어요. 연도가 표시된 구자료는 최신 구성과 다를 수 있습니다.</p>
       <a class="area-guide-all" href="programs.html?area=${encodeURIComponent(n)}">${esc(n)} 프로그램 페이지 전체 보기 →</a>`;
     areaGuide.showModal();
   };
