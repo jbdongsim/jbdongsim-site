@@ -676,11 +676,12 @@ button.card-link{font-family:inherit;cursor:pointer;line-height:inherit}
 .area-guide-media .card-link:hover{background:#E6F0FB}
 button.btn{font-family:inherit;cursor:pointer;border:0}
 
-/* 프로그램 카드 대표 이미지 (연하게) */
+/* 프로그램 카드 대표 이미지 (선명하게) */
 .pcard{min-width:0}.pcard .hd>div{min-width:0}
-.pcard .hd .pthumb{margin:0 0 0 auto;flex:0 1 112px;min-width:72px;width:112px;height:96px;padding:0;border:0;background:none;cursor:pointer;opacity:.42;transition:opacity .25s;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 45%);mask-image:linear-gradient(to right,transparent 0,#000 45%)}
-.pcard .hd .pthumb img{width:100%;height:100%;border-radius:14px;object-fit:cover;object-position:center top;display:block}
-.pcard .hd .pthumb:hover,.pcard .hd .pthumb:focus-visible{opacity:.85}
-@media(min-width:700px){.pcard .hd .pthumb{width:150px;height:112px}}
-.pcard .hd span.pthumb{cursor:default}.pcard .hd span.pthumb:hover{opacity:.42}
-.pcard .hd .pthumb-artvillage img{object-position:center}.pcard .hd .pthumb-native img{object-position:right center}
+.pcard .hd .pthumb{margin:0 0 0 auto;flex:0 1 112px;min-width:72px;width:112px;height:96px;padding:0;border:1px solid #E3E8F0;border-radius:14px;overflow:hidden;background:#fff;cursor:pointer;box-shadow:0 6px 16px rgba(18,41,74,.10);transition:transform .2s,box-shadow .2s}
+.pcard .hd .pthumb img{width:100%;height:100%;border-radius:0;object-fit:cover;object-position:center top;display:block}
+.pcard .hd button.pthumb:hover,.pcard .hd button.pthumb:focus-visible{transform:translateY(-2px);box-shadow:0 10px 22px rgba(18,41,74,.16)}
+.pcard .hd span.pthumb{cursor:default}
+.pcard .hd .pthumb-artvillage img,.pcard .hd .pthumb-preartvillage img{object-position:center}
+.pcard .hd .pthumb-native{flex-basis:140px;width:140px;height:88px}.pcard .hd .pthumb-native img{object-fit:contain;object-position:center}
+@media(min-width:700px){.pcard .hd .pthumb{width:130px;height:108px;flex-basis:130px}.pcard .hd .pthumb-native{width:160px;height:100px;flex-basis:160px}}
