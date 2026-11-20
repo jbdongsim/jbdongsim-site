@@ -675,3 +675,9 @@ button.card-link{font-family:inherit;cursor:pointer;line-height:inherit}
 .area-guide-media .card-link{font-size:13px;font-weight:800;color:#173D6A;border:1px solid #9CB5CE;border-radius:999px;padding:7px 12px;background:#fff;cursor:pointer;font-family:inherit}
 .area-guide-media .card-link:hover{background:#E6F0FB}
 button.btn{font-family:inherit;cursor:pointer;border:0}
+
+/* 프로그램 카드 카탈로그 표지 */
+.pcard .hd .pthumb{margin-left:auto;flex:none;width:92px;height:118px;padding:0;border:1px solid #E3E8F0;border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;box-shadow:0 6px 16px rgba(18,41,74,.12);transition:transform .2s}
+.pcard .hd .pthumb img{width:100%;height:100%;border-radius:0;object-fit:cover;object-position:top center;display:block}
+.pcard .hd .pthumb:hover{transform:translateY(-2px)}
+@media(min-width:700px){.pcard .hd .pthumb{width:104px;height:132px}}

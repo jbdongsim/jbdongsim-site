@@ -116,7 +116,7 @@ if (cards) {
     $('#count').innerHTML = `<b>${list.length}</b>개 프로그램` + (area !== 'all' ? ` · ${area} <a href="#" id="clr" style="text-decoration:underline; margin-left:6px">영역 전체 보기</a>` : '');
     cards.innerHTML = list.map(p => `
       <article class="pcard">
-        <div class="hd"><img src="${icon(p.area)}" alt=""><div><span class="chip">${esc(p.label || p.area)}</span><h3>${esc(p.name)}</h3></div></div>
+        <div class="hd"><img src="${icon(p.area)}" alt=""><div><span class="chip">${esc(p.label || p.area)}</span><h3>${esc(p.name)}</h3></div>${(() => { const L = (window.JBMedia && window.JBMedia.lib) || {}; const it = L[p.name]; return it && it.cat ? `<button type="button" class="pthumb" data-mm-prog="${esc(p.name)}" data-mm-kind="cat" aria-label="${esc(p.name)} 카탈로그 보기"><img src="images/cover-${it.cat[0]}.jpg" alt="${esc(p.name)} 카탈로그 표지" loading="lazy"></button>` : ''; })()}</div>
         <div class="meta"><span class="chip age">${esc(p.target)}</span>${p.vendor ? `<span class="chip ven">${esc(p.vendor)}</span>` : ''}${CARD_LINKS[p.name] ? `<span class="card-links">${CARD_LINKS[p.name].map(([t, id]) => cardLinkHtml(p.name, t, id)).join('')}</span>` : ''}</div>
         ${p.intro ? `<p class="pintro">${esc(p.intro)}</p>` : ''}
         <ul>${p.points.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
