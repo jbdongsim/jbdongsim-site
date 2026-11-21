@@ -1,6 +1,6 @@
 /* 중부산동심 공통 자료 팝업: 카탈로그(사이트 이미지) · 영상(유튜브/사이트 mp4) · 웹 자료(iframe) · 부모교육 자세히 보기 */
 (function () {
-  var LIB = {"나은프로젝트":{"mp4":"assets/video-naun.mp4"},"드아트빌":{"yt":"VH5B8QKvYU0"},"프레아트빌":{"yt":"VH5B8QKvYU0"},"한국프로젝트":{"yt":"5M71XQOQAUE"},"점핑잉글리시":{"cat":["jumping",1],"mp4":"assets/video-jumping.mp4"},"챗키드로":{"cat":["chatkidro",1],"yt":"j-lABwWfYeU"},"하임슐레":{"cat":["heim",2],"yt":"44Qi4JZx0Yw"},"꼬모아르떼":{"cat":["como",2],"mp4":"assets/video-como.mp4"},"수학어드벤쳐":{"cat":["math",13],"yt":"1Y4joLOKvPU"},"매쓰캥거루":{"cat":["kangaroo",2],"yt":"mnqWXx6q9eg"},"테비박스":{"cat":["tevi",2],"yt":"1xMreF0I3_M"},"한글어드벤처":{"cat":["hangul",15],"yt":"YNncKp5VlNE"},"이야기모자":{"cat":["iyagi",14],"yt":"ezWyWAiUy2o"},"플레이콩":{"cat":["playkong",14],"yt":"FAlfhPOWWAk"},"초록별 도보미":{"cat":["chorok",14],"yt":"nF2I4IOCMrA"},"누리과정 플러스":{"cat":["nuri",27],"yt":"OvA4Lk_D8js"},"윙스 (WINGS)":{"cat":["wings",6],"yt":"Doh-z7O-AT4"},"책보플러스":{"cat":["chaekbo",16]},"도대체과학연구소":{"cat":["dodaeche",16],"yt":"fKQAAekBknA"},"젤리아이":{"cat":["jelly",18]},"셀업키즈 (SEL UP)":{"cat":["selup",14],"mp4":"assets/video-selup.mp4"},"아이마이미":{"cat":["imimi",24],"yt":"0IWJkLha3zg"},"엉뚱한 과학":{"cat":["eongttung",15],"yt":"k99iMQq_krM"},"세힘":{"cat":["sehim",25],"yt":"mPxON3v35-U"},"오플레이":{"cat":["oplay",28],"yt":"0enHcdh1vqY"},"까르르한글수학":{"cat":["kkarr",55]}};
+  var LIB = {"나은프로젝트":{"mp4":"assets/video-naun.mp4"},"드아트빌":{"yt":"VH5B8QKvYU0"},"프레아트빌":{"yt":"VH5B8QKvYU0"},"한국프로젝트":{"yt":"5M71XQOQAUE","hideTop":1},"점핑잉글리시":{"cat":["jumping",1],"mp4":"assets/video-jumping.mp4"},"챗키드로":{"cat":["chatkidro",1],"yt":"j-lABwWfYeU"},"하임슐레":{"cat":["heim",2],"yt":"44Qi4JZx0Yw"},"꼬모아르떼":{"cat":["como",2],"mp4":"assets/video-como.mp4"},"수학어드벤쳐":{"cat":["math",13],"yt":"1Y4joLOKvPU"},"매쓰캥거루":{"cat":["kangaroo",2],"yt":"mnqWXx6q9eg"},"테비박스":{"cat":["tevi",2],"yt":"1xMreF0I3_M"},"한글어드벤처":{"cat":["hangul",15],"yt":"YNncKp5VlNE"},"이야기모자":{"cat":["iyagi",14],"yt":"ezWyWAiUy2o"},"플레이콩":{"cat":["playkong",14],"yt":"FAlfhPOWWAk"},"초록별 도보미":{"cat":["chorok",14],"yt":"nF2I4IOCMrA"},"누리과정 플러스":{"cat":["nuri",27],"yt":"OvA4Lk_D8js"},"윙스 (WINGS)":{"cat":["wings",6],"yt":"Doh-z7O-AT4"},"책보플러스":{"cat":["chaekbo",16]},"도대체과학연구소":{"cat":["dodaeche",16],"yt":"fKQAAekBknA"},"젤리아이":{"cat":["jelly",18]},"셀업키즈 (SEL UP)":{"cat":["selup",14],"mp4":"assets/video-selup.mp4"},"아이마이미":{"cat":["imimi",24],"yt":"0IWJkLha3zg"},"엉뚱한 과학":{"cat":["eongttung",15],"yt":"k99iMQq_krM"},"세힘":{"cat":["sehim",25],"yt":"mPxON3v35-U"},"오플레이":{"cat":["oplay",28],"yt":"0enHcdh1vqY"},"까르르한글수학":{"cat":["kkarr",55]}};
   var EXTRA = { bag: { title: '가방 카탈로그', cat: ['bag', 56], cta: '원 운영 지원' } };
   var css = document.createElement('style');
   css.textContent = [
@@ -14,6 +14,7 @@
     '.mm-tabs[hidden]{display:none!important}.mm-tabs{display:flex;gap:8px;padding:12px 24px 0}.mm-tabs button{border:1.5px solid #D5DCE7;background:#fff;color:#12294A;font:inherit;font-size:14px;font-weight:800;padding:8px 16px;border-radius:999px;cursor:pointer}.mm-tabs button.on{background:#12294A;border-color:#12294A;color:#fff}',
     '.mm-body{overflow:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 20px;flex:1}',
     '.mm-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}.mm-video iframe,.mm-video video{position:absolute;inset:0;width:100%;height:100%;border:0}',
+    '.mm-video.mm-hidetop iframe{top:-34%;height:134%}.mm-video.mm-hidetop{background:#000}',
     '.mm-label{font-size:15px;font-weight:800;color:#12294A;margin:4px 0 10px}',
     '.mm-pages{display:grid;gap:12px}.mm-pages img{width:100%;height:auto;display:block;border-radius:12px;background:#F4F6FA;box-shadow:0 2px 10px rgba(18,41,74,.08)}',
     '.mm-hint{font-size:12.5px;color:#7A8699;margin:10px 0 0}',
@@ -36,7 +37,7 @@
   var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
   var current = null;
   function videoHtml(it) {
-    if (it.yt) return '<div class="mm-video"><iframe src="https://www.youtube-nocookie.com/embed/' + it.yt + '?autoplay=1&rel=0&playsinline=1" title="' + esc(it.title || '영상') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>';
+    if (it.yt) return '<div class="mm-video' + (it.hideTop ? ' mm-hidetop' : '') + '"><iframe src="https://www.youtube-nocookie.com/embed/' + it.yt + '?autoplay=1&rel=0&playsinline=1&iv_load_policy=3&modestbranding=1" title="' + esc(it.title || '영상') + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>';
     if (it.mp4) return '<div class="mm-video"><video src="' + it.mp4 + '" controls autoplay playsinline preload="metadata"></video></div>';
     return '';
   }
