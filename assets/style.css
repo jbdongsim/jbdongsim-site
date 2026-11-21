@@ -693,3 +693,4 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .bcard .bsub2 p{margin:4px 0 10px}
 .bcard .bsub2 li{position:relative;padding-left:32px}
 .bcard .bsub2 li::before{content:'✓';position:absolute;left:12px;top:7px;color:#C2401F;font-weight:800}
+.bcard .bsub2-teal .no,.bcard .bsub2-teal li::before{color:var(--teal)}
