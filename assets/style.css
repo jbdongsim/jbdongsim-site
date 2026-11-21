@@ -685,7 +685,7 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .pcard .hd .pthumb-artvillage,.pcard .hd .pthumb-preartvillage{background:#00d5d3}.pcard .hd .pthumb-artvillage img,.pcard .hd .pthumb-preartvillage img{object-fit:contain;object-position:center}
 .pcard .hd .pthumb-native{flex-basis:140px;width:140px;height:88px}.pcard .hd .pthumb-native img{object-fit:contain;object-position:center}
 @media(min-width:700px){.pcard .hd .pthumb{width:130px;height:108px;flex-basis:130px}.pcard .hd .pthumb-native{width:160px;height:100px;flex-basis:160px}}
-.pcard .hd h3{overflow-wrap:anywhere;word-break:keep-all}
+.pcard .hd h3{overflow-wrap:break-word;word-break:keep-all}
 
 /* 원장님 연수 카드: 제철 콘텐츠 지원 */
 .bcard .bsub2{margin-top:20px;padding-top:16px;border-top:2px dashed var(--line)}
