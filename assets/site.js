@@ -184,8 +184,14 @@ const prog = $('#progress');
 if (prog) addEventListener('scroll', () => { const h = document.documentElement; prog.style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) * 100) + '%'; }, { passive: true });
 })();
 
-/* 프로그램 카드 제목: 한 줄에 맞게 글자 크기 자동 조정 */
-(function(){ const fit = () => { document.querySelectorAll('.pcard .hd h3').forEach(h => { h.style.fontSize = ''; let fs = parseFloat(getComputedStyle(h).fontSize); let guard = 0; while (h.scrollWidth > h.clientWidth + 1 && fs > 14 && guard++ < 20) { fs -= 1; h.style.fontSize = fs + 'px'; } }); };
+/* 프로그램 카드 제목: 글자 크기는 모두 같게, 한 줄에 안 들어가면 단어 경계에서 두 줄 */
+(function(){ const BR = {'도대체과학연구소':'도대체|과학연구소','까르르한글수학':'까르르|한글수학','점핑잉글리시':'점핑|잉글리시','나은프로젝트':'나은|프로젝트','한국프로젝트':'한국|프로젝트','한글어드벤처':'한글|어드벤처','수학어드벤쳐':'수학|어드벤쳐','매쓰캥거루':'매쓰|캥거루','책보플러스':'책보|플러스','꼬모아르떼':'꼬모|아르떼','프레아트빌':'프레|아트빌','아이마이미':'아이|마이미','드아트빌':'드|아트빌','이야기모자':'이야기|모자','테비박스':'테비|박스','젤리아이':'젤리|아이','챗키드로':'챗|키드로','플레이콩':'플레이|콩','하임슐레':'하임|슐레','오플레이':'오|플레이','셀업키즈':'셀업|키즈'};
+  const over = h => h.scrollWidth > h.clientWidth + 1;
+  const fit = () => { document.querySelectorAll('.pcard .hd h3').forEach(h => {
+    if (!h.dataset.t) { h.dataset.t = h.textContent.trim(); const t = h.dataset.t.replace(/\(([^)]*)\)/g, m => m.replace(/ /g, '\u00a0')); h.textContent = ''; const b = BR[h.dataset.t]; (b ? b.split('|') : [t]).forEach((p,i) => { if (i) h.appendChild(document.createElement('wbr')); h.appendChild(document.createTextNode(p)); }); }
+    h.style.whiteSpace = 'nowrap'; h.style.lineHeight = '';
+    if (over(h)) { h.style.whiteSpace = 'normal'; h.style.lineHeight = '1.25'; }
+  }); };
   const cards = document.getElementById('cards'); if (!cards) return;
   new MutationObserver(() => requestAnimationFrame(fit)).observe(cards, {childList:true});
   let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fit, 120); });

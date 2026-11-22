@@ -699,6 +699,13 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 
 /* 프로그램 카드 줄바꿈 정리 */
 .pcard .hd>div{flex:1 1 auto;min-width:0}
-.pcard .hd h3{white-space:nowrap;overflow:hidden;word-break:keep-all}
+.pcard .hd h3{white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
 .pcard ul li,.pcard .pintro{word-break:keep-all;text-wrap:balance}
 @media(max-width:600px){.pcard .hd{gap:10px}.pcard .hd>img{width:46px;height:46px}.pcard .hd .pthumb{flex:0 0 96px;width:96px;min-width:96px;height:84px}.pcard .hd .pthumb-native{flex-basis:118px;width:118px;height:76px}}
+
+/* 카드 머리: 제목 칸 넓히기 */
+.pcard .hd .pthumb{flex-shrink:0}
+@media(min-width:700px){.pcard .hd{gap:12px}.pcard .hd>img{width:48px;height:48px}.pcard .hd .pthumb{flex:0 0 112px;width:112px;min-width:112px;height:96px}.pcard .hd .pthumb-native{flex:0 0 136px;width:136px;min-width:136px;height:88px}}
+@media(max-width:600px){.pcard .hd>img{width:40px;height:40px}}
+@media(min-width:700px) and (max-width:900px){.pcard .hd .pthumb{flex:0 0 96px;width:96px;min-width:96px;height:84px}.pcard .hd .pthumb-native{flex:0 0 118px;width:118px;min-width:118px;height:76px}}
+@media(max-width:380px){.pcard .hd .pthumb{flex:0 0 84px;width:84px;min-width:84px;height:76px}.pcard .hd .pthumb-native{flex:0 0 104px;width:104px;min-width:104px;height:68px}}
