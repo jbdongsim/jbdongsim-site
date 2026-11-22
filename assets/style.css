@@ -723,3 +723,5 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .fphotos figcaption{margin-top:8px;font-size:13px;font-weight:700;color:#D8E1EE;text-align:center}
 @media(max-width:1080px){.fphotos img{height:150px}}
 @media(max-width:600px){.fphotos{flex-direction:column;gap:16px}.fphotos figure{width:100%}.fphotos img{width:100%;height:auto}}
+/* 태블릿·휴대폰: 푸터 사진은 연락처 아래에 */
+@media(max-width:1080px){footer .fgrid{row-gap:0}footer .fgrid>div:first-child{display:contents}footer .fgrid>div:last-child{order:1;margin-top:28px}footer .fphotos{order:2;margin-top:30px}}
