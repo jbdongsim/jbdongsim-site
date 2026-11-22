@@ -164,13 +164,16 @@
 <style id="event-uniform">
 /* 원내행사 영상 카드 크기 통일: 그림책 행사 기준 (PC 한 줄 4칸 크기, 5편 이상은 2줄 가로 스크롤 / 휴대폰 2열 세로 스크롤) */
 @media(min-width:601px){
-.event-theme-panel[data-count] .event-card-rail{display:grid;grid-template-columns:none;grid-template-rows:auto;grid-auto-flow:column;grid-auto-columns:minmax(220px,calc((100% - 36px) / 4));gap:12px;overflow-x:auto;overflow-y:hidden;padding:0 0 12px;scroll-snap-type:x proximity;scrollbar-width:thin;justify-content:start}
+.event-theme-panel[data-count] .event-card-rail{display:grid;grid-template-columns:none;grid-template-rows:auto;grid-auto-flow:column;grid-auto-columns:calc((100% - 36px) / 4);gap:12px;overflow-x:auto;overflow-y:hidden;padding:0 0 12px;scroll-snap-type:x proximity;scrollbar-width:thin;justify-content:start}
 .event-theme-panel:not([data-count="1"]):not([data-count="2"]):not([data-count="3"]):not([data-count="4"]) .event-card-rail{grid-template-rows:repeat(2,auto)}
 .event-theme-panel[data-count] .theme-video-card{scroll-snap-align:start}
 .event-theme-panel[data-count] .theme-video-image{height:130px;aspect-ratio:auto}
 .event-theme-panel[data-count] .theme-video-body{padding:9px;gap:5px}
 .event-theme-panel[data-count] .theme-video-body h4{font-size:15px;line-height:1.25;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.5em}
 .event-theme-panel[data-count] .theme-video-actions a{font-size:11px;padding:5px 7px}
+}
+@media(min-width:601px) and (max-width:900px){
+.event-theme-panel[data-count] .event-card-rail{grid-auto-columns:calc((100% - 24px) / 3)}
 }
 @media(max-width:600px){
 .event-theme-panel[data-count] .event-card-rail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-flow:row;grid-auto-columns:auto;gap:7px;overflow:visible;padding:0}
