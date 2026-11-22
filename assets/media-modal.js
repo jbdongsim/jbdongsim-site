@@ -1,6 +1,6 @@
 /* 중부산동심 공통 자료 팝업: 카탈로그(사이트 이미지) · 영상(유튜브/사이트 mp4) · 웹 자료(iframe) · 부모교육 자세히 보기 */
 (function () {
-  var LIB = {"나은프로젝트":{"mp4":"assets/video-naun.mp4"},"드아트빌":{"yt":"VH5B8QKvYU0"},"프레아트빌":{"yt":"VH5B8QKvYU0"},"한국프로젝트":{"mp4":"assets/video-kproject.mp4"},"점핑잉글리시":{"cat":["jumping",5],"mp4":"assets/video-jumping.mp4"},"챗키드로":{"cat":["chatkidro",1],"yt":"j-lABwWfYeU"},"하임슐레":{"cat":["heim",2],"yt":"44Qi4JZx0Yw"},"꼬모아르떼":{"cat":["como",2],"mp4":"assets/video-como.mp4"},"수학어드벤쳐":{"cat":["math",13],"yt":"1Y4joLOKvPU"},"매쓰캥거루":{"cat":["kangaroo",2],"yt":"6wYn7oRZ4fo"},"테비박스":{"cat":["tevi",2],"yt":"1xMreF0I3_M"},"한글어드벤처":{"cat":["hangul",15],"yt":"YNncKp5VlNE"},"이야기모자":{"cat":["iyagi",14],"yt":"ezWyWAiUy2o"},"플레이콩":{"cat":["playkong",14],"yt":"FAlfhPOWWAk"},"초록별 도보미":{"cat":["chorok",14],"yt":"nF2I4IOCMrA"},"누리과정 플러스":{"cat":["nuri",27],"yt":"OvA4Lk_D8js"},"윙스 (WINGS)":{"cat":["wings",6],"yt":"Doh-z7O-AT4"},"책보플러스":{"cat":["chaekbo",16],"yt":"wt08c8a5XNU","hideTop":1},"도대체과학연구소":{"cat":["dodaeche",16],"yt":"fKQAAekBknA"},"젤리아이":{"cat":["jelly",18],"yt":"wLHiW259wgs"},"셀업키즈 (SEL UP)":{"cat":["selup",14],"mp4":"assets/video-selup.mp4"},"아이마이미":{"cat":["imimi",24],"yt":"0IWJkLha3zg"},"엉뚱한 과학":{"cat":["eongttung",15],"yt":"k99iMQq_krM"},"세힘":{"cat":["sehim",25],"yt":"mPxON3v35-U"},"오플레이":{"cat":["oplay",28],"yt":"0enHcdh1vqY"},"까르르한글수학":{"cat":["kkarr",55],"yt":"akFoLQKYAzc","hideTop":1}};
+  var LIB = {"나은프로젝트":{"cat":["naun",10],"topic":"images/topic-naun.png","mp4":"assets/video-naun.mp4"},"드아트빌":{"yt":"VH5B8QKvYU0"},"프레아트빌":{"yt":"VH5B8QKvYU0"},"한국프로젝트":{"cat":["kproject",26],"topic":"images/topic-kproject.png","mp4":"assets/video-kproject.mp4"},"점핑잉글리시":{"cat":["jumping",5],"mp4":"assets/video-jumping.mp4"},"챗키드로":{"cat":["chatkidro",1],"yt":"j-lABwWfYeU"},"하임슐레":{"cat":["heim",2],"yt":"44Qi4JZx0Yw"},"꼬모아르떼":{"cat":["como",2],"mp4":"assets/video-como.mp4"},"수학어드벤쳐":{"cat":["math",13],"yt":"1Y4joLOKvPU"},"매쓰캥거루":{"cat":["kangaroo",2],"yt":"6wYn7oRZ4fo"},"테비박스":{"cat":["tevi",2],"yt":"1xMreF0I3_M"},"한글어드벤처":{"cat":["hangul",15],"yt":"YNncKp5VlNE"},"이야기모자":{"cat":["iyagi",14],"yt":"ezWyWAiUy2o"},"플레이콩":{"cat":["playkong",14],"yt":"FAlfhPOWWAk"},"초록별 도보미":{"cat":["chorok",14],"yt":"nF2I4IOCMrA"},"누리과정 플러스":{"cat":["nuri",27],"yt":"OvA4Lk_D8js"},"윙스 (WINGS)":{"cat":["wings",6],"yt":"Doh-z7O-AT4"},"책보플러스":{"cat":["chaekbo",16],"yt":"wt08c8a5XNU","hideTop":1},"도대체과학연구소":{"cat":["dodaeche",16],"yt":"fKQAAekBknA"},"젤리아이":{"cat":["jelly",18],"yt":"wLHiW259wgs"},"셀업키즈 (SEL UP)":{"cat":["selup",14],"mp4":"assets/video-selup.mp4"},"아이마이미":{"cat":["imimi",24],"yt":"0IWJkLha3zg"},"엉뚱한 과학":{"cat":["eongttung",15],"yt":"k99iMQq_krM"},"세힘":{"cat":["sehim",25],"yt":"mPxON3v35-U"},"오플레이":{"cat":["oplay",28],"yt":"0enHcdh1vqY"},"까르르한글수학":{"cat":["kkarr",55],"yt":"akFoLQKYAzc","hideTop":1}};
   var EXTRA = { bag: { title: '가방 카탈로그', cat: ['bag', 56], cta: '원 운영 지원' } };
   var css = document.createElement('style');
   css.textContent = [
@@ -13,6 +13,7 @@
     '.mm-x{flex:none;width:42px;height:42px;border-radius:50%;border:0;background:#F1F4F9;color:#12294A;font-size:26px;line-height:42px;cursor:pointer}',
     '.mm-tabs[hidden]{display:none!important}.mm-tabs{display:flex;gap:8px;padding:12px 24px 0}.mm-tabs button{border:1.5px solid #D5DCE7;background:#fff;color:#12294A;font:inherit;font-size:14px;font-weight:800;padding:8px 16px;border-radius:999px;cursor:pointer}.mm-tabs button.on{background:#12294A;border-color:#12294A;color:#fff}',
     '.mm-body{overflow:auto;-webkit-overflow-scrolling:touch;padding:16px 24px 20px;flex:1}',
+    '.mm-topic{overflow:auto;-webkit-overflow-scrolling:touch;border:1px solid #E3E8F0;border-radius:14px;background:#fff}.mm-topic img{display:block;width:100%;height:auto;cursor:zoom-in}.mm-topic.zoom img{width:220%;max-width:none;cursor:zoom-out}@media(min-width:900px){.mm-topic.zoom img{width:170%}}',
     '.mm-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}.mm-video iframe,.mm-video video{position:absolute;inset:0;width:100%;height:100%;border:0}',
     '.mm-video.mm-hidetop iframe{top:-34%;height:134%}.mm-video.mm-hidetop{background:#000}',
     '.mm-label{font-size:15px;font-weight:800;color:#12294A;margin:4px 0 10px}',
@@ -46,12 +47,16 @@
     for (var i = 1; i <= n; i++) h += '<img src="images/cat-' + s + '-' + pad(i) + '.jpg" alt="' + esc(it.title || '') + ' 카탈로그 ' + i + '쪽" loading="' + (i < 3 ? 'eager' : 'lazy') + '">';
     return h + '</div><p class="mm-hint">' + n + '쪽 · 휴대폰에서는 두 손가락으로 확대해 보세요.</p>';
   }
+  function topicHtml(it) {
+    return '<div class="mm-label">연간 주제</div><div class="mm-topic"><img src="' + it.topic + '" alt="' + esc(it.title || '') + ' 연간 주제"></div><p class="mm-hint">이미지를 누르면 크게 볼 수 있어요. 다시 누르면 원래 크기로 돌아와요.</p>';
+  }
   function show(view) {
     var it = current; if (!it) return;
     [].forEach.call($('.mm-tabs').children, function (b) { b.classList.toggle('on', b.dataset.v === view); });
     var body = $('.mm-body');
     if (view === 'video') body.innerHTML = '<div class="mm-label">' + (it.videoLabel || '제품 영상') + '</div>' + videoHtml(it);
     else if (view === 'cat') body.innerHTML = catHtml(it);
+    else if (view === 'topic') body.innerHTML = topicHtml(it);
     else if (view === 'frame') body.innerHTML = '<iframe class="mm-frame" src="' + it.frame + '" title="' + esc(it.title) + '" allowfullscreen></iframe>';
     else if (view === 'html') body.innerHTML = it.html;
     body.scrollTop = 0;
@@ -61,6 +66,7 @@
     $('.mm-head h3').innerHTML = (it.kicker ? '<small>' + esc(it.kicker) + '</small>' : '') + esc(it.title || '');
     var tabs = $('.mm-tabs'), opts = [];
     if (it.cat) opts.push(['cat', '카탈로그']);
+    if (it.topic) opts.push(['topic', '연간주제']);
     if (it.yt || it.mp4) opts.push(['video', '제품영상']);
     tabs.innerHTML = opts.map(function (o) { return '<button type="button" data-v="' + o[0] + '">' + o[1] + '</button>'; }).join('');
     tabs.hidden = opts.length < 2 || !!it.html || !!it.frame;
@@ -74,6 +80,7 @@
   function close() { box.classList.remove('on'); document.body.classList.remove('mm-lock'); $('.mm-body').innerHTML = ''; current = null; }
   box.addEventListener('click', function (e) {
     var t = e.target.closest('.mm-tabs button'); if (t) return show(t.dataset.v);
+    var zt = e.target.closest('.mm-topic img'); if (zt) { zt.parentNode.classList.toggle('zoom'); return; }
     if (e.target.closest('.mm-x') || e.target === box) return close();
     if (e.target.closest('.mm-share')) {
       var url = location.href.split('#')[0], title = (current && current.title) || document.title;
@@ -93,7 +100,7 @@
     if (b) { var p = b.dataset.mmProg, it = LIB[p]; if (!it) return; e.preventDefault();
       var o = Object.assign({ title: p, program: p, area: b.dataset.mmArea || '교육 프로그램', kicker: '교육 프로그램' }, it);
       if (b.dataset.mmArea) document.querySelectorAll('dialog[open]').forEach(function (d) { d.close(); });
-      return open(o, b.dataset.mmKind === 'video' ? 'video' : 'cat'); }
+      return open(o, b.dataset.mmKind === 'video' ? 'video' : b.dataset.mmKind === 'topic' && it.topic ? 'topic' : 'cat'); }
     // 2) 기타 자료 (가방 카탈로그, 웹 카탈로그)
     var x = e.target.closest('[data-mm-extra],[data-mm-frame]');
     if (x) { e.preventDefault();
