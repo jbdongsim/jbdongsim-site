@@ -710,8 +710,8 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 @media(min-width:700px) and (max-width:900px){.pcard .hd .pthumb{flex:0 0 96px;width:96px;min-width:96px;height:84px}.pcard .hd .pthumb-native{flex:0 0 118px;width:118px;min-width:118px;height:76px}}
 @media(max-width:380px){.pcard .hd .pthumb{flex:0 0 84px;width:84px;min-width:84px;height:76px}.pcard .hd .pthumb-native{flex:0 0 104px;width:104px;min-width:104px;height:68px}}
 
-/* 스마트폰 하단 메뉴: 학부모 → 대표인사말 */
+/* 휴대폰·태블릿 하단 메뉴: 학부모 → 대표인사말 (PC는 학부모) */
 .dock a.dock-about{display:none}
 .dock a.dock-about i{background:#efe9fb}.dock a.dock-about svg{stroke:var(--purple)}
 .dock a.dock-about.on i{background:var(--navy)}.dock a.dock-about.on svg{stroke:#fff}
-@media(max-width:680px){.dock a[data-p='parents']{display:none}.dock a.dock-about{display:grid}}
+@media(max-width:1180px){.dock a[data-p='parents']{display:none}.dock a.dock-about{display:grid}}
