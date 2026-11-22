@@ -93,9 +93,9 @@ window.MORNING_BOOKS = [
   "교사",
   "부모"
  ],
- "cover": "images/book-2026-11-23.jpg",
- "video": "assets/book-2026-11-23.mp4",
- "poster": "images/book-2026-11-23-poster.jpg",
+ "cover": "images/book-2026-11-23.jpg?v=2",
+ "video": "assets/book-2026-11-23.mp4?v=2",
+ "poster": "images/book-2026-11-23-poster.jpg?v=2",
  "quote": "문제에 대한 대화는 문제를 만들어 내고, 해결에 대한 대화는 해결책을 만들어 낸다.",
  "points": [
   "문제의 원인을 캐묻기보다 ‘원하는 미래’를 묻는 대화가 해결로 가는 지름길입니다. 문제 이야기는 문제를, 해결 이야기는 해결책을 만들어요.",
