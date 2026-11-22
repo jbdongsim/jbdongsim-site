@@ -196,3 +196,10 @@ if (prog) addEventListener('scroll', () => { const h = document.documentElement;
   new MutationObserver(() => requestAnimationFrame(fit)).observe(cards, {childList:true});
   let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fit, 120); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit); requestAnimationFrame(fit); })();
+
+/* 스마트폰 하단 메뉴: 학부모 대신 대표인사말 (PC는 그대로) */
+(function(){ const d = document.querySelector('nav.dock'); if (!d || d.querySelector('.dock-about')) return;
+  const a = document.createElement('a'); a.className = 'dock-about'; a.dataset.p = 'about'; a.href = '/about'; a.setAttribute('aria-label', '대표인사말');
+  a.innerHTML = '<i><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.400 3.600-7 8-7s8 2.600 8 7"/></svg></i>대표인사말';
+  if (/^\/about(\.html)?\/?$/.test(location.pathname)) a.classList.add('on');
+  d.appendChild(a); })();
