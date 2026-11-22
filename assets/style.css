@@ -725,3 +725,10 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 @media(max-width:600px){.fphotos{flex-direction:column;gap:16px}.fphotos figure{width:100%}.fphotos img{width:100%;height:auto}}
 /* 태블릿·휴대폰: 푸터 사진은 연락처 아래에 */
 @media(max-width:1080px){footer .fgrid{row-gap:0}footer .fgrid>div:first-child{display:contents}footer .fgrid>div:last-child{order:1;margin-top:28px}footer .fphotos{order:2;margin-top:30px}}
+/* 푸터 사진 두 장 같은 크기·같은 간격 */
+footer .fphotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:620px}
+footer .fphotos figure{margin:0;width:auto;min-width:0}
+footer .fphotos img{width:100%;height:auto;aspect-ratio:2.3/1;object-fit:cover;object-position:center 58%}
+footer .fphotos figure:last-child img{object-position:center 45%}
+@media(max-width:1080px){footer .fphotos{max-width:none}}
+@media(max-width:600px){footer .fphotos{grid-template-columns:minmax(0,1fr);gap:16px}}
