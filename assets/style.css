@@ -696,3 +696,9 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .bcard .bsub2-teal .no,.bcard .bsub2-teal li::before{color:var(--teal)}
 .bcard-maker .maker-links{display:flex;flex-wrap:wrap;gap:8px}.bcard-maker .maker-links .maker-card-link{margin-top:0}.bcard-maker .maker-prompt{background:#6B4FD8}
 .pcard .hd .pthumb-preartvillage{background:#fff}.pcard .hd .pthumb-preartvillage img{object-fit:cover;object-position:75% 30%}
+
+/* 프로그램 카드 줄바꿈 정리 */
+.pcard .hd>div{flex:1 1 auto;min-width:0}
+.pcard .hd h3{white-space:nowrap;overflow:hidden;word-break:keep-all}
+.pcard ul li,.pcard .pintro{word-break:keep-all;text-wrap:balance}
+@media(max-width:600px){.pcard .hd{gap:10px}.pcard .hd>img{width:46px;height:46px}.pcard .hd .pthumb{flex:0 0 96px;width:96px;min-width:96px;height:84px}.pcard .hd .pthumb-native{flex-basis:118px;width:118px;height:76px}}
