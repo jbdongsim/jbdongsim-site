@@ -715,3 +715,11 @@ button.btn{font-family:inherit;cursor:pointer;border:0}
 .dock a.dock-about i{background:#efe9fb}.dock a.dock-about svg{stroke:var(--purple)}
 .dock a.dock-about.on i{background:var(--navy)}.dock a.dock-about.on svg{stroke:#fff}
 @media(max-width:1180px){.dock a[data-p='parents']{display:none}.dock a.dock-about{display:grid}}
+
+/* 푸터 사진: 사무실 전경 · 특강강사 */
+.fphotos{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.fphotos figure{margin:0}
+.fphotos img{display:block;height:130px;width:auto;max-width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.fphotos figcaption{margin-top:8px;font-size:13px;font-weight:700;color:#D8E1EE;text-align:center}
+@media(max-width:1080px){.fphotos img{height:150px}}
+@media(max-width:600px){.fphotos{flex-direction:column;gap:16px}.fphotos figure{width:100%}.fphotos img{width:100%;height:auto}}
