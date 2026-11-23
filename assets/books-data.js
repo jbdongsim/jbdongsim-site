@@ -17,7 +17,7 @@ window.MORNING_BOOKS = [
   "부모"
  ],
  "cover": "images/book-2026-11-19.jpg",
- "video": "assets/book-2026-11-19.mp4",
+ "video": "assets/book-2026-11-19.mp4?v=3",
  "poster": "images/book-2026-11-19-poster.jpg",
  "quote": "AI는 기술이 아니다, 문명이다.",
  "points": [
@@ -55,7 +55,7 @@ window.MORNING_BOOKS = [
   "부모"
  ],
  "cover": "images/book-2026-11-20.jpg",
- "video": "assets/book-2026-11-20.mp4",
+ "video": "assets/book-2026-11-20.mp4?v=3",
  "poster": "images/book-2026-11-20-poster.jpg",
  "quote": "각 대륙의 장기적인 역사에서 나타나는 큰 차이는 그 대륙에 정착한 사람들의 타고난 차이가 아니라, 환경의 차이에서 비롯된 것",
  "points": [
@@ -94,7 +94,7 @@ window.MORNING_BOOKS = [
   "부모"
  ],
  "cover": "images/book-2026-11-23.jpg?v=2",
- "video": "assets/book-2026-11-23.mp4?v=2",
+ "video": "assets/book-2026-11-23.mp4?v=3",
  "poster": "images/book-2026-11-23-poster.jpg?v=2",
  "quote": "문제에 대한 대화는 문제를 만들어 내고, 해결에 대한 대화는 해결책을 만들어 낸다.",
  "points": [
@@ -133,7 +133,7 @@ window.MORNING_BOOKS = [
   "부모"
  ],
  "cover": "images/book-2026-11-24.jpg",
- "video": "assets/book-2026-11-24.mp4",
+ "video": "assets/book-2026-11-24.mp4?v=3",
  "poster": "images/book-2026-11-24-poster.jpg",
  "quote": "완벽을 도모하느라 주저하기보다는 일단 해보는 것이 낫다.",
  "points": [
