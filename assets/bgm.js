@@ -19,12 +19,12 @@
    + '.mbgm-play{flex:none;width:46px;height:46px;border-radius:50%;background:#F5B841;color:#12294A;display:grid;place-items:center;box-shadow:0 4px 12px rgba(245,184,65,.45)}'
    + '.mbgm-play svg{width:22px;height:22px}.mbgm .ic-pause{display:none}.mbgm.on .ic-play{display:none}.mbgm.on .ic-pause{display:block}'
    + '.mbgm-info{min-width:0;display:flex;flex-direction:column;line-height:1.25}'
-   + '.mbgm-label{font-size:11.5px;font-weight:700;color:#8A6A1F}.mbgm-title{font-size:13.5px;font-weight:800;color:#12294A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+   + '.mbgm-label{font-size:11.5px;font-weight:700;color:#8A6A1F;white-space:nowrap}.mbgm-title{font-size:13.5px;font-weight:800;color:#12294A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
    + '.mbgm-next,.mbgm-info-btn{flex:none;width:34px;height:34px;border-radius:50%;background:#F4F6FA;color:#12294A;display:grid;place-items:center}.mbgm-next svg{width:16px;height:16px}.mbgm-info-btn{font-weight:800;font-size:14px}'
    + '.mbgm.on .mbgm-play{animation:mbgmPulse 2.4s ease-in-out infinite}@keyframes mbgmPulse{50%{box-shadow:0 4px 18px rgba(245,184,65,.85)}}'
    + '.mbgm-credits{position:fixed;right:16px;z-index:71;width:min(360px,calc(100vw - 32px));max-height:60vh;overflow:auto;padding:16px 16px 12px;border-radius:18px;background:#fff;border:1px solid #E3E8F0;box-shadow:0 18px 40px rgba(18,41,74,.22);font-size:12.5px;color:#36475F;line-height:1.5}'
    + '.mbgm-credits[hidden]{display:none}.mbgm-credits h4{margin:0 0 8px;font-size:14px;color:#12294A}.mbgm-credits ol{margin:0;padding-left:18px}.mbgm-credits li{margin:0 0 6px}.mbgm-credits li.now{font-weight:800;color:#12294A}.mbgm-credits a{color:#2a6fb8}.mbgm-credits p{margin:8px 0 0;color:#6B7A90;font-size:11.5px}'
-   + '@media (prefers-reduced-motion:reduce){.mbgm.on .mbgm-play{animation:none}}';
+   + '@media (max-width:600px){.mbgm{right:12px;gap:8px;padding:6px 8px 6px 6px;max-width:calc(100vw - 24px)}.mbgm-play{width:40px;height:40px}.mbgm-play svg{width:19px;height:19px}.mbgm-next,.mbgm-info-btn{width:30px;height:30px}.mbgm-title{font-size:12.5px}.mbgm-label{font-size:10.5px}.mbgm-credits{right:12px;width:calc(100vw - 24px)}}' + '@media (prefers-reduced-motion:reduce){.mbgm.on .mbgm-play{animation:none}}';
   document.head.appendChild(css);
   var box = document.createElement('div'); box.className = 'mbgm'; box.setAttribute('role','region'); box.setAttribute('aria-label','아침책방 음악');
   box.innerHTML = '<button type="button" class="mbgm-play" aria-label="아침 음악 켜기"><svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>'
@@ -34,7 +34,7 @@
   var cr = document.createElement('div'); cr.className = 'mbgm-credits'; cr.hidden = true;
   cr.innerHTML = '<h4>아침책방 음악 · 곡 정보</h4><ol>' + T.map(function(x,k){ return '<li data-k="'+k+'">'+x.c+' '+x.t+'<br><small>연주: '+x.p+' · '+x.l+' · <a href="'+x.u+'" target="_blank" rel="noopener">출처</a></small></li>'; }).join('') + '</ol><p>모두 위키미디어 공용(Wikimedia Commons)의 공개 음원입니다. 사이트용으로 음량을 맞추고 일부 곡은 앞부분 6분만 사용했습니다(편집본은 원 라이선스를 따릅니다).</p>';
   var btn = box.querySelector('.mbgm-play'), nxt = box.querySelector('.mbgm-next'), inf = box.querySelector('.mbgm-info-btn'), lbl = box.querySelector('.mbgm-label'), ttl = box.querySelector('.mbgm-title');
-  function load(){ audio.src = T[i].f; lbl.textContent = (i === today ? '오늘의 아침 음악' : '아침책방 음악') + ' · ' + (i+1) + '/' + T.length; ttl.textContent = T[i].c + ' ' + T[i].t; ttl.title = ttl.textContent; [].forEach.call(cr.querySelectorAll('li'), function(li){ li.classList.toggle('now', +li.dataset.k === i); }); }
+  function load(){ audio.src = T[i].f; lbl.textContent = (i === today ? '오늘의 아침 음악' : '아침책방 음악'); ttl.textContent = (i+1) + '/' + T.length + ' · ' + T[i].c + ' ' + T[i].t; ttl.title = ttl.textContent; [].forEach.call(cr.querySelectorAll('li'), function(li){ li.classList.toggle('now', +li.dataset.k === i); }); }
   function setOn(on){ box.classList.toggle('on', on); btn.setAttribute('aria-label', on ? '아침 음악 끄기' : '아침 음악 켜기'); }
   function play(){ var p = audio.play(); if (p && p.catch) p.catch(function(){ setOn(false); }); setOn(true); }
   btn.addEventListener('click', function(){ if (audio.paused) play(); else { audio.pause(); setOn(false); } });
