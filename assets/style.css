@@ -753,4 +753,4 @@ footer .fphotos figure:last-child img{object-position:center 45%}
 .chcard.k .id{color:#8A6D00}.chcard.n .id{color:#03A94D}.chcard.y .id{color:#E00000}
 .chcard p{margin:6px 0 16px;color:var(--muted);font-size:15px}
 .chcard .go{margin-top:auto;font-weight:800;font-size:15px;color:var(--ink)}
-@media(max-width:860px){.chcards{grid-template-columns:1fr;gap:12px}.chcard{flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:14px;padding:18px}.chcard .sns-ico{width:52px;height:52px;margin:0}.chcard h3{margin:0;font-size:18px;flex:1}.chcard .id,.chcard p,.chcard .go{width:100%}.chcard p{margin:2px 0 8px}.chsec{padding:52px 0 24px}}
+@media(max-width:860px){.chcards{grid-template-columns:1fr;gap:12px;margin-top:22px}.chcard{display:grid;grid-template-columns:54px minmax(0,1fr);column-gap:16px;row-gap:2px;align-items:center;padding:16px 18px}.chcard .sns-ico{grid-row:1/span 4;width:54px;height:54px;margin:0;align-self:center}.chcard .sns-ico svg{width:30px;height:30px}.chcard h3{margin:0;font-size:18px}.chcard .id{font-size:14px}.chcard p{margin:0;font-size:14px}.chcard .go{font-size:14px;margin-top:4px}.chsec{padding:52px 0 24px}}
