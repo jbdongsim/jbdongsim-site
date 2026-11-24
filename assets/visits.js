@@ -16,6 +16,8 @@
   el.className = 'visit-stat';
   el.setAttribute('aria-label', '방문자 수');
   el.innerHTML = '오늘 <b>-</b> · 누적 <b>-</b>';
+  // 카운터 서버 응답이 느릴 수 있어, 이 브라우저가 마지막으로 본 숫자를 먼저 보여 준다
+  try { var last = JSON.parse(localStorage.getItem('jb-visit-last') || 'null'); if (last && last.total) el.innerHTML = '오늘 <b>' + Number(last.day === new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10) ? last.today : 0).toLocaleString('ko-KR') + '</b> · 누적 <b>' + Number(last.total).toLocaleString('ko-KR') + '</b>'; } catch (e) {}
   if (cta) { el.setAttribute('aria-hidden', 'true'); cta.appendChild(el); } else { wrap.appendChild(el); }
   var day = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
   var dayKey = 'day-' + day.replace(/-/g, '');
@@ -32,7 +34,9 @@
   Promise.all([call(dayKey), call('total')])
     .then(function (v) {
       if (hit) { try { localStorage.setItem('jb-visit-day', day); } catch (e) {} }
-      el.innerHTML = '오늘 <b>' + fmt(v[0] + (BASE_DAY[day] || 0)) + '</b> · 누적 <b>' + fmt(v[1] + BASE_TOTAL) + '</b>';
+      var td = v[0] + (BASE_DAY[day] || 0), tt = v[1] + BASE_TOTAL;
+      el.innerHTML = '오늘 <b>' + fmt(td) + '</b> · 누적 <b>' + fmt(tt) + '</b>';
+      try { localStorage.setItem('jb-visit-last', JSON.stringify({ day: day, today: td, total: tt })); } catch (e) {}
     })
-    .catch(function () { el.remove(); });
+    .catch(function () { if (/<b>-<\/b>/.test(el.innerHTML)) el.remove(); });
 })();
