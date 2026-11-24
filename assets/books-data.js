@@ -173,9 +173,9 @@ window.MORNING_BOOKS = [
   "교사",
   "부모"
  ],
- "cover": "images/book-2026-11-25.jpg",
- "video": "assets/book-2026-11-25.mp4",
- "poster": "images/book-2026-11-25-poster.jpg",
+ "cover": "images/book-2026-11-25.jpg?v=2",
+ "video": "assets/book-2026-11-25.mp4?v=2",
+ "poster": "images/book-2026-11-25-poster.jpg?v=2",
  "quote": "건설적인 갈등의 초석은 훌륭한 경청이다.",
  "points": [
   "가족은 서로 영향을 주고받는 하나의 체계예요. 가족의 대화가 ‘얼마나 가깝게 뭉치는가(응집)’와 ‘변화에 얼마나 유연하게 맞추는가(적응)’를 조절합니다.",
