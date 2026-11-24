@@ -5,11 +5,18 @@
   if (!wrap) return;
   var API = 'https://abacus.jasoncameron.dev', NS = 'jbdongsim-co-kr';
   var BASE_TOTAL = 124, BASE_DAY = { '2026-11-24': 15 };
-  var el = document.createElement('div');
+  var cta = document.querySelector('header.top a.btn-teal');
+  var st = document.createElement('style');
+  st.textContent = 'header.top a.btn-teal{position:relative}' +
+    'header.top a.btn-teal .visit-stat{position:absolute;top:auto;right:auto;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:3px;font-size:11px;line-height:1;color:#8A98AD;font-weight:500;letter-spacing:-.01em;white-space:nowrap;pointer-events:none;text-align:center}' +
+    'header.top a.btn-teal .visit-stat b{color:#5B6B82;font-weight:700}' +
+    '@media (max-width:680px){header.top a.btn-teal .visit-stat{font-size:10px;margin-bottom:2px}}';
+  document.head.appendChild(st);
+  var el = document.createElement('span');
   el.className = 'visit-stat';
   el.setAttribute('aria-label', '방문자 수');
   el.innerHTML = '오늘 <b>-</b> · 누적 <b>-</b>';
-  wrap.appendChild(el);
+  if (cta) { el.setAttribute('aria-hidden', 'true'); cta.appendChild(el); } else { wrap.appendChild(el); }
   var day = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
   var dayKey = 'day-' + day.replace(/-/g, '');
   var counted = false;
