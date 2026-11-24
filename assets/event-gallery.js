@@ -11,11 +11,10 @@
       ['images/event-support-banner-7.jpg', '역할놀이 현수막 · 10호 병원']
     ],
     air: [
-      ['images/event-support-air-1.jpg', '에어아치 · 원에 설치한 모습'],
-      ['images/event-support-air-2.jpg', '에어아치 · 도넛 아치']
+      ['images/event-support-air-all.jpg', '에어아치 · 설치 모습 모아보기']
     ],
     pororo: [
-      ['images/event-support-pororo-crong.jpg', '뽀로로·크롱 대형 탈 행사 지원']
+      ['images/event-support-pororo-crong-v2.jpg', '뽀로로·크롱 대형 탈 행사 지원']
     ]
   };
   var css = document.createElement('style');
@@ -29,7 +28,8 @@
     '.gx-thumbs{display:flex;gap:6px;margin-top:10px;max-width:100%;overflow-x:auto;padding:2px}.gx.single .gx-thumbs{display:none}' +
     '.gx-thumbs button{flex:none;width:48px;height:62px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;background:#fff;cursor:pointer;opacity:.6}' +
     '.gx-thumbs button.on{border-color:#F5B83D;opacity:1}.gx-thumbs img{width:100%;height:100%;object-fit:cover;display:block}' +
-    'body.gx-lock{overflow:hidden}';
+    'body.gx-lock{overflow:hidden}' +
+    '.gx-stage img{cursor:zoom-in}.gx.zoom .gx-stage{display:block;overflow:auto;-webkit-overflow-scrolling:touch;text-align:center}.gx.zoom .gx-stage img{max-width:none;max-height:none;width:min(1600px,220vw);cursor:zoom-out}.gx.zoom .gx-nav{display:none}';
   document.head.appendChild(css);
   var box = document.createElement('div');
   box.className = 'gx'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', '행사 지원 이미지 보기');
@@ -40,7 +40,8 @@
   function show(i) {
     idx = (i + list.length) % list.length;
     img.src = list[idx][0]; img.alt = list[idx][1];
-    cap.innerHTML = list[idx][1] + (list.length > 1 ? '<small>' + (idx + 1) + ' / ' + list.length + ' · 좌우로 넘겨 보세요</small>' : '');
+    box.classList.remove('zoom');
+    cap.innerHTML = list[idx][1] + (list.length > 1 ? '<small>' + (idx + 1) + ' / ' + list.length + ' · 좌우로 넘겨 보세요</small>' : '<small>사진을 누르면 크게 볼 수 있어요</small>');
     [].forEach.call(th.children, function (b, j) { b.classList.toggle('on', j === idx); });
   }
   function open(key, start) {
@@ -49,7 +50,7 @@
     box.classList.toggle('single', list.length < 2);
     box.classList.add('on'); document.body.classList.add('gx-lock'); show(start || 0);
   }
-  function close() { box.classList.remove('on'); document.body.classList.remove('gx-lock'); img.removeAttribute('src'); }
+  function close() { box.classList.remove('on', 'zoom'); document.body.classList.remove('gx-lock'); img.removeAttribute('src'); }
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-gal]');
     if (t && !box.contains(t)) { e.preventDefault(); open(t.getAttribute('data-gal'), 0); }
@@ -57,6 +58,7 @@
   box.addEventListener('click', function (e) {
     if (e.target.closest('.gx-prev')) return show(idx - 1);
     if (e.target.closest('.gx-next')) return show(idx + 1);
+    if (e.target === img) { box.classList.toggle('zoom'); return; }
     var tb = e.target.closest('.gx-thumbs button'); if (tb) return show(+tb.getAttribute('data-i'));
     if (e.target.closest('.gx-x') || e.target === box || e.target.classList.contains('gx-stage')) close();
   });
@@ -66,5 +68,5 @@
   });
   var sx = null;
   box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
-  box.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 45 && list.length > 1) show(idx + (dx < 0 ? 1 : -1)); sx = null; });
+  box.addEventListener('touchend', function (e) { if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 45 && list.length > 1 && !box.classList.contains('zoom')) show(idx + (dx < 0 ? 1 : -1)); sx = null; });
 })();
