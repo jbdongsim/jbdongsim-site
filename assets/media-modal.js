@@ -17,7 +17,16 @@
     '.mm-video{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}.mm-video iframe,.mm-video video{position:absolute;inset:0;width:100%;height:100%;border:0}',
     '.mm-video.mm-hidetop iframe{top:-34%;height:134%}.mm-video.mm-hidetop{background:#000}',
     '.mm-label{font-size:15px;font-weight:800;color:#12294A;margin:4px 0 10px}',
-    '.mm-pages{display:grid;gap:12px}.mm-pages img{width:100%;height:auto;display:block;border-radius:12px;background:#F4F6FA;box-shadow:0 2px 10px rgba(18,41,74,.08)}',
+    '.mm-pages{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));align-items:start}.mm-pages button{position:relative;display:block;padding:0;border:0;background:#F4F6FA;border-radius:10px;overflow:hidden;cursor:zoom-in;box-shadow:0 2px 10px rgba(18,41,74,.10)}.mm-pages img{width:100%;height:auto;display:block}.mm-pages button span{position:absolute;right:6px;bottom:6px;background:rgba(18,41,74,.78);color:#fff;font-size:11.5px;font-weight:800;padding:3px 8px;border-radius:999px}',
+    '@media(max-width:600px){.mm-pages{grid-template-columns:repeat(2,1fr);gap:10px}}@media(max-height:500px){.mm-pages{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}}',
+    '.mz{position:fixed;inset:0;z-index:400;background:rgba(6,14,28,.96);display:none;flex-direction:column}.mz.on{display:flex}',
+    '.mz-top{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 6px 18px;color:#fff;font-weight:800;font-size:15px}.mz-top small{display:block;font-size:12px;font-weight:600;opacity:.7}',
+    '.mz-x{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:#12294A;font-size:28px;line-height:44px;cursor:pointer}',
+    '.mz-stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:auto;-webkit-overflow-scrolling:touch;padding:4px 8px 12px}',
+    '.mz-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;background:#fff;border-radius:6px;cursor:zoom-in;box-shadow:0 16px 50px rgba(0,0,0,.5)}',
+    '.mz.zoom .mz-stage{display:block;text-align:center}.mz.zoom .mz-stage img{max-width:none;max-height:none;width:min(1800px,220vw);cursor:zoom-out}',
+    '.mz-nav{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#12294A;font-size:28px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);z-index:2}.mz-prev{left:8px}.mz-next{right:8px}.mz.single .mz-nav,.mz.zoom .mz-nav{display:none}',
+    'body.mz-lock{overflow:hidden}',
     '.mm-hint{font-size:12.5px;color:#7A8699;margin:10px 0 0}',
     '.mm-frame{width:100%;height:min(70vh,760px);border:0;border-radius:14px;background:#F4F6FA}',
     '.mm-foot{display:grid;gap:10px;padding:14px 24px 20px;border-top:1px solid #EEF1F6}',
@@ -44,11 +53,11 @@
   }
   function catHtml(it) {
     var s = it.cat[0], n = it.cat[1], h = '<div class="mm-pages">';
-    for (var i = 1; i <= n; i++) h += '<img src="images/cat-' + s + '-' + pad(i) + '.jpg" alt="' + esc(it.title || '') + ' 카탈로그 ' + i + '쪽" loading="' + (i < 3 ? 'eager' : 'lazy') + '">';
-    return h + '</div><p class="mm-hint">' + n + '쪽 · 휴대폰에서는 두 손가락으로 확대해 보세요.</p>';
+    for (var i = 1; i <= n; i++) h += '<button type="button" data-zi="' + (i - 1) + '" aria-label="' + i + '쪽 크게 보기"><img src="images/cat-' + s + '-' + pad(i) + '.jpg" alt="' + esc(it.title || '') + ' 카탈로그 ' + i + '쪽" loading="' + (i < 5 ? 'eager' : 'lazy') + '"><span>' + i + '</span></button>';
+    return '<p class="mm-hint" style="margin:0 0 10px">' + n + '쪽 · 보고 싶은 쪽을 누르면 크게 열려요.</p>' + h + '</div>';
   }
   function topicHtml(it) {
-    return '<div class="mm-label">연간 주제</div><div class="mm-topic"><img src="' + it.topic + '" alt="' + esc(it.title || '') + ' 연간 주제"></div><p class="mm-hint">이미지를 누르면 크게 볼 수 있어요. 다시 누르면 원래 크기로 돌아와요.</p>';
+    return '<div class="mm-label">연간 주제</div><div class="mm-topic"><img src="' + it.topic + '" alt="' + esc(it.title || '') + ' 연간 주제"></div><p class="mm-hint">이미지를 누르면 크게 열려요.</p>';
   }
   function show(view) {
     var it = current; if (!it) return;
@@ -80,7 +89,8 @@
   function close() { box.classList.remove('on'); document.body.classList.remove('mm-lock'); $('.mm-body').innerHTML = ''; current = null; }
   box.addEventListener('click', function (e) {
     var t = e.target.closest('.mm-tabs button'); if (t) return show(t.dataset.v);
-    var zt = e.target.closest('.mm-topic img'); if (zt) { zt.parentNode.classList.toggle('zoom'); return; }
+    var zb = e.target.closest('.mm-pages button[data-zi]'); if (zb) { var imgs = [].map.call(box.querySelectorAll('.mm-pages img'), function (im) { return im.getAttribute('src'); }); return zOpen(imgs, +zb.getAttribute('data-zi'), (current && current.title || '') + ' 카탈로그'); }
+    var zt = e.target.closest('.mm-topic img'); if (zt) return zOpen([zt.getAttribute('src')], 0, (current && current.title || '') + ' 연간 주제');
     if (e.target.closest('.mm-x') || e.target === box) return close();
     if (e.target.closest('.mm-share')) {
       var url = location.href.split('#')[0], title = (current && current.title) || document.title;
@@ -90,7 +100,35 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && box.classList.contains('on')) close(); });
   var ytId = function (u) { var m = String(u).match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/); return m && m[1]; };
-  window.JBMedia = { open: open, lib: LIB };
+  // 크게 보기 창 (카탈로그·연간주제 공통): 화면에 한 쪽씩 잘림 없이, 좌우로 넘기기, 누르면 확대
+  var mz = document.createElement('div');
+  mz.className = 'mz'; mz.setAttribute('role', 'dialog'); mz.setAttribute('aria-modal', 'true'); mz.setAttribute('aria-label', '크게 보기');
+  mz.innerHTML = '<div class="mz-top"><div class="mz-cap"></div><button type="button" class="mz-x" aria-label="닫기">×</button></div><div class="mz-stage"><img alt=""></div><button type="button" class="mz-nav mz-prev" aria-label="이전 쪽">‹</button><button type="button" class="mz-nav mz-next" aria-label="다음 쪽">›</button>';
+  document.body.appendChild(mz);
+  var zImg = mz.querySelector('.mz-stage img'), zCap = mz.querySelector('.mz-cap'), zList = [], zIdx = 0, zTitle = '';
+  function zShow(i) {
+    zIdx = (i + zList.length) % zList.length; mz.classList.remove('zoom');
+    zImg.src = zList[zIdx]; zImg.alt = zTitle + ' ' + (zIdx + 1) + '쪽';
+    zCap.innerHTML = esc(zTitle) + '<small>' + (zList.length > 1 ? (zIdx + 1) + ' / ' + zList.length + ' · 좌우로 넘기고, ' : '') + '누르면 더 크게</small>';
+    mz.querySelector('.mz-stage').scrollTop = 0;
+  }
+  function zOpen(list, i, title) { zList = list; zTitle = title; mz.classList.toggle('single', list.length < 2); mz.classList.add('on'); document.body.classList.add('mz-lock'); zShow(i || 0); }
+  function zClose() { mz.classList.remove('on', 'zoom'); document.body.classList.remove('mz-lock'); zImg.removeAttribute('src'); }
+  mz.addEventListener('click', function (e) {
+    if (e.target.closest('.mz-prev')) return zShow(zIdx - 1);
+    if (e.target.closest('.mz-next')) return zShow(zIdx + 1);
+    if (e.target === zImg) { mz.classList.toggle('zoom'); return; }
+    if (e.target.closest('.mz-x') || e.target.classList.contains('mz-stage')) zClose();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!mz.classList.contains('on')) return;
+    e.stopImmediatePropagation();
+    if (e.key === 'Escape') zClose(); else if (e.key === 'ArrowLeft') zShow(zIdx - 1); else if (e.key === 'ArrowRight') zShow(zIdx + 1);
+  }, true);
+  var zx = null;
+  mz.addEventListener('touchstart', function (e) { zx = e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
+  mz.addEventListener('touchend', function (e) { if (zx === null || mz.classList.contains('zoom')) return; var dx = e.changedTouches[0].clientX - zx; if (Math.abs(dx) > 50 && zList.length > 1) zShow(zIdx + (dx < 0 ? 1 : -1)); zx = null; });
+  window.JBMedia = { open: open, lib: LIB, zoom: zOpen };
   var unTarget = function () { document.querySelectorAll('a[href*="youtube.com/watch"],a[href*="youtu.be/"]').forEach(function (a) { if (!a.closest('footer')) { a.removeAttribute('target'); a.setAttribute('aria-label', (a.getAttribute('aria-label') || '').replace(' (새 창)', '')); } }); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', unTarget); else unTarget();
   document.addEventListener('click', function (e) {
