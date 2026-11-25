@@ -762,3 +762,7 @@ footer .fphotos figure:last-child img{object-position:center 45%}
 .fsns2 a:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.3)}
 .fsns2 svg{display:block;width:100%;height:100%}
 @media(max-width:600px){.fsns2{gap:10px}.fsns2 span{font-size:14px;margin-right:2px}.fsns2 a{width:38px;height:38px}}
+
+/* 2026-11-25 대표님 요청: 상단 '학부모 안내' 메뉴와 하단 '학부모' 아이콘 삭제 (PC·태블릿·휴대폰). 학부모 안내 페이지와 홈 안내 내용은 유지 */
+header a[data-p='parents'],.dock a[data-p='parents']{display:none!important}
+.dock a.dock-about{display:grid}
