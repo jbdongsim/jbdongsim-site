@@ -162,7 +162,17 @@ if (form) {
     text = ['[중부산동심 상담 신청]', '구분: ' + f.get('who'), '원 유형: ' + f.get('type'), '원 이름: ' + (f.get('org') || '-'), '성함: ' + f.get('name'), '연락처: ' + f.get('tel'), '관심 영역: ' + (f.getAll('area').join(', ') || '-'), '문의: ' + (f.get('msg') || '-')].join('\n');
     $('#outText').textContent = text;
     $('#smsBtn').href = 'sms:' + TEL + '?&body=' + encodeURIComponent(text);
-    const r = $('#result'); r.hidden = false; r.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const r = $('#result'), btn = $('#sendBtn'), title = $('#resultTitle'), btns = r.querySelector('.btns');
+    if (f.get('website')) return;
+    // 접수 서버(구글 Apps Script) → 대표 카카오톡 '나와의 채팅'으로 알림
+    const FORM_API = 'https://script.google.com/macros/s/AKfycbybO241e1rYKnStcWjqVraJ1jYatyHDB3PIAIeILcrWSRVGKtlFvdAGveOhjG1tI_3b2A/exec';
+    const body = new URLSearchParams({ who: f.get('who') || '', type: f.get('type') || '', org: f.get('org') || '', name: f.get('name') || '', tel: f.get('tel') || '', area: f.getAll('area').join(', '), msg: f.get('msg') || '' });
+    const show = ok => { if (title) title.textContent = ok ? '신청 내용이 전송되었습니다. 확인 후 빠르게 연락드리겠습니다.' : '전송이 잘 되지 않았습니다. 아래 방법으로 보내 주세요.'; if (btns) btns.style.display = ok ? 'none' : ''; r.hidden = false; r.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+    if (btn) { btn.disabled = true; btn.textContent = '전송 중…'; }
+    fetch(FORM_API, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+      .then(res => res.json()).then(d => { show(!!(d && d.ok)); if (d && d.ok) { form.reset(); } })
+      .catch(() => show(false))
+      .finally(() => { if (btn) { btn.disabled = false; btn.textContent = '신청 내용 전송하기'; } });
   });
   const copy = async () => { try { await navigator.clipboard.writeText(text); $('#copied').textContent = '내용을 복사했습니다. 붙여넣기 하시면 됩니다.'; } catch (e) { $('#copied').textContent = '복사가 막혀 있습니다. 위 내용을 길게 눌러 복사해 주세요.'; } };
   $('#copyBtn').addEventListener('click', copy);
