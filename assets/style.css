@@ -766,3 +766,12 @@ footer .fphotos figure:last-child img{object-position:center 45%}
 /* 2026-11-25 대표님 요청: 상단 '학부모 안내' 메뉴와 하단 '학부모' 아이콘 삭제 (PC·태블릿·휴대폰). 학부모 안내 페이지와 홈 안내 내용은 유지 */
 header a[data-p='parents'],.dock a[data-p='parents']{display:none!important}
 .dock a.dock-about{display:grid}
+
+/* 인스타그램 채널 (2026-11-26) */
+.sns-ico.i{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
+.chcard.i .id{color:#C13584}
+.chcards{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1100px) and (min-width:861px){.chcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:860px){.chcards{grid-template-columns:1fr}}
+@media(max-width:600px){.fsns2{gap:8px}.fsns2 a{width:36px;height:36px}}
+@media(max-width:360px){.fsns2 span{font-size:13px}.fsns2 a{width:32px;height:32px}}
