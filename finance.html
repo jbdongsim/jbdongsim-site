@@ -827,5 +827,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
 if(TOKEN)reload();else showLogin();
 </script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/finance-sw.js',{scope:'/'}).catch(function(){});}</script>
 </body>
 </html>
