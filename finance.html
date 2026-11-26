@@ -522,9 +522,9 @@ function adjQty(id,type){
   <div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn" onclick="closeModal()">취소</button><button class="btn ${type==='반품'?'red':'pri'}" onclick="doAdj('${id}','${type}')">${type} 저장</button></div>`;
   openModal();
 }
-function adjSum(){const t=$('.aAge').reduce((a,e)=>a+num(e.value),0);if(t){$('#aQ').value=t;$('#aA').value=fmtIn(t*num($('#aU').value))}}
+function adjSum(){const t=$$('.aAge').reduce((a,e)=>a+num(e.value),0);if(t){$('#aQ').value=t;$('#aA').value=fmtIn(t*num($('#aU').value))}}
 async function doAdj(id,type){
-  const ages={};$('.aAge').forEach(e=>{if(num(e.value))ages[e.dataset.a]=num(e.value)});
+  const ages={};$$('.aAge').forEach(e=>{if(num(e.value))ages[e.dataset.a]=num(e.value)});
   const p={id,type,ages,qty:num($('#aQ').value),unit:num($('#aU').value),amount:num($('#aA').value),date:$('#aD').value,memo:$('#aM').value,amendInvoiceId:$('#aInv')?$('#aInv').value:''};
   if(!p.qty)return alert('수량을 넣어 주세요.');
   if(p.amendInvoiceId&&D.settings['발행모드']==='실발행'&&!confirm('계산서 공급가액을 -'+won(p.amount)+'원 수정발행해 국세청에 보냅니다. 진행할까요?'))return;
