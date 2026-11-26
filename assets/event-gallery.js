@@ -1,14 +1,14 @@
 (function () {
   var SETS = {
     banner: [
-      ['images/event-support-banner-1.jpg', '크리스마스 포토존 현수막 1'],
-      ['images/event-support-banner-2.jpg', '크리스마스 포토존 현수막 2'],
       ['images/event-support-banner-3.jpg', '역할놀이 현수막 · 2호 소방서(119)'],
       ['images/event-support-banner-5.jpg', '역할놀이 현수막 · 3호 미용실'],
       ['images/event-support-banner-4.jpg', '역할놀이 현수막 · 4호 마켓'],
       ['images/event-support-banner-6.jpg', '역할놀이 현수막 · 6호 교통경찰'],
       ['images/event-support-banner-8.jpg', '역할놀이 현수막 · 8호 레스토랑'],
-      ['images/event-support-banner-7.jpg', '역할놀이 현수막 · 10호 병원']
+      ['images/event-support-banner-7.jpg', '역할놀이 현수막 · 10호 병원'],
+      ['images/event-support-banner-1.jpg', '크리스마스 포토존 현수막 1'],
+      ['images/event-support-banner-2.jpg', '크리스마스 포토존 현수막 2']
     ],
     air: [
       ['images/event-support-air-all-v2.jpg', '에어아치 · 설치 모습 모아보기']
