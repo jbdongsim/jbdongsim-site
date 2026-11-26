@@ -82,8 +82,12 @@ table.t tfoot td{font-weight:800;background:#fafbfd}
 .bar{height:8px;background:var(--soft);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
 .chartbox{position:relative;height:280px}
 footer{color:var(--mut);font-size:12.5px;padding:24px 0 40px}
+.pill{white-space:nowrap}
+.logo{flex:none}.show-m{display:none}
+.grid>*{min-width:0}
+html,body{max-width:100%;overflow-x:hidden}
 @media (max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.g2,.g21{grid-template-columns:1fr}.fg{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:600px){.wrap{padding:0 14px}.hero h1{font-size:25px}.g4{grid-template-columns:1fr 1fr}.kpi .v{font-size:19px}.brand{font-size:16px}.fg{grid-template-columns:1fr}.hide-m{display:none}}
+@media (max-width:600px){.wrap{padding:0 14px}.topin{gap:8px;height:60px}.brand{font-size:15px;white-space:nowrap}.logo{width:34px;height:34px;font-size:16px;border-radius:9px}#modeBadge{padding:4px 9px;font-size:11.5px}.topin .btn{padding:6px 10px;font-size:13px}.card{padding:16px}.modal{padding:16px}.hero{padding-top:16px}.hero h1{font-size:25px}.g4{grid-template-columns:1fr 1fr}.kpi .v{font-size:19px}.brand{font-size:16px}.fg{grid-template-columns:1fr}.hide-m{display:none}.show-m{display:inline}.mh{flex-wrap:wrap}.mh h3{width:100%;font-size:17px}.mh .sp{display:none}}
 @media print{header.top,nav.tabs,.noprint,footer{display:none!important}body{background:#fff}.card{break-inside:avoid;border-color:#ddd}.tw{max-height:none;overflow:visible}}
 </style>
 </head>
@@ -93,7 +97,7 @@ footer{color:var(--mut);font-size:12.5px;padding:24px 0 40px}
   <div class="sp"></div>
   <select id="bizSel" class="in hide-m" title="사업자"><option>전체</option><option>중부산동심</option><option>부산아이랑</option></select>
   <span id="modeBadge" class="pill n">-</span>
-  <button class="btn" onclick="reload()">새로고침</button>
+  <button class="btn" onclick="reload()" title="새로고침"><span class="hide-m">새로고침</span><span class="show-m">↻</span></button>
 </div></header>
 
 <div class="wrap">
