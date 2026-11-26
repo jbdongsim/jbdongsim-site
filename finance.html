@@ -195,14 +195,14 @@ function pendingQueue(){
   S.sales.forEach(s=>{if(s['상태']==='삭제'||!s['결제일']||s['결제일']<start||!s['결제금액']||isCard(s)||allocated.has(s.ID))return;const k=s['원']+'|'+s['결제일']+'|'+s['사업자'];(g[k]||(g[k]=[])).push(s)});
   Object.entries(g).forEach(([k,rows])=>{const [c,d,b]=k.split('|');groups.push({kind:'매출관리표',center:c,date:d,biz:b,amt:rows.reduce((a,s)=>a+s['결제금액'],0),alloc:rows.map(s=>({s,amt:s['결제금액']})),linked:rows.every(s=>s['계산서ID'])})});
   const pool={};
-  S.inv.forEach(v=>{if(v['모드']==='테스트'||/실패/.test(v['상태']))return;const k=(v['원']||v['상호'])+'|'+v['공급자'];(pool[k]||(pool[k]=[])).push({d:v['작성일'],left:v['합계']})});
+  S.inv.forEach(v=>{if(v['모드']==='테스트'||/실패/.test(v['상태']))return;const k=(String(v['사업자번호']||'').replace(/\D/g,'')||v['원']||v['상호'])+'|'+v['공급자'];(pool[k]||(pool[k]=[])).push({d:v['작성일'],left:v['합계']})});
   Object.values(pool).forEach(a=>a.sort((x,y)=>x.d<y.d?-1:1));
   const out=[];
   groups.sort((a,b)=>a.date<b.date?-1:1).forEach(gp=>{
     const cu=S.cust[gp.center]||{}, claim=/청구/.test(cu[gp.biz==='부산아이랑'?'영수청구_아이랑':'영수청구_동심']||'');
     const from=claim?addDays(gp.date,-40):gp.date, to=addDays(gp.date,3);
     let need=gp.amt;
-    (pool[gp.center+'|'+gp.biz]||[]).forEach(iv=>{if(need<=0||iv.left<=0||iv.d<from||iv.d>to)return;const u=Math.min(iv.left,need);iv.left-=u;need-=u});
+    (pool[(String(cu['사업자번호']||'').replace(/\D/g,'')||gp.center)+'|'+gp.biz]||[]).forEach(iv=>{if(need<=0||iv.left<=0||iv.d<from||iv.d>to)return;const u=Math.min(iv.left,need);iv.left-=u;need-=u});
     gp.done=gp.amt-need;
     if(need>10&&!gp.linked&&(BIZ==='전체'||gp.biz===BIZ))out.push(gp);
   });
