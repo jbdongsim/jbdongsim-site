@@ -63,13 +63,14 @@ table.t tfoot td{font-weight:800;background:#fafbfd}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .f{display:flex;flex-direction:column;gap:5px}.f label{font-weight:700;font-size:13px;color:#3b4a5c}
 .fg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fg>*{min-width:0}.f .in{width:100%;min-width:0}.fg.pay{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
 .muted{color:var(--mut)}.small{font-size:12.5px}.neg{color:var(--bad)}.pos{color:var(--ok)}.b{font-weight:700}
 .empty{color:var(--mut);text-align:center;padding:30px 10px}
 .list .it{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #eef1f5}
 .list .it:last-child{border:0}
 .modal-bg{position:fixed;inset:0;background:rgba(15,25,40,.45);z-index:50;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:30px 12px}
 .modal{background:#fff;border-radius:20px;width:min(1100px,100%);padding:22px 24px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
-.modal.sm{width:min(560px,100%)}
+.modal.sm{width:min(560px,100%)}.modal.md{width:min(780px,100%)}
 .mh{display:flex;align-items:center;gap:10px;margin-bottom:14px}.mh h3{margin:0;font-size:19px}
 .toast{position:fixed;right:22px;bottom:22px;background:#17212b;color:#fff;padding:12px 16px;border-radius:12px;z-index:90;display:none;max-width:420px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .loading{position:fixed;inset:0;background:rgba(243,246,250,.75);display:none;place-items:center;z-index:80;font-weight:700;color:var(--navy)}
@@ -270,7 +271,7 @@ function vWork(){
   $('#view').innerHTML=`
   <section class="grid g2">
     <article class="card"><h2>입금 등록</h2><div class="sub">원을 고르면 남은 금액이 월별로 나옵니다. 입금액만큼 오래된 달부터 자동으로 채웁니다.</div>
-      <div class="fg" style="grid-template-columns:2fr 1fr 1fr 1fr">
+      <div class="fg pay">
         <div class="f"><label>원</label><input class="in" id="pC" list="cenList" placeholder="원 이름 검색" oninput="payPreview()"></div>
         <div class="f"><label>입금일</label><input class="in" type="date" id="pD" value="${D.today}"></div>
         <div class="f"><label>입금액</label><input class="in" id="pA" inputmode="numeric" placeholder="0" oninput="this.value=fmtIn(this.value);payPreview()"></div>
@@ -335,6 +336,24 @@ async function cancelPay(id){if(!confirm(id+' 입금을 취소할까요? 매출 
 function queueIssue(i){const x=window._Q[i];openIssue({center:x.center,date:x.date,pid:x.pid,alloc:x.alloc,biz:x.biz,already:x.done})}
 
 /* ---------- 계산서 발행 미리보기 ---------- */
+const AGES=['3세·만1세','4세·만2세','5세·1단계','6세·2단계','7세·3단계'];const AGE_LB=['3세·만1','4세·만2','5세·1단계','6세·2단계','7세·3단계'];
+function prevMonth(m){if(!/^\d{4}-\d{2}$/.test(m))return'';let[y,mm]=m.split('-').map(Number);mm--;if(mm<1){mm=12;y--}return y+'-'+String(mm).padStart(2,'0')}
+/** 원·월의 프로그램별 연령 수량 (원본+추가+반품 합산) */
+function ageMatrix(center,month){const m={};S.sales.filter(s=>s['원']===center&&s['상태']!=='삭제'&&s['월분']===month&&s['구분']==='프로그램').forEach(s=>{const k=s['사업자']+'|'+s['품목'];const o=m[k]||(m[k]={biz:s['사업자'],item:s['품목'],ho:s['호수'],ages:[0,0,0,0,0],qty:0,free:0,adj:0,ids:[],baseId:null,sup:0});AGES.forEach((a,i)=>o.ages[i]+=num(s[a]));o.qty+=num(s['수량']);o.sup+=num(s['공급가']);if(s['정상무상']==='무상')o.free+=num(s['수량']);if(s['유형']==='수량추가'||s['유형']==='반품')o.adj+=num(s['수량']);o.ids.push(s.ID);if(!o.baseId&&s['유형']!=='반품'&&s['유형']!=='수량추가'&&s['수량']>0)o.baseId=s.ID;if(s['호수'])o.ho=s['호수']});Object.values(m).forEach(o=>{if(!o.baseId)o.baseId=o.ids[0]});return m}
+function ageSection(center,month){
+  const months=[...new Set(S.sales.filter(s=>s['원']===center&&s['상태']!=='삭제'&&s['구분']==='프로그램').map(s=>s['월분']))].filter(m=>/^\d{4}-\d{2}$/.test(m)).sort();
+  if(!months.length)return'';
+  if(!month||!months.includes(month))month=months.includes(CM())?CM():months[months.length-1];
+  const cur=ageMatrix(center,month), pm=prevMonth(month), prev=ageMatrix(center,pm);
+  const keys=[...new Set([...Object.keys(cur),...Object.keys(prev)])].sort();
+  const tot=[0,0,0,0,0], ptot=[0,0,0,0,0];let tq=0,ptq=0;
+  const d=(a,b)=>{const x=a-b;return x?'<div class="small '+(x>0?'pos':'neg')+'">'+(x>0?'+':'')+x+'</div>':''};
+  const rows=keys.map(k=>{const c=cur[k]||{ages:[0,0,0,0,0],qty:0,item:k.split('|')[1],biz:k.split('|')[0]},p=prev[k]||{ages:[0,0,0,0,0],qty:0};c.ages.forEach((v,i)=>{tot[i]+=v;ptot[i]+=p.ages[i]});tq+=c.qty;ptq+=p.qty;const asum=c.ages.reduce((a,b)=>a+b,0);
+    return '<tr><td><b>'+esc(c.item)+'</b> <span class="small muted">'+esc(c.ho||'')+'</span><div class="small muted">'+esc(c.biz)+(c.free?' · 무상 '+c.free:'')+(c.adj?' · 추가/반품 '+(c.adj>0?'+':'')+c.adj:'')+'</div></td>'+c.ages.map((v,i)=>'<td class="r">'+(v||'<span class="muted">-</span>')+d(v,p.ages[i])+'</td>').join('')+'<td class="r b">'+won(c.qty)+(asum&&asum!==c.qty?' <span class="badge b-warn" title="연령별 합 '+asum+'과 다름">연령합 '+asum+'</span>':'')+'</td><td class="r muted">'+won(p.qty)+'</td><td class="r b '+(c.qty-p.qty>0?'pos':c.qty-p.qty<0?'neg':'')+'">'+(c.qty-p.qty>0?'+':'')+won(c.qty-p.qty)+'</td><td style="white-space:nowrap">'+(c.baseId?'<button class="btn sm" onclick="adjQty(\''+c.baseId+'\',\'수량추가\')">+추가</button> <button class="btn sm red" onclick="adjQty(\''+c.baseId+'\',\'반품\')">반품</button>':'')+'</td></tr>'});
+  return '<div class="row" style="margin:16px 0 8px"><h4 style="margin:0;flex:1">프로그램·연령별 수량</h4><select class="in" onchange="openCenter(\''+jsq(center)+'\',null,this.value)">'+months.map(m=>'<option value="'+m+'" '+(m===month?'selected':'')+'>'+mLabel(m)+'</option>').join('')+'</select></div>'
+   +'<div class="small muted" style="margin-bottom:6px">'+mLabel(month)+' 기준 · 칸 아래 작은 숫자는 전월('+mLabel(pm)+') 대비 변동입니다. 추가·반품 줄까지 합산한 실제 수량입니다.</div>'
+   +'<div class="tw" style="max-height:420px"><table class="t"><thead><tr><th>프로그램</th>'+AGE_LB.map(a=>'<th class="r">'+a+'</th>').join('')+'<th class="r">합계</th><th class="r">전월</th><th class="r">변동</th><th></th></tr></thead><tbody>'+rows.join('')+'</tbody><tfoot><tr><td>합계</td>'+tot.map((v,i)=>'<td class="r">'+v+d(v,ptot[i])+'</td>').join('')+'<td class="r">'+won(tq)+'</td><td class="r muted">'+won(ptq)+'</td><td class="r">'+(tq-ptq>0?'+':'')+won(tq-ptq)+'</td><td></td></tr></tfoot></table></div>';
+}
 let DRAFT=null;
 function histFor(center){const c=S.cust[center]||{};const b=String(c['사업자번호']||'').replace(/\D/g,'');return S.inv.filter(v=>v['모드']!=='테스트'&&!/실패/.test(v['상태'])&&(v['원']===center||(b&&String(v['사업자번호']).replace(/\D/g,'')===b))).sort((a,b)=>a['작성일']<b['작성일']?1:-1)}
 function guessName(item,hist,biz){const h=hist.filter(v=>v['공급자']===biz);const k=String(item).replace(/\s/g,'');const f=h.find(v=>{const n=String(v['품목']).replace(/\s/g,'');return n===k||n.includes(k)||k.includes(n)});return f?f['품목']:item}
@@ -440,7 +459,7 @@ function vCenters(){
 function csvCenters(){const cs=centerStats();dl('원별_미수_'+D.today+'.csv',[['원','사업자','담당','결제','누적매출','입금','미수(선납)','다음달이후','최근입금','상태'],...cs.map(o=>[o.name,o.bizs,o.mgr,o.pay,o.dueSup,o.paid,o.net,o.future,o.last,o.st])])}
 function dl(name,rows){const csv='\ufeff'+rows.map(r=>r.map(v=>{v=String(v==null?'':v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=name;a.click()}
 
-function openCenter(name,monthSel){
+function openCenter(name,monthSel,ageMonth){
   const rows=S.sales.filter(s=>s['원']===name&&s['상태']!=='삭제'), cu=S.cust[name]||{}, ms=monthStats(rows);
   const hist=histFor(name), pays=S.pay.filter(p=>p['원']===name).reverse();
   const st=centerStats().find(o=>o.name===name)||{net:0,dueSup:0,paid:0,future:0};
@@ -458,6 +477,7 @@ function openCenter(name,monthSel){
     <div class="card" style="padding:14px 16px"><b>요약</b><div class="small" style="margin-top:6px;line-height:1.9">누적 매출 ${won(st.dueSup)}원<br>입금 ${won(st.paid)}원<br>다음 달 이후 예정 ${won(st.future)}원<br>계산서 발행 ${hist.length}건 ${won(hist.reduce((a,v)=>a+v['합계'],0))}원</div></div>
     <div class="card" style="padding:14px 16px"><b>최근 입금</b>${pays.slice(0,5).map(p=>`<div class="small" style="margin-top:4px">${String(p['입금일']).slice(0,10)} · ${won(p['금액'])} · ${esc(p['방법'])}</div>`).join('')||'<div class="small muted" style="margin-top:6px">대시보드 입금 기록 없음</div>'}</div>
   </div>
+  ${ageSection(name,ageMonth||sel)}
   <h4 style="margin:16px 0 8px">월별 장부</h4>
   <div class="tw" style="max-height:260px"><table class="t"><thead><tr><th>월분</th><th class="r">매출</th><th class="r">입금</th><th class="r">잔액</th><th class="r">계산서(작성월)</th><th>상태</th></tr></thead><tbody>
   ${ms.map(o=>{const b=o.sup-o.paid;return `<tr class="cl" onclick="openCenter('${jsq(name)}','${o.m}')" style="${sel===o.m?'background:#eef4ff':''}"><td>${mLabel(o.m)}</td><td class="r">${won(o.sup)}</td><td class="r">${won(o.paid)}</td><td class="r b ${b>0?'neg':b<0?'pos':''}">${won(b)}</td><td class="r">${invM[o.m]?won(invM[o.m]):'-'}</td><td>${!isDue(o.m)?'<span class="badge b-n">예정</span>':b>0?'<span class="badge b-bad">미수</span>':b<0?'<span class="badge b-b">선납</span>':'<span class="badge b-ok">완납</span>'}</td></tr>`}).join('')}
@@ -487,10 +507,11 @@ function adjQty(id,type){
   const s=S.sales.find(x=>x.ID===id), hist=histFor(s['원']).filter(v=>v['출처']!=='홈택스'&&v['issuanceKey']&&v['승인번호']&&v['공급자']===s['사업자']);
   const rel=hist.filter(v=>String(v['매출ID']).split(',').includes(id)||String(s['계산서ID']).split(',').includes(v.ID));
   const cands=(rel.length?rel:hist.filter(v=>String(v['품목']).replace(/\s/g,'').includes(String(s['품목']).replace(/\s/g,'').slice(0,4)))).slice(0,6);
-  $('#mdl').className='modal sm';$('#mdl').innerHTML=`<div class="mh"><h3>${type==='반품'?'반품 처리':'수량 추가'}</h3><div class="sp"></div><button class="btn sm" onclick="closeModal()">닫기</button></div>
-  <div class="note">${esc(s['원'])} · ${mLabel(s['월분'])} · ${esc(s['품목'])} ${esc(s['호수']||'')}<br>현재 ${won(s['수량'])}개 × ${won(s['단가'])}원 = ${won(s['공급가'])}원</div>
+  $('#mdl').className='modal md';$('#mdl').innerHTML=`<div class="mh"><h3>${type==='반품'?'반품 처리':'수량 추가'}</h3><div class="sp"></div><button class="btn sm" onclick="closeModal()">닫기</button></div>
+  <div class="note">${esc(s['원'])} · ${mLabel(s['월분'])} · ${esc(s['품목'])} ${esc(s['호수']||'')}<br>현재 ${won(s['수량'])}개 × ${won(s['단가'])}원 = ${won(s['공급가'])}원<br><span class="small">연령별: ${AGES.map((a,i)=>AGE_LB[i]+' '+(s[a]||0)).join(' · ')}</span></div>
   <div class="fg" style="grid-template-columns:1fr 1fr;margin-top:12px">
-   <div class="f"><label>${type==='반품'?'반품':'추가'} 수량</label><input class="in" id="aQ" inputmode="numeric" value="1" oninput="$('#aA').value=fmtIn(num(this.value)*num($('#aU').value))"></div>
+   <div class="f" style="grid-column:1/3"><label>연령별 ${type==='반품'?'반품':'추가'} 수량 (해당 연령에만 넣으세요)</label><div class="fg" style="grid-template-columns:repeat(5,1fr);gap:6px">${AGES.map((a,i)=>'<div class="f"><span class="small muted">'+AGE_LB[i]+(s[a]?' (현재 '+s[a]+')':'')+'</span><input class="in aAge" data-a="'+a+'" inputmode="numeric" placeholder="0" oninput="adjSum()"></div>').join('')}</div></div>
+   <div class="f"><label>${type==='반품'?'반품':'추가'} 수량 합계</label><input class="in" id="aQ" inputmode="numeric" value="1" oninput="$('#aA').value=fmtIn(num(this.value)*num($('#aU').value))"></div>
    <div class="f"><label>단가</label><input class="in" id="aU" value="${won(s['단가'])}" oninput="$('#aA').value=fmtIn(num($('#aQ').value)*num(this.value))"></div>
    <div class="f"><label>금액</label><input class="in" id="aA" value="${won(s['단가'])}"></div>
    <div class="f"><label>날짜</label><input class="in" type="date" id="aD" value="${D.today}"></div>
@@ -500,8 +521,10 @@ function adjQty(id,type){
   <div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn" onclick="closeModal()">취소</button><button class="btn ${type==='반품'?'red':'pri'}" onclick="doAdj('${id}','${type}')">${type} 저장</button></div>`;
   openModal();
 }
+function adjSum(){const t=$('.aAge').reduce((a,e)=>a+num(e.value),0);if(t){$('#aQ').value=t;$('#aA').value=fmtIn(t*num($('#aU').value))}}
 async function doAdj(id,type){
-  const p={id,type,qty:num($('#aQ').value),unit:num($('#aU').value),amount:num($('#aA').value),date:$('#aD').value,memo:$('#aM').value,amendInvoiceId:$('#aInv')?$('#aInv').value:''};
+  const ages={};$('.aAge').forEach(e=>{if(num(e.value))ages[e.dataset.a]=num(e.value)});
+  const p={id,type,ages,qty:num($('#aQ').value),unit:num($('#aU').value),amount:num($('#aA').value),date:$('#aD').value,memo:$('#aM').value,amendInvoiceId:$('#aInv')?$('#aInv').value:''};
   if(!p.qty)return alert('수량을 넣어 주세요.');
   if(p.amendInvoiceId&&D.settings['발행모드']==='실발행'&&!confirm('계산서 공급가액을 -'+won(p.amount)+'원 수정발행해 국세청에 보냅니다. 진행할까요?'))return;
   const r=await call('adjustQty',[p]);patchSales(r.rows);
