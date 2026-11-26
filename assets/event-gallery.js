@@ -1,6 +1,9 @@
 (function () {
   var SETS = {
     banner: [
+      ['images/event-support-banner-9.jpg', '졸업 현수막 · 졸업을 축하해요!'],
+      ['images/event-support-banner-10.jpg', '졸업·수료 현수막 · 축졸업&수료'],
+      ['images/event-support-banner-11.jpg', '졸업 포토존 현수막 · 졸업, 축하해'],
       ['images/event-support-banner-3.jpg', '역할놀이 현수막 · 2호 소방서(119)'],
       ['images/event-support-banner-5.jpg', '역할놀이 현수막 · 3호 미용실'],
       ['images/event-support-banner-4.jpg', '역할놀이 현수막 · 4호 마켓'],
