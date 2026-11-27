@@ -57,11 +57,13 @@
       'footer{background:linear-gradient(180deg,#1C3F68 0%,#14304F 100%)!important}';
   }
 
+  // 배경 색은 첫 화면이 그려지기 전에 바로 적용 (깜박임 방지)
+  var st = document.createElement('style');
+  st.id = 'season-style';
+  st.textContent = css;
+  (document.head || document.documentElement).appendChild(st);
+
   function run() {
-    var st = document.createElement('style');
-    st.id = 'season-style';
-    st.textContent = css;
-    document.head.appendChild(st);
     var small = window.innerWidth < 700;
     var COLORS = ['#FFD54A', '#FF5A5F', '#5AD1FF', '#9CFF7A', '#FF9AE0', '#FFFFFF'];
 
