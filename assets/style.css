@@ -789,3 +789,6 @@ header a[data-p='parents'],.dock a[data-p='parents']{display:none!important}
 
 /* 2026-11-28 대표님 요청: 첫 화면 메뉴 목록의 "~ 보기" 버튼 크기 통일 (태블릿·PC) */
 .menu .go{min-width:132px;text-align:center;box-sizing:border-box}
+
+/* 2026-11-28 대표님 요청: PC 상단 메뉴를 로고와 상담 버튼 사이 가운데로 (오른쪽 치우침 수정) */
+@media(min-width:1181px){.top .wrap>.brand{margin-right:0!important}.top .wrap>nav.main{margin-left:auto!important;margin-right:auto!important}}
