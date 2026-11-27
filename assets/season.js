@@ -32,8 +32,8 @@
     '@keyframes snBlink{0%,100%{opacity:.35}50%{opacity:1}}' +
     '.xtop{animation:snTop 2.2s ease-in-out infinite;transform-origin:50px 6px;filter:drop-shadow(0 0 6px #FFD866)}' +
     '@keyframes snTop{0%,100%{transform:scale(.9)}50%{transform:scale(1.15)}}' +
-    '.sn-ground{height:96px}.sn-ground .sn-hill{position:absolute;left:-5%;right:-5%;bottom:-6px;height:44px;background:linear-gradient(#fff,#F3F6FB);border-radius:50% 50% 0 0/100% 100% 0 0;opacity:.95}' +
-    '.sn-ground svg.tr{bottom:22px}' +
+    '.sn-ground{height:60px}.sn-ground .sn-hill{position:absolute;left:-5%;right:-5%;bottom:-8px;height:26px;background:linear-gradient(#fff,#F3F6FB);border-radius:50% 50% 0 0/100% 100% 0 0;opacity:.95}' +
+    '.sn-ground svg.tr{bottom:6px}' +
     
     '.wt-band svg.vil{position:absolute;left:-4%;bottom:0;width:108%;height:100%}' +
     '.wt .win{animation:snWin 3s ease-in-out infinite}@keyframes snWin{0%,100%{opacity:.85}50%{opacity:1}}' +
@@ -162,11 +162,8 @@
         var G = document.createElement('div');
         G.className = 'sn-ground' + (X ? '' : ' wt');
         G.setAttribute('aria-hidden', 'true');
-        G.innerHTML = X ? ('<div class="sn-hill"></div>' + tree('2%', 40, '#0F5A3A', 0) + tree('8%', 30, '#137149', 2) + tree('86%', 32, '#137149', 3) + tree('92%', 44, '#0F5A3A', 5)) :
-          ('<div style="position:absolute;left:-4%;right:-4%;bottom:0;height:120px">' + village(small).replace('class="vil"', 'class="vil" style="position:absolute;left:0;bottom:0;width:100%;height:100%"') + '</div>');
-        if (!X) G.style.height = '120px';
+        G.innerHTML = '<div class="sn-hill"></div>' + (X ? (tree('1%', 28, '#0F5A3A', 0) + tree('6%', 22, '#137149', 2) + tree('89%', 22, '#137149', 3) + tree('94%', 28, '#0F5A3A', 5)) : '');
         ph.appendChild(G);
-        var pb = parseFloat(getComputedStyle(ph).paddingBottom) || 0; ph.style.paddingBottom = (pb + (X ? 70 : 100)) + 'px';
       }
     }
     var ft = document.querySelector('footer');
