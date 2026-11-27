@@ -778,12 +778,3 @@ header a[data-p='parents'],.dock a[data-p='parents']{display:none!important}
 
 /* 2026-11-26 대표님 요청: 휴대폰·태블릿(폴드·듀오 펼침 포함, 1180px 이하) 하단 바로가기에서 '혜택'·'대표인사말' 아이콘만 숨김. PC는 그대로, 페이지 내용은 유지 */
 @media(max-width:1180px){.dock a[data-p='benefit'],.dock a.dock-about,.dock a[data-p='about']{display:none!important}}
-
-
-/* 2026-11-27 대표님 요청: 휴대폰 하단 메뉴 아이콘·글자 조금 키움 */
-@media (max-width:680px){.dock a{font-size:11.5px;letter-spacing:-.05em;gap:4px}.dock i{width:36px;height:36px;border-radius:12px}.dock svg{width:22px;height:22px}}
-@media (max-width:360px){.dock a{font-size:10.5px;letter-spacing:-.06em}.dock i{width:34px;height:34px}.dock svg{width:21px;height:21px}}
-
-/* 2026-11-27 대표님 요청: 태블릿(681~1180px) 하단 메뉴를 화면 폭에 꽉 차게 (루덴에듀처럼) */
-@media (min-width:681px) and (max-width:1180px){.dock{left:0;right:0;bottom:0;transform:none;justify-content:space-around;gap:0;border-radius:22px 22px 0 0;border-left:0;border-right:0;border-bottom:0;padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px))}.dock a{flex:1;width:auto;min-width:0;font-size:13px;gap:6px}.dock i{width:44px;height:44px;border-radius:14px}.dock svg{width:23px;height:23px}}
-@media (min-width:681px) and (max-width:1180px){.dock a.on{background:transparent}.dock::before{content:'';position:absolute;left:24px;right:24px;top:0;height:4px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#F26B4E,#F5B841,#1F8A70,#3B82C4,#6B4FD8)}}
