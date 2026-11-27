@@ -6,12 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>중부산동심 재무관리</title>
-<link rel="icon" type="image/png" sizes="64x64" href="/assets/icon-finance-64.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon-finance-180.png">
-<link rel="manifest" href="/finance.webmanifest">
-<meta name="theme-color" content="#1D63D6">
-<meta name="apple-mobile-web-app-title" content="재무관리">
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
@@ -646,9 +640,10 @@ function vInv(){
 function invTable(rows,compact){
   if(!rows.length)return'<div class="empty">계산서가 없습니다.</div>';
   return `<div class="tw" style="max-height:${compact?300:620}px"><table class="t"><thead><tr><th>작성일</th>${compact?'':'<th>원</th>'}<th>품목</th><th>공급자</th><th>종류</th><th class="r">합계</th><th>영수/청구</th><th>상태</th><th class="hide-m">승인번호</th><th class="hide-m">출처</th><th></th></tr></thead><tbody>
-  ${rows.map(v=>`<tr style="${v['모드']==='테스트'?'opacity:.6':''}"><td>${v['작성일']}</td>${compact?'':`<td><a href="#" onclick="openCenter('${jsq(v['원']||v['상호'])}');return false">${esc(v['원']||v['상호'])}</a></td>`}<td class="wrap">${esc(v['품목'])}${v['메모']?`<div class="small muted">${esc(String(v['메모']).slice(0,60))}</div>`:''}</td><td class="small">${esc(v['공급자'])}</td><td class="small">${esc(v['종류'])}</td><td class="r b ${v['합계']<0?'neg':''}">${won(v['합계'])}</td><td>${esc(v['영수청구'])}</td><td><span class="badge ${/^승인/.test(v['상태'])?'b-ok':v['상태']==='처리중'?'b-b':'b-bad'}">${esc(v['상태'])}${v['모드']==='테스트'?'·테스트':''}</span></td><td class="hide-m small">${esc(v['승인번호'])}</td><td class="hide-m small">${esc(v['출처'])}</td><td>${v['issuanceKey']&&v['승인번호']&&v['모드']==='실발행'?`<button class="btn sm" onclick="amendDlg('${v.ID}')">금액 정정</button>`:''}</td></tr>`).join('')}
+  ${rows.map(v=>`<tr style="${v['모드']==='테스트'?'opacity:.6':''}"><td>${v['작성일']}</td>${compact?'':`<td><a href="#" onclick="openCenter('${jsq(v['원']||v['상호'])}');return false">${esc(v['원']||v['상호'])}</a></td>`}<td class="wrap">${esc(v['품목'])}${v['메모']?`<div class="small muted">${esc(String(v['메모']).slice(0,60))}</div>`:''}</td><td class="small">${esc(v['공급자'])}</td><td class="small">${esc(v['종류'])}</td><td class="r b ${v['합계']<0?'neg':''}">${won(v['합계'])}</td><td>${esc(v['영수청구'])}</td><td><span class="badge ${/^승인/.test(v['상태'])?'b-ok':v['상태']==='처리중'?'b-b':'b-bad'}">${esc(v['상태'])}${v['모드']==='테스트'?'·테스트':''}</span></td><td class="hide-m small">${esc(v['승인번호'])}</td><td class="hide-m small">${esc(v['출처'])}</td><td style="white-space:nowrap">${v['issuanceKey']&&v['승인번호']&&v['모드']==='실발행'?`<button class="btn sm" onclick="invPdf('${v.ID}')">PDF</button> <button class="btn sm" onclick="amendDlg('${v.ID}')">금액 정정</button>`:''}</td></tr>`).join('')}
   </tbody></table></div>`;
 }
+async function invPdf(id){const r=await call('invoicePdf',[id],'PDF 준비 중…');$('#mdl').className='modal sm';$('#mdl').innerHTML='<div class="mh"><h3>계산서 PDF</h3></div><div class="okbox">'+esc(r.filename)+'</div><div class="small muted" style="margin-top:8px">링크는 5분 동안만 열립니다.</div><div class="row" style="justify-content:flex-end;margin-top:12px"><a class="btn pri" href="'+r.url+'" target="_blank" download>PDF 내려받기</a><button class="btn" onclick="closeModal()">닫기</button></div>';openModal()}
 function csvInv(){const c=D.cols.invoices.filter(k=>k!=='issuanceKey'&&k!=='clientRef');dl('계산서_'+D.today+'.csv',[c,...window._IR.map(v=>c.map(k=>v[k]))])}
 function amendDlg(id){
   const v=S.inv.find(x=>x.ID===id);
@@ -827,6 +822,5 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
 if(TOKEN)reload();else showLogin();
 </script>
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/finance-sw.js',{scope:'/'}).catch(function(){});}</script>
 </body>
 </html>
