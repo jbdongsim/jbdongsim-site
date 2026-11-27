@@ -13,6 +13,9 @@
       ['images/event-support-banner-1.jpg', '크리스마스 포토존 현수막 1'],
       ['images/event-support-banner-2.jpg', '크리스마스 포토존 현수막 2']
     ],
+    emcee: [
+      ['images/event-support-emcee-1.jpg', '재롱잔치 사회 · 무대 진행 현장']
+    ],
     air: [
       ['images/event-support-air-all-v3.jpg', '에어아치 · 설치 모습 모아보기']
     ],
