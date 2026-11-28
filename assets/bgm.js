@@ -58,7 +58,7 @@
   audio.addEventListener('ended', function(){ i = (i + 1) % T.length; load(); if (inView && !userPaused) play(); });
   audio.addEventListener('error', function(){ if (box.classList.contains('on')) { i = (i + 1) % T.length; load(); play(); } });
   function enter(){ if (inView || !armed) return; inView = true; box.classList.add('show'); place(); if (!userPaused && !videoPaused) play(); }
-  function leave(){ if (!isBook) armed = false; if (!inView) return; inView = false; box.classList.remove('show'); cr.hidden = true; inf.setAttribute('aria-expanded','false'); stop(); waiting = false; box.classList.remove('wait'); }
+  function leave(){ if (!inView) return; inView = false; if (!isBook) armed = false; box.classList.remove('show'); cr.hidden = true; inf.setAttribute('aria-expanded','false'); stop(); waiting = false; box.classList.remove('wait'); }
   // '아침책방' 메뉴(상단·하단)를 누르면 그 클릭으로 바로 재생 시작
   document.addEventListener('click', function(e){ var a = e.target.closest && e.target.closest('a[href*="#morning-books"],a[href^="/book-"],a.nav-book,a.dock-book'); if (!a) return; userPaused = false; armed = true; setTimeout(checkView, 700); setTimeout(checkView, 1500); if (sec) { var p = audio.play(); if (p && p.then) p.then(function(){ setOn(true); }).catch(function(){}); } }, true);
   // 영상(1분 영상 등)이 재생되면 음악은 잠시 멈추고, 영상이 멈추면 다시 이어서
