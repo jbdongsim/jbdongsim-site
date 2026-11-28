@@ -1,5 +1,6 @@
 /* 원장님이 읽는 아침책방 · 아침 피아노 음악 미니창 (찬송가·워십 피아노 10곡, Pixabay 무료 음원)
-   - 홈: 아침책방 칸(#morning-books)이 화면에 들어오거나 '아침책방' 메뉴를 누르면 미니창이 나타나고 음악이 자동 재생됩니다.
+   - 홈: '아침책방' 메뉴(상단·하단)를 눌러 아침책방 칸으로 들어왔을 때만 미니창이 나타나고 음악이 자동 재생됩니다.
+     (2026-11-28 대표님 요청) 홈을 그냥 스크롤하다 아침책방 칸을 지나갈 때는 음악이 나오지 않습니다.
      칸을 벗어나면 미니창이 사라지고 음악도 멈춥니다. 책 페이지(book-YYYY-MM-DD)에서는 항상 보입니다.
    - 미니창에서 ▶/⏸, 다음 곡, 곡 정보(i)를 직접 조절할 수 있습니다. 직접 멈추면 다시 ▶를 누를 때까지 자동 재생하지 않습니다.
    - 브라우저가 자동 재생을 막으면 화면을 한 번 누르는 순간 재생됩니다. 1분 영상을 틀면 음악은 잠시 멈춥니다.
@@ -18,6 +19,9 @@
   if (!sec && !isBook) return;
   var i = todayIdx(), today = i, audio = new Audio(); audio.preload = 'none'; audio.volume = 0.4;
   var inView = isBook, userPaused = false, videoPaused = false, waiting = false;
+  // 2026-11-28 대표님 요청: 홈을 스크롤하다 아침책방 칸을 지나갈 때는 음악을 틀지 않는다.
+  // '아침책방' 메뉴(상단·하단)를 눌러 들어왔을 때만 미니창이 나타나고 음악이 나온다.
+  var armed = isBook || /#morning-books/.test(location.hash);
   var css = document.createElement('style');
   css.textContent = '.mbgm{position:fixed;right:16px;bottom:120px;z-index:70;display:flex;align-items:center;gap:10px;max-width:min(330px,calc(100vw - 32px));padding:8px 10px 8px 8px;border-radius:999px;background:rgba(255,255,255,.97);border:1px solid #F1E3C8;box-shadow:0 10px 28px rgba(18,41,74,.18);font-family:inherit;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .35s,transform .35s,visibility .35s}'
    + '.mbgm.show{opacity:1;visibility:visible;transform:none}'
@@ -53,13 +57,15 @@
   inf.addEventListener('click', function(e){ e.stopPropagation(); cr.hidden = !cr.hidden; inf.setAttribute('aria-expanded', String(!cr.hidden)); place(); });
   audio.addEventListener('ended', function(){ i = (i + 1) % T.length; load(); if (inView && !userPaused) play(); });
   audio.addEventListener('error', function(){ if (box.classList.contains('on')) { i = (i + 1) % T.length; load(); play(); } });
-  function enter(){ if (inView) return; inView = true; box.classList.add('show'); place(); if (!userPaused && !videoPaused) play(); }
-  function leave(){ if (!inView) return; inView = false; box.classList.remove('show'); cr.hidden = true; inf.setAttribute('aria-expanded','false'); stop(); waiting = false; box.classList.remove('wait'); }
+  function enter(){ if (inView || !armed) return; inView = true; box.classList.add('show'); place(); if (!userPaused && !videoPaused) play(); }
+  function leave(){ if (!isBook) armed = false; if (!inView) return; inView = false; box.classList.remove('show'); cr.hidden = true; inf.setAttribute('aria-expanded','false'); stop(); waiting = false; box.classList.remove('wait'); }
   // '아침책방' 메뉴(상단·하단)를 누르면 그 클릭으로 바로 재생 시작
-  document.addEventListener('click', function(e){ var a = e.target.closest && e.target.closest('a[href*="#morning-books"],a[href^="/book-"],a.nav-book,a.dock-book'); if (!a) return; userPaused = false; if (sec) { var p = audio.play(); if (p && p.then) p.then(function(){ setOn(true); }).catch(function(){}); } }, true);
+  document.addEventListener('click', function(e){ var a = e.target.closest && e.target.closest('a[href*="#morning-books"],a[href^="/book-"],a.nav-book,a.dock-book'); if (!a) return; userPaused = false; armed = true; setTimeout(checkView, 700); setTimeout(checkView, 1500); if (sec) { var p = audio.play(); if (p && p.then) p.then(function(){ setOn(true); }).catch(function(){}); } }, true);
   // 영상(1분 영상 등)이 재생되면 음악은 잠시 멈추고, 영상이 멈추면 다시 이어서
   document.addEventListener('play', function(e){ if (e.target && e.target.tagName === 'VIDEO' && !audio.paused) { videoPaused = true; stop(); } }, true);
   ['pause','ended'].forEach(function(ev){ document.addEventListener(ev, function(e){ if (e.target && e.target.tagName === 'VIDEO' && videoPaused) { videoPaused = false; if (inView && !userPaused) play(); } }, true); });
+  function checkView(){ if (!sec) return; var r = sec.getBoundingClientRect(); if (r.top < window.innerHeight * 0.88 && r.bottom > window.innerHeight * 0.12) enter(); }
+  window.addEventListener('hashchange', function(){ if (/#morning-books/.test(location.hash)) { armed = true; setTimeout(checkView, 700); } });
   function place(){ var d = document.querySelector('nav.dock'), b = 16; if (d && getComputedStyle(d).display !== 'none') { var r = d.getBoundingClientRect(); b = Math.max(16, window.innerHeight - r.top + 12); } box.style.bottom = b + 'px'; cr.style.bottom = (b + box.offsetHeight + 10) + 'px'; }
   load(); document.body.appendChild(box); document.body.appendChild(cr); place();
   window.addEventListener('resize', place); setTimeout(place, 600);
