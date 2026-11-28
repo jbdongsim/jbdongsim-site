@@ -65,7 +65,6 @@
   document.addEventListener('play', function(e){ if (e.target && e.target.tagName === 'VIDEO' && !audio.paused) { videoPaused = true; stop(); } }, true);
   ['pause','ended'].forEach(function(ev){ document.addEventListener(ev, function(e){ if (e.target && e.target.tagName === 'VIDEO' && videoPaused) { videoPaused = false; if (inView && !userPaused) play(); } }, true); });
   function checkView(){ if (!sec) return; var r = sec.getBoundingClientRect(); if (r.top < window.innerHeight * 0.88 && r.bottom > window.innerHeight * 0.12) enter(); }
-  window.addEventListener('hashchange', function(){ if (/#morning-books/.test(location.hash)) { armed = true; setTimeout(checkView, 700); } });
   function place(){ var d = document.querySelector('nav.dock'), b = 16; if (d && getComputedStyle(d).display !== 'none') { var r = d.getBoundingClientRect(); b = Math.max(16, window.innerHeight - r.top + 12); } box.style.bottom = b + 'px'; cr.style.bottom = (b + box.offsetHeight + 10) + 'px'; }
   load(); document.body.appendChild(box); document.body.appendChild(cr); place();
   window.addEventListener('resize', place); setTimeout(place, 600);
