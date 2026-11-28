@@ -795,3 +795,6 @@ header a[data-p='parents'],.dock a[data-p='parents']{display:none!important}
 
 /* 2026-11-28 대표님 요청: 모든 페이지(홈·메뉴) 첫 문구 시작 높이 통일 - PC·태블릿 60px, 휴대폰 44px */
 .home-hero{padding-top:60px!important}@media (max-width:900px){.home-hero{padding-top:44px!important}}.phero .wrap>:first-child,.home-hero .wrap>:first-child{align-self:start}
+
+/* 2026-11-28 대표님 요청: 메뉴 페이지마다 버튼·그림 위치 통일 (설명 문단 높이 고정: PC·태블릿 2줄, 휴대폰 3줄 / 학부모 안내 제목 2줄로) */
+.phero .wrap>:first-child>p{min-height:3.3em}@media (max-width:700px){.phero .wrap>:first-child>p{min-height:4.95em}}body[data-page="parents"] .phero h1{font-size:clamp(24px,3.2vw,39px);min-height:calc(clamp(30px,3.9vw,48px) * 2.48)}
