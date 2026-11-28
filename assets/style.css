@@ -792,3 +792,6 @@ header a[data-p='parents'],.dock a[data-p='parents']{display:none!important}
 
 /* 2026-11-28 대표님 요청: PC 상단 메뉴를 로고와 상담 버튼 사이 가운데로 (오른쪽 치우침 수정) */
 @media(min-width:1181px){.top .wrap>.brand{margin-right:0!important}.top .wrap>nav.main{margin-left:auto!important;margin-right:auto!important}}
+
+/* 2026-11-28 대표님 요청: 모든 페이지(홈·메뉴) 첫 문구 시작 높이 통일 - PC·태블릿 60px, 휴대폰 44px */
+.home-hero{padding-top:60px!important}@media (max-width:900px){.home-hero{padding-top:44px!important}}.phero .wrap>:first-child,.home-hero .wrap>:first-child{align-self:start}
